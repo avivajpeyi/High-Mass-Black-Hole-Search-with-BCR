@@ -1,0 +1,93 @@
+
+\documentclass[%
+ reprint,
+%superscriptaddress,
+%groupedaddress,
+%unsortedaddress,
+%runinaddress,
+%frontmatterverbose, 
+%preprint,
+%preprintnumbers,
+%nofootinbib,
+%nobibnotes,
+%bibnotes,
+ amsmath,amssymb,
+ aps,
+%pra,
+%prb,
+%rmp,
+%prstab,
+%prstper,
+%floatfix,
+]{revtex4-2}
+
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+\usepackage{hyperref}% add hypertext capabilities
+\usepackage{lipsum}  % for placeholder text
+
+\begin{document}
+
+\preprint{APS/123-QED}
+
+\title{A High Mass Black Hole Search\\with BCR}% Force line breaks with \\
+
+
+\author{Author list TBD}
+
+\date{\today}
+
+\begin{abstract}
+
+
+Gravitational wave astronomy has been firmly established with the detection of gravitational waves from the merger of ten stellar mass binary black holes and a neutron star binary. This paper reports on the all-sky search for gravitational waves from intermediate mass black hole binaries in the first and second observing runs of the Advanced LIGO and Virgo network.
+
+Advanced LIGO
+
+"Blip glitches" are a type of short duration transient noise in LIGO data. The cause for the majority of these is currently unknown. Short duration transient noise creates challenges for searches of the highest mass binary black hole systems, as standard methods of applying signal consistency, which look for consistency in the accumulated signal-to-noise of the candidate event, are unable to distinguish many blip glitches from short duration gravitational-wave signals due to similarities in their time and frequency evolution. We demonstrate a straightforward method, employed during Advanced LIGO's second observing run, including the period of joint observation with the Virgo observatory, to separate the majority of this transient noise from potential gravitational-wave sources. This yields a ∼20\% improvement in the detection rate of high mass binary black hole mergers (>60M⊙) for the PyCBC analysis.
+
+We search for gravitational waves from the coalescence (inspiral, merger and ring- down) of binary black holes with data from the Laser Interferometer Gravitational- Wave Observatory (LIGO). Provided with well-described waveform models from Gen- eral Relativity, matched filtering is employed in the GSTLAL analysis pipeline as the optimal detection technique for weak signals in Gaussian noise. The GSTLAL anal- ysis pipeline filters data with waveform template banks, identifies triggers with SNR greater than 4, forms coincident triggers between multiple detectors in the LSC-Virgo Collaboration, and attempts to optimally separate signal from detector background noise fluctuations using a Chi-squared test. We analyze high-statistics simulations of binary merger waveforms injected into LIGO recolored S6 data to evaluate the pipeline search sensitivity and to test the readiness of the pipeline for Advanced LIGO. With Advanced LIGO fully in operation by 2015 and the upgraded analysis pipelines, the expected detection rate is increased to as much as 100 events/year or more as com- pared to 0.01-1 events/year in Initial LIGO. Our work will make it possible to detect gravitational waves from binary black hole coalescence in Advanced LIGO data with high confidence.
+
+Gravitational wave astronomy has been firmly established with the detection of gravitational waves from the merger of ten stellar mass binary black holes and a neutron star binary. This paper reports on the all-sky search for gravitational waves from intermediate mass black hole binaries in the first and second observing runs of the Advanced LIGO and Virgo network. The search uses three independent algorithms: two based on matched filtering of the data with waveform templates of gravitational wave signals from compact binaries, and a third, model-independent algorithm that employs no signal model for the incoming signal. No intermediate mass black hole binary event was detected in this search. Consequently, we place upper limits on the merger rate density for a family of intermediate mass black hole binaries. In particular, we choose sources with total masses M=m1+m2∈[120,800]M⊙ and mass ratios q=m2/m1∈[0.1,1.0]. For the first time, this calculation is done using numerical relativity waveforms (which include higher modes) as models of the real emitted signal. We place a most stringent upper limit of 0.20~Gpc−3yr−1 (in co-moving units at the 90\% confidence level) for equal-mass binaries with individual masses m1,2=100M⊙ and dimensionless spins χ1,2=0.8 aligned with the orbital angular momentum of the binary. This improves by a factor of ∼5 that reported after Advanced LIGO's first observing run.
+
+\end{abstract}
+
+\maketitle
+
+%\tableofcontents
+
+
+%%%%%%---SECTIONS---%%%%%%%%%%%%
+\section{\label{sec:level1}First-level heading:\protect\\ The line
+break was forced \lowercase{via} \textbackslash\textbackslash}
+\lipsum[1-2]
+Figure~\ref{fig:distance-prior-comparison}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{example-image-a}
+    \caption{Some caption.}
+    \label{fig:distance-prior-comparison}
+\end{figure}
+%%%%%%---SECTIONS-END---%%%%%%%%%%%%
+
+%%%%%%---ACKNOWLEDGEMENTS---%%%%%%%%%%%%
+\begin{acknowledgments}
+OzGrav, NSF, \lipsum[2-3]
+
+\end{acknowledgments}
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+\section{Appendixes}
+\lipsum[8-9]
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\bibliography{high_mass_bib}% Produces the bibliography via BibTeX.
+
+\end{document}
+%
+% ****** End of file apssamp.tex ******
