@@ -21,17 +21,19 @@
 %floatfix,
 ]{revtex4-2}
 
-\usepackage{graphicx}% Include figure files
+
 \usepackage{dcolumn}% Align table columns on decimal point
 \usepackage{bm}% bold math
 \usepackage{hyperref}% add hypertext capabilities
-\usepackage{lipsum}  % for placeholder text
+\usepackage{graphicx} % Include figure files
+\graphicspath{{Figures/}} %Setting the graphicspath
+
 
 \begin{document}
 
 \preprint{APS/123-QED}
 
-\title{A High Mass Black Hole Search\\with BCR}% Force line breaks with \\
+\title{A Bayesian search to find \\high-mass black holes using LIGO data}% Force line breaks with \\
 
 
 \author{Author list TBD}
@@ -39,17 +41,8 @@
 \date{\today}
 
 \begin{abstract}
+The detection of high mass black holes ( $>100$ M${}_\odot$) will shed light on the formation of supermassive black holes and thus galaxy formation. Although LIGO is theoretically sensitive to the merger of binary black holes with total masses up to 500 M${}_\odot$, the largest total mass detected so far is approximately 80 M${}_\odot$. A possible explanation for the absence of high mass events may be due to their misclassification as short-duration instrumental noise transients. Short-duration instrumental transients mimic the short-duration gravitational-wave signals from high-mass binary black hole mergers. Here we demonstrate that a new search method utilising Bayesian inference could be a more sensitive tool for detecting high-mass binary black hole mergers as compared to traditional match-filtering. We have applied this technique on the high-mass triggers during LIGO's second observing run to investigate the possibility of discovering new gravitational-wave signals from an entirely new class of high mass black hole binaries.
 
-
-Gravitational wave astronomy has been firmly established with the detection of gravitational waves from the merger of ten stellar mass binary black holes and a neutron star binary. This paper reports on the all-sky search for gravitational waves from intermediate mass black hole binaries in the first and second observing runs of the Advanced LIGO and Virgo network.
-
-Advanced LIGO
-
-"Blip glitches" are a type of short duration transient noise in LIGO data. The cause for the majority of these is currently unknown. Short duration transient noise creates challenges for searches of the highest mass binary black hole systems, as standard methods of applying signal consistency, which look for consistency in the accumulated signal-to-noise of the candidate event, are unable to distinguish many blip glitches from short duration gravitational-wave signals due to similarities in their time and frequency evolution. We demonstrate a straightforward method, employed during Advanced LIGO's second observing run, including the period of joint observation with the Virgo observatory, to separate the majority of this transient noise from potential gravitational-wave sources. This yields a ∼20\% improvement in the detection rate of high mass binary black hole mergers (>60M⊙) for the PyCBC analysis.
-
-We search for gravitational waves from the coalescence (inspiral, merger and ring- down) of binary black holes with data from the Laser Interferometer Gravitational- Wave Observatory (LIGO). Provided with well-described waveform models from Gen- eral Relativity, matched filtering is employed in the GSTLAL analysis pipeline as the optimal detection technique for weak signals in Gaussian noise. The GSTLAL anal- ysis pipeline filters data with waveform template banks, identifies triggers with SNR greater than 4, forms coincident triggers between multiple detectors in the LSC-Virgo Collaboration, and attempts to optimally separate signal from detector background noise fluctuations using a Chi-squared test. We analyze high-statistics simulations of binary merger waveforms injected into LIGO recolored S6 data to evaluate the pipeline search sensitivity and to test the readiness of the pipeline for Advanced LIGO. With Advanced LIGO fully in operation by 2015 and the upgraded analysis pipelines, the expected detection rate is increased to as much as 100 events/year or more as com- pared to 0.01-1 events/year in Initial LIGO. Our work will make it possible to detect gravitational waves from binary black hole coalescence in Advanced LIGO data with high confidence.
-
-Gravitational wave astronomy has been firmly established with the detection of gravitational waves from the merger of ten stellar mass binary black holes and a neutron star binary. This paper reports on the all-sky search for gravitational waves from intermediate mass black hole binaries in the first and second observing runs of the Advanced LIGO and Virgo network. The search uses three independent algorithms: two based on matched filtering of the data with waveform templates of gravitational wave signals from compact binaries, and a third, model-independent algorithm that employs no signal model for the incoming signal. No intermediate mass black hole binary event was detected in this search. Consequently, we place upper limits on the merger rate density for a family of intermediate mass black hole binaries. In particular, we choose sources with total masses M=m1+m2∈[120,800]M⊙ and mass ratios q=m2/m1∈[0.1,1.0]. For the first time, this calculation is done using numerical relativity waveforms (which include higher modes) as models of the real emitted signal. We place a most stringent upper limit of 0.20~Gpc−3yr−1 (in co-moving units at the 90\% confidence level) for equal-mass binaries with individual masses m1,2=100M⊙ and dimensionless spins χ1,2=0.8 aligned with the orbital angular momentum of the binary. This improves by a factor of ∼5 that reported after Advanced LIGO's first observing run.
 
 \end{abstract}
 
@@ -59,22 +52,64 @@ Gravitational wave astronomy has been firmly established with the detection of g
 
 
 %%%%%%---SECTIONS---%%%%%%%%%%%%
-\section{\label{sec:level1}First-level heading:\protect\\ The line
-break was forced \lowercase{via} \textbackslash\textbackslash}
-\lipsum[1-2]
-Figure~\ref{fig:distance-prior-comparison}.
+\section{\label{sec:Introduction}Introduction}
+
+\begin{itemize}
+    \item blip glitches and other short duration glitches occur very often
+    \item searches have to down-weight short duration foreground triggers because of high occurrence rate of short duration glitches
+    \item searches do not use CBC templates -- BCR can improve significance~\cite{BCR1}.
+    \item BCR can help give true significance, or $p_{astro}$ of foreground triggers
+\end{itemize}
+
 
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{example-image-a}
     \caption{Some caption.}
-    \label{fig:distance-prior-comparison}
+    \label{fig:somefig}
 \end{figure}
+
+
+Since the 1970s, there has been an accumulation of evidence for stellar-mass and supermassive black holes. In 2019, the Event Horizon Telescope provided the first visual evidence of the supermassive black hole M87.  As of January 2020, LIGO has confirmed ten binary black hole systems, and more than fifty public binary black hole alerts. These various discoveries have firmly established the existence of stellar-mass black holes, supermassive black holes and binary black hole systems.  Interestingly, there is still no direct evidence for intermediate-mass black holes, the black holes that lie in between stellar-mass and supermassive black hole systems (footnote on indirect measurements). Thus, their existence is still speculative. 
+
+If intermediate-mass black holes are present, the gravitational waves emitted from the merger of a binary black hole system with at least one intermediate-mass black hole (up to a mass of 400 Msun) will be detectable by the ground-based gravitational-wave network. According to \citet{fregeau2006imbhbRatePrediction, mandel2008rates,rodriguez2015bbhRatePredictions}, gravitational waves from such systems within the detection of the ground-based detectors should occur at rates of one to up to ten events per year.  Hence it is peculiar that there still has not been a gravitational wave event from such a high-mass system. 
+
+One explanation for the absence of a detection may be due to the low merger frequency of the high-mass systems. The ground-based detectors are much less sensitive at lower frequencies due to various noise sources (e.g. thermal, suspension noise). Another difficulty with the low frequencies is the presence of transient short-duration instrumental non-Gaussian features, known as glitches, in the interferometer's recorded data. Some of the short duration glitches can occur as often as a few times every hour. These short-duration glitches are challenging to distinguish from the short-duration gravitational wave signals of high-mass binary black hole. 
+
+This paper discusses a novel method to identify and distinguish these high-mass gravitational wave signals from short-duration glitches in gravitational-wave data. It then employs the method on the PyCBC high-mass triggers from O2 and provides frequentistic estimates of the significance of various gravitational-wave candidates and events. 
+
+
+\section{\label{sec:OutlineOfPipelineMethods}Outline of Pipeline Methods}
+
+\begin{itemize}
+    \item briefly explain PyCBC search
+    \item define triggers
+    \item Extract PyCBC foreground, background and software injection trigger's GPS times based on template duration of triggers
+    \item analyse the triggers using Bayesian Parameter Estimation to determine $\log{Z_s}$, $\log{Z_g}$ and $\log{Z_n}$
+    \item calculate BCR
+    \item Remove outlier BCRs using median method
+    \item Calculate PDFs
+    \item Find $\alpha$ and $\beta$ values such that separation of background and software injection PDFs is maximally apart.
+    \item use tuned $\alpha$ and $\beta$ from previous step to calculate BCRs for foreground
+    \item calculate the $p_{astro}$ of the foreground events to determine the probability of the trigger being from an astrophysical source. 
+\end{itemize}
+
+
+\section{\label{sec:Analysis}O2 Sub-threshold Event Analysis}
+\hyperlink{https://docs.google.com/spreadsheets/d/1hm7lFsYneY8NGbFDr-vH5YYsILrxcTexO9D1AvF1qJo/edit?usp=sharing}{Important triggers spreadsheet}
+\begin{itemize}
+    \item BCRs of O2 sub-threshold high mass events
+    \item BCRs of Princeton group's high-mass  events
+\end{itemize}
+
+
+\section{\label{sec:Conclusion}Conclusion}
+Since the 1970s, there has been 
 %%%%%%---SECTIONS-END---%%%%%%%%%%%%
 
 %%%%%%---ACKNOWLEDGEMENTS---%%%%%%%%%%%%
 \begin{acknowledgments}
-OzGrav, NSF, \lipsum[2-3]
+helpful comments, OzGrav, LIGO, NSF
 
 \end{acknowledgments}
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -82,7 +117,6 @@ OzGrav, NSF, \lipsum[2-3]
 %%%%%%%%%%%%%%%%%%%%%%%%
 \appendix
 \section{Appendixes}
-\lipsum[8-9]
 %%%%%%%%%%%%%%%%%%%%%%%%
 
 
