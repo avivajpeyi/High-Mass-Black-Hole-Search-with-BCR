@@ -41,7 +41,7 @@
 \date{\today}
 
 \begin{abstract}
-The detection of high mass black holes ( $>100$ M${}_\odot$) will shed light on the formation of supermassive black holes and thus galaxy formation. Although LIGO is theoretically sensitive to the merger of binary black holes with total masses up to 500 M${}_\odot$, the largest total mass detected so far is approximately 80 M${}_\odot$. A possible explanation for the absence of high mass events may be due to their misclassification as short-duration instrumental noise transients. Short-duration instrumental transients mimic the short-duration gravitational-wave signals from high-mass binary black hole mergers. Here we demonstrate that a new search method utilising Bayesian inference could be a more sensitive tool for detecting high-mass binary black hole mergers as compared to traditional match-filtering. We have applied this technique on the high-mass triggers during LIGO's second observing run to investigate the possibility of discovering new gravitational-wave signals from an entirely new class of high mass black hole binaries.
+The detection of high mass black holes ( $>100$ M${}_\odot$) will shed light on the formation of supermassive black holes and thus galaxy formation. Although LIGO is sensitive to the merger of binary black holes with total masses up to 500 M${}_\odot$, the largest total mass detected so far is approximately 80 M${}_\odot$. A possible explanation for the absence of high mass events may be due to their misclassification as short-duration instrumental noise transients. Short-duration instrumental transients mimic the short-duration gravitational-wave signals from high-mass binary black hole mergers. Here we demonstrate that a new search method utilising Bayesian inference could be a more sensitive tool for detecting high-mass binary black hole mergers as compared to traditional match-filtering. We have applied this technique on the high-mass triggers during LIGO's second observing run to investigate the possibility of discovering new gravitational-wave signals from an entirely new class of high mass black hole binaries.
 
 
 \end{abstract}
@@ -54,24 +54,25 @@ The detection of high mass black holes ( $>100$ M${}_\odot$) will shed light on 
 %%%%%%---SECTIONS---%%%%%%%%%%%%
 \section{\label{sec:Introduction}Introduction}
 
-\begin{itemize}
-    \item blip glitches and other short duration glitches occur very often
-    \item searches have to down-weight short duration foreground triggers because of high occurrence rate of short duration glitches
-    \item searches do not use CBC templates -- BCR can improve significance~\cite{BCR1}.
-    \item BCR can help give true significance, or $p_{astro}$ of foreground triggers
-\end{itemize}
+ LIGO is theoretically
+sensitive to the merger of binary black holes with total masses up to 500 M\({}_\odot\) which are expected to occur at a
+rate of 0-10 yr\(^{-1}\) \citep[\citet{mandel2008rates}]{fregeau2006imbhbRatePrediction}. However, even after \citet{salemi2019search}'s
+targeted match-filter based search for gravitational waves from high-mass black holes the largest total mass detected so
+far is approximately 80 M\({}_\odot\) \citep{abbott2019gwtc}. A possible explanation for the absence of high mass events may be
+due to their misclassification as short-duration instrumental noise transients \citep{blipGlitches}. High-mass mergers have
+very few in-band wave cycles, and hence can easily be mistaken for short-duration instrumental transients.
+
+Since the 1970s, there has been an accumulation of evidence for stellar-mass and supermassive black holes. In 2019, the Event Horizon Telescope provided the first visual evidence of the supermassive black hole M87  \cite{m87photo}.  As of January 2020, LIGO has confirmed ten binary black hole systems, and more than fifty public binary black hole alerts \cite{gw190814}. These various discoveries have firmly established the existence of stellar-mass black holes, supermassive black holes and binary black hole systems.  Interestingly, there is still no direct evidence for intermediate-mass black holes, the black holes that lie in between stellar-mass and supermassive black hole systems with masses between $10^2-10^6 \text{M}_\odot$. Thus, the existence of intermediate-mass black holes is still speculative. 
+
+If intermediate-mass black holes are present, the gravitational waves emitted from the merger of a binary black hole system with at least one intermediate-mass black hole (up to a mass of $400 \text{M}_\odot$) will be detectable by the ground-based gravitational-wave network. According to \citet{fregeau2006imbhbRatePrediction, mandel2008rates,rodriguez2015bbhRatePredictions}, gravitational waves from such systems within the detection of the ground-based detectors should occur at a rate of 0-10 yr\(^{-1}\) .  However, even after \citet{salemi2019search}'s
+targeted match-filter based search for gravitational waves from high-mass black holes the largest total mass detected so
+far is approximately 80 M\({}_\odot\) \citep{abbott2019gwtc}. A possible explanation for the absence of high mass events may be
+due to their misclassification as short-duration instrumental noise transients \citep{blipGlitches}. As demonstrated in ___ High-mass mergers have
+very few in-band wave cycles, and hence can easily be mistaken for short-duration instrumental transients.
 
 
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{example-image-a}
-    \caption{Some caption.}
-    \label{fig:somefig}
-\end{figure}
 
-Since the 1970s, there has been an accumulation of evidence for stellar-mass and supermassive black holes. In 2019, the Event Horizon Telescope provided the first visual evidence of the supermassive black hole M87.  As of January 2020, LIGO has confirmed ten binary black hole systems, and more than fifty public binary black hole alerts [CITE]. These various discoveries have firmly established the existence of stellar-mass black holes, supermassive black holes and binary black hole systems.  Interestingly, there is still no direct evidence for intermediate-mass black holes, the black holes that lie in between stellar-mass and supermassive black hole systems with masses between $10^2-10^6 \text{M}_\odot$. Thus, the existence of intermediate-mass black holes is still speculative. 
 
-If intermediate-mass black holes are present, the gravitational waves emitted from the merger of a binary black hole system with at least one intermediate-mass black hole (up to a mass of $400 \text{M}_\odot$) will be detectable by the ground-based gravitational-wave network. According to \citet{fregeau2006imbhbRatePrediction, mandel2008rates,rodriguez2015bbhRatePredictions}, gravitational waves from such systems within the detection of the ground-based detectors should occur at rates of one to up to ten events per year.  Hence it is peculiar that LIGO has not detected a gravitational wave event from a system with a total mass greater than $80 \text{M}_\odot$. 
 
 A foreground trigger is a section of LIGO data identified by data searching pipelines to potentially harbour some
 gravitational wave signal (more on triggers in Appendix\textasciitilde\ref{searches}). In the ground-based gravitational wave
@@ -547,7 +548,7 @@ entirely new class of high mass black hole binaries.
 
 %%%%%%---ACKNOWLEDGEMENTS---%%%%%%%%%%%%
 \begin{acknowledgments}
-helpful comments, OzGrav, LIGO, NSF
+Helpful comments, OzGrav, LIGO, NSF
 
 \end{acknowledgments}
 %%%%%%%%%%%%%%%%%%%%%%%%
