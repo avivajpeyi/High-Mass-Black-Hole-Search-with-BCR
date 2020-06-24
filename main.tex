@@ -56,10 +56,16 @@ The detection of high mass black holes ( $>100$ M${}_\odot$) will shed light on 
 
 Since the 1970s, there has been an accumulation of evidence for stellar-mass and supermassive black holes. In 2019, the Event Horizon Telescope provided the first visual evidence of the supermassive black hole M87  \cite{m87photo}.  As of January 2020, LIGO has confirmed ten binary black hole systems, and more than fifty public binary black hole alerts \cite{gw190814}. These various discoveries have firmly established the existence of stellar-mass black holes, supermassive black holes and binary black hole systems.  Interestingly, there is still no direct evidence for intermediate-mass black holes, the black holes that lie in between stellar-mass and supermassive black hole systems with masses between $10^2-10^6 \text{M}_\odot$. Thus, the existence of intermediate-mass black holes is still speculative. \\
 
-If intermediate-mass black holes are present, the gravitational waves emitted from the merger of a binary black hole system with at least one intermediate-mass black hole (up to a mass of $400 \text{M}_\odot$) will be detectable by the ground-based gravitational-wave network. According to \citet{fregeau2006imbhbRatePrediction, mandel2008rates,rodriguez2015bbhRatePredictions}, gravitational waves from such systems within the detection of the ground-based detectors should occur at a rate of 0-10 yr\(^{-1}\) .  However, even after \citet{salemi2019search}'s
-targeted match-filter based search for gravitational waves from high-mass black holes the largest total mass detected so
-far is approximately 80 M\({}_\odot\) \cite{abbott2019gwtc}. A possible explanation for the absence of high mass events may be
-due to their misclassification as short-duration instrumental noise transients \cite{blip_glitches}. As demonstrated in ?? High-mass mergers have
+If intermediate-mass black holes are present, the gravitational waves emitted from the merger of a binary black hole system with at least one intermediate-mass black hole (up to a mass of $400 \text{M}_\odot$) will be detectable by the ground-based gravitational-wave network. According to \citet{fregeau2006imbhbRatePrediction, mandel2008rates,rodriguez2015bbhRatePredictions}, gravitational waves from such systems should occur at a rate of 0-10 yr\(^{-1}\) .  However, even after \citet{salemi2019search}'s targeted match-filter based search for gravitational waves from high-mass black holes the largest total mass detected so far is approximately 80 M\({}_\odot\) \cite{abbott2019gwtc}. A possible explanation for the absence of high mass events may be
+due to their misclassification as short-duration instrumental noise transients \cite{blip_glitches}. 
+
+% PyCBC asks for the 5 citations:
+% http://pycbc.org/pycbc/latest/html/credit.html#searches-for-compact-binary-coalescence
+
+Search algorithms for gravitational waves from coalescing compact binaries, such as PyCBC \cite{pycbc_code}, have tried to account for these short-duration glitches \cite{pycbc_short_duration_transients}. At its core, PyCBC performs a matched-filter search for binary merger signals using a bank of gravitational-wave template waveforms \cite{pycbc_og0, pycbc_og1, pycbc_og2, pycbc_og3, pycbc_og4, pycbc_og5}.  To account for the short-duration glitches, 
+
+
+ to As demonstrated in \citet{blip_glitches},  High-mass mergers have
 very few in-band wave cycles, and hence can easily be mistaken for short-duration instrumental transients.
 
 
