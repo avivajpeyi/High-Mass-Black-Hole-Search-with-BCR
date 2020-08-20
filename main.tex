@@ -19,7 +19,7 @@
 %prstab,
 %prstper,
 %floatfix,
-]{revtex4-2}
+]{revtex4}
 
 
 \usepackage{dcolumn}% Align table columns on decimal point
@@ -28,7 +28,20 @@
 \usepackage{graphicx} % Include figure files
 \graphicspath{{Figures/}} %Setting the graphicspath
 
-
+\newcommand{\prior}{{\sc prior}\xspace}
+\newcommand{\bilby}{{\sc Bilby}\xspace}
+\newcommand{\bilbypipe}{{\sc bilby\_pipe}\xspace}
+\newcommand{\bilbypipegdb}{\texttt{bilby\_pipe\_gracedb}\xspace}
+\newcommand{\pbilby}{{\sc pBilby}\xspace}
+\newcommand{\dynesty}{{\sc dynesty}\xspace}
+\newcommand{\cpnest}{{\sc cpnest}\xspace}
+\newcommand{\ptemcee}{{\sc ptemcee}\xspace}
+\newcommand{\gwpy}{{\sc GWpy}\xspace}
+\newcommand{\imrphenomp}{{\sc IMRPhenomPv2}\xspace}
+\newcommand{\pycbc}{{\sc PyCBC}\xspace}
+\newcommand{\bcr}{{\sc BCR}\xspace}
+\newcommand{\pastro}{{$p_\text{astro}$}\xspace}
+\newcommand{\msun}{{M${}_\odot$}\xspace}
 \begin{document}
 
 \preprint{APS/123-QED}
@@ -36,12 +49,15 @@
 \title{A Bayesian search to find \\high-mass black holes in LIGO data}% Force line breaks with \\
 
 
+
 \author{Author list TBD}
 
 \date{\today}
 
 \begin{abstract}
-The detection of high mass black holes ( $>100$ M${}_\odot$) will shed light on the formation of super-massive black holes and thus galaxy formation. Although LIGO is theoretically sensitive to the merger of binary black holes with total masses up to 500 M${}_\odot$, the largest total mass detected so far is approximately 80 M${}_\odot$. A possible explanation for the absence of high mass events may be due to their misclassification as short-duration instrumental noise transients. Short-duration instrumental transients mimic the short-duration gravitational-wave signals from high-mass binary black hole mergers. Here we demonstrate that a new search method utilising Bayesian inference could be a more sensitive tool for detecting high-mass binary black hole mergers as compared to traditional match-filtering. We have applied this technique on the high-mass triggers during LIGO's second observing run to investigate the possibility of discovering new gravitational-wave signals from an entirely new class of high mass black hole binaries.
+
+The detection of high mass black holes ( $>100$ \msun) will shed light on the formation of supermassive black holes and thus galaxy formation. Although LIGO is sensitive to the merger of binary black holes with total masses up to 500 \msun, the largest total mass detected so far is approximately $80$ \msun. A possible explanation for the absence of high mass events may be due to their misclassification as short-duration instrumental noise transients. Short-duration instrumental transients mimic the short-duration gravitational-wave signals from high-mass binary black hole mergers. Here we demonstrate that a new search method utilising Bayesian inference could be a more sensitive tool for detecting high-mass binary black hole mergers as compared to traditional match-filtering. We have applied this technique on the high-mass triggers during LIGO's second observing run to investigate the possibility of discovering new gravitational-wave signals from an entirely new class of high mass black hole binaries.
+
 
 
 \end{abstract}
@@ -54,65 +70,54 @@ The detection of high mass black holes ( $>100$ M${}_\odot$) will shed light on 
 %%%%%%---SECTIONS---%%%%%%%%%%%%
 \section{\label{sec:Introduction}Introduction}
 
+Since the 1970s, there has been an accumulation of evidence for stellar-mass and supermassive black holes. In 2019, the Event Horizon Telescope provided the first visual evidence of the supermassive black hole M87  \cite{m87photo}.  As of January 2020, LIGO, Virgo and IAS have confirmed more than a dozen binary black hole systems \cite{GWTC1, IAS0, IAS1, IAS2}. These various discoveries have firmly established the existence of stellar-mass black holes, supermassive black holes and binary black hole systems.  Interestingly, there is still no direct evidence for intermediate-mass black holes, the black holes that lie in between stellar-mass and supermassive black hole systems with masses between $10^2-10^6$ \msun. Thus, the existence of intermediate-mass black holes is still speculative. \\
+
+If intermediate-mass black holes are present, the gravitational waves emitted from the merger of a binary black hole system with at least one intermediate-mass black hole (up to a mass of $400$ \msun) will be detectable by the ground-based gravitational-wave network. Gravitational waves from such systems should occur at a rate of $0-10\text{yr}^{-1}$ \cite{fregeau2006imbhbRatePrediction, mandel2008rates,rodriguez2015bbhRatePredictions}.  However, even after conducting a targeted match-filter based search for gravitational waves from intermediate-mass black holes the largest total mass detected so far is approximately $80$ \msun \cite{salemi2019search, abbott2019gwtc}. A possible explanation for the absence of intermediate-mass events may be due to their misclassification as short-duration instrumental noise transients \cite{blip_glitches}. These glitches can mimic astrophysical signals and hence decrease the significance of true gravitational wave events. 
+
+One method to account for glitches while searching for gravitational waves from coalescing compact binaries is by utilising a signal consistency test \cite{pycbc_short_duration_transients} or a signal coherence test amongst a network of detectors \cite{bci, bcr_paper,  bcr_gw151216, bayesian_odds}. A signal-coherence test such as the Bayesian coherence ratio (\bcr) \cite{bcr_paper} provides a Bayesian odds ratio comparing the probability that the data contains an astrophysical signal versus the probability that the data contains an incoherent glitch or noise. Although an odds ratio, the \bcr can be used  as a frequentistic \textit{ranking statistic}, ranking the likelihood that a trigger is due to a gravitational-wave signal \cite{bcr_paper}. The \bcr as a ranking statistic is much more powerful than a matched-filter SNR as the \bcr incorporates numerous features that may distinguish gravitational waves from noise and demands that signals must be coherent while glitches must be incoherent amongst different detectors. 
+
+
+In this paper we utilise the \bcr to calculate \pastro, the probability that a signal is of astrophysical origin [cite],  for all the high-mass (systems with total masses in the range of $55-500$ \msun) candidate gravitational-wave signals from compact binary coalescences in the detector data recorded during aLIGO's second observing run (O2).  We find that (a) our search does not identify any new stellar mass or intermediate mass black holes; (b) high-mass events reported in the GWTC-1, including GW170729 (an event with disputed $p_\text{astro}$ amongst various search pipelines) have high \pastro; and that (c) high-mass events detected from independent groups have low \pastro. 
+
+
+\section{Method}
+
+% PyCBC asks for the 5 citations:
+% http://pycbc.org/pycbc/latest/html/credit.html#searches-for-compact-binary-coalescence
+Following \citet{bcr_paper}, the \bcr is an odds ratio of the coherent signal hypotheses $mathcal{H_S}$ and the incoherent instrumental feature hypothesis $mathcal{H_I}$. It is given by
+\begin{equation}
+BCR = \frac{\alpha Z^S}{\Pi^D_{i=1}[\beta Z^G_i + (1-\beta)Z^N_i]}\ .
+\end{equation}
+The numerator is the probability of obtaining a coherent signal, where $Z^S$ is the evidence for $\mathcal{H_S}$ and $\alpha$ is the prior odds for obtaining a signal $\alpha=P(\mathcal{H_S})/P(\mathcal{H_I})$. The denominator is the probability of obtaining an incoherent glitch or noise amongst the network of $D$ detectors, where $Z_G_i$ and $Z_N_i$ are the evidence for obtaining a glitch in detector $i$ and the evidence for obtaining just noise in detector $i$.
+
+ 
+We use a Bayesian framework to calculate the \bcr for high-mass candidate events, simulated signal events and  background events (signal-free events ) supplied by the \pycbc \cite{pycbc_code} search in O2  \cite{pycbc_og0, pycbc_og1, pycbc_og2, pycbc_og3, pycbc_og4, pycbc_og5}.  At its core, \pycbc performs a matched-filter search for binary merger signals using a template-bank of gravitational-wave template waveforms to generate triggers. For the trigger to be considered a  candidate event by \pycbc, it must be observed between detectors with the same template and with a time of arrival difference less than the gravitational-wave travel time between detectors \cite{pycbc_og0}. The simulated signal events are artificially created by injecting signals into the detector data. Similarly, \pycbc artificially constructs the background, signal-free, events by applying relative offsets, or time-shifts, between the data of different detectors \cite{pycbc_og0}. 
+
+
+Figure~\ref{fig:templateBank} depicts the \pycbc template bank, the high-mass search space and the candidate events, simulated events and background events from a one-week stretch of \pycbc's search in O2. 
+
+Week long stretches of analysis because noise-non stationary, glitches will occur at different rates depending on state of detectors 
+
+
+Dont know the prior odds, 
+
+
+
 \begin{itemize}
-    \item blip glitches and other short duration glitches occur very often
-    \item searches have to down-weight short duration foreground triggers because of high occurrence rate of short duration glitches
-    \item searches do not use CBC templates -- BCR can improve significance~\cite{BCR1}.
-    \item BCR can help give true significance, or $p_{astro}$ of foreground triggers
+	\item briefly explain PyCBC search
+	\item define triggers
+	\item Extract PyCBC foreground, background and software injection trigger's GPS times based on template duration of triggers
+	\item analyse the triggers using Bayesian Parameter Estimation to determine $\log{Z_s}$, $\log{Z_g}$ and $\log{Z_n}$
+	\item reweight results to account for uncertainties in PSDs
+	\item Calculate BCR
+	\item Calculate PDFs
+	\item Find $\alpha$ and $\beta$ values such that separation of background and software injection PDFs is maximally apart.
+	\item use tuned $\alpha$ and $\beta$ from previous step to calculate BCRs for foreground
+	\item calculate the $p_{astro}$ of the foreground events to determine the probability of the trigger being from an astrophysical source. 
 \end{itemize}
 
-
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{example-image-a}
-    \caption{Some caption.}
-    \label{fig:somefig}
-\end{figure}
-
-Since the 1970s, there has been an accumulation of evidence for stellar-mass and super-massive black holes. In 2019, the Event Horizon Telescope provided the first visual evidence of the super-massive black hole M87 \cite{event_horizon}.  As of January 2020, LIGO, Virgo and IAS have confirmed more than a dozen binary black hole systems \cite{GWTC1, IAS_2}. These discoveries have established the existence of stellar-mass black holes, super-massive black holes and binary black hole systems.  Interestingly, there is still no direct evidence for intermediate-mass black holes, the black holes that lie in between stellar-mass and super-massive black hole systems with masses between $10^2-10^6 \text{M}_\odot$. Thus, the existence of intermediate-mass black holes is still speculative. 
-
-If intermediate-mass black holes are present, the gravitational waves emitted from the merger of a binary black hole system with at least one intermediate-mass black hole (up to a mass of $400 \text{M}_\odot$) will be detectable by the ground-based gravitational-wave network. According to \citet{fregeau2006imbhbRatePrediction, mandel2008rates,rodriguez2015bbhRatePredictions}, gravitational waves from such systems within the detection of the ground-based detectors should occur at rates of one to up to ten events per year.  Hence it is peculiar that LIGO has not detected a gravitational wave event from a system with a total mass greater than $80 \text{M}_\odot$. 
-
-A foreground trigger is a section of LIGO data identified by data searching pipelines to potentially harbour some
-gravitational wave signal (more on triggers in Appendix\textasciitilde\ref{searches}). In the ground-based gravitational wave
-detectors, many spurious instrumental noise events fool the pipelines into considering the noise events as triggers
-(false-positive triggers). These instrumental-triggers are called glitches. Luckily, unlike triggers from astrophysical
-sources, glitches do not often occur at the same time or with the same morphology across the various gravitational wave
-detectors -- they are often \emph{incoherent} amongst detectors. Additionally, these short-duration glitches appear very
-similar to high-mass gravitational-wave signals, making the two challenging to distinguish.
-
-
-One explanation for the absence of detections may be due to the low merger frequency of the high-mass systems. The ground-based detectors are much less sensitive at lower frequencies due to various noise sources (e.g. thermal, suspension noise). Another difficulty with the low frequencies is the presence of transient short-duration instrumental non-Gaussian features, known as glitches, in the interferometer's recorded data. Some of the short duration glitches can occur as often as a few times every hour~\cite{blipGlitches}. These short-duration glitches are challenging to distinguish from the short-duration gravitational-wave signals that we expect to see from high-mass binary black holes. 
-
-
-
-
-The high occurrence rate of short duration glitches down-weight the significance of short duration LIGO foreground triggers, GPS times marking sections of LIGO data to potentially harbour gravitational wave signals.
-
-This paper discusses a novel method to identify and distinguish these high-mass gravitational wave signals from short-duration glitches in gravitational-wave data. It then employs the method on the PyCBC high-mass triggers from O2 and provides frequentistic estimates of the significance of various gravitational-wave candidates and events. 
-
-This paper is organized as follows: Section 2 provides an overview of the search
-pipeline and the methods used to detect gravitational waves from compact-object
-binaries in LIGO data. Section 3 gives a description of the developments implemented
-in this pipeline. Section 4 compares the performance of the new pipeline to that of the
-pipeline that analyzed the sixth LIGO science run and Virgo’s second and third science
-runs [27]. Finally, Section 5 summarizes our findings and suggests directions for future
-improvements.
 
 \section{\label{sec:OutlineOfPipelineMethods}Outline of Pipeline Methods}
-
-\begin{itemize}
-    \item briefly explain PyCBC search
-    \item define triggers
-    \item Extract PyCBC foreground, background and software injection trigger's GPS times based on template duration of triggers
-    \item analyse the triggers using Bayesian Parameter Estimation to determine $\log{Z_s}$, $\log{Z_g}$ and $\log{Z_n}$
-    \item calculate BCR
-    \item Remove outlier BCRs using median method
-    \item Calculate PDFs
-    \item Find $\alpha$ and $\beta$ values such that separation of background and software injection PDFs is maximally apart.
-    \item use tuned $\alpha$ and $\beta$ from previous step to calculate BCRs for foreground
-    \item calculate the $p_{astro}$ of the foreground events to determine the probability of the trigger being from an astrophysical source. 
-\end{itemize}
 
 
 
@@ -223,10 +228,8 @@ GW170121 & IAS-1 & NA & NA & NA & 0.99\\
 GWC170402 & IAS-2 & NA & 0.09 & NA & 0.68\\
 GW170403 & IAS-1 & NA & NA & NA & 0.56\\
 IMBHC170423 & IMBH-marginal & NA & 0.00 & 1.00 & NA\\
-\addlinespace
 GW170425 & IAS-1 & NA & NA & NA & 0.77\\
 GW170729 & GWTC-1 & 0.52 & 0.98 & 0.94 & NA\\
-\bottomrule
 \end{tabular}
 \end{table}
 
@@ -248,9 +251,8 @@ In summary, we will use the BCR to analyse high-mass foreground triggers to help
 provide a better measure of significance for the foreground triggers. For our work, we will initially focus on
 conducting this BCR search on O2 data, and subsequently with a search in O3 data.
 
-\hypertarget{methodology}{%
-\chapter{Methodology}\label{methodology}
 
+\section{Methodology}\label{methodology}
 This PhD project intends to provide new methods and insights to studying gravitational waves form high-mass systems.
 Thus far, the project has focused on building up the infrastructure to compare the Bayesian Coherence Ratio of LIGO's
 time-shifted \emph{background} triggers, \emph{foreground} triggers and \emph{software injections}. This chapter describes how we have
@@ -303,7 +305,6 @@ Component Mass 2 $[\text{M}_{\odot}]$ & 1.32 & 121.01\\
 Total Mass $[\text{M}_{\odot}]$ & 56.93 & 496.72\\
 Chirp Mass $[\text{M}_{\odot}]$ & 8.00 & 174.56\\
 Mass Ratio & 0.01 & 0.98\\
-\bottomrule
 \end{tabular}
 \end{table}
 
@@ -381,7 +382,6 @@ in the \(i^{\text{th}}\) detectors. The arbitrary weights \(\alpha\) and \(\beta
 parametrise our prior belief in each model:
 
 \begin{itemize}
-\tightlist
 \item
   \(\alpha = P(\mathcal{H}_S)/P(\mathcal{H}_I)\)
 \item
@@ -547,7 +547,7 @@ entirely new class of high mass black hole binaries.
 
 %%%%%%---ACKNOWLEDGEMENTS---%%%%%%%%%%%%
 \begin{acknowledgments}
-helpful comments, OzGrav, LIGO, NSF
+Helpful comments, OzGrav, LIGO, NSF
 
 \end{acknowledgments}
 %%%%%%%%%%%%%%%%%%%%%%%%
