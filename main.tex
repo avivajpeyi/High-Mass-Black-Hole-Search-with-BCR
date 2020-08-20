@@ -46,7 +46,8 @@
 
 \preprint{APS/123-QED}
 
-\title{A Bayesian search to find \\high-mass black holes in  LIGO data}% Force line breaks with \\
+\title{A Bayesian search to find \\high-mass black holes in LIGO data}% Force line breaks with \\
+
 
 
 \author{Author list TBD}
@@ -54,7 +55,9 @@
 \date{\today}
 
 \begin{abstract}
+
 The detection of high mass black holes ( $>100$ \msun) will shed light on the formation of supermassive black holes and thus galaxy formation. Although LIGO is sensitive to the merger of binary black holes with total masses up to 500 \msun, the largest total mass detected so far is approximately $80$ \msun. A possible explanation for the absence of high mass events may be due to their misclassification as short-duration instrumental noise transients. Short-duration instrumental transients mimic the short-duration gravitational-wave signals from high-mass binary black hole mergers. Here we demonstrate that a new search method utilising Bayesian inference could be a more sensitive tool for detecting high-mass binary black hole mergers as compared to traditional match-filtering. We have applied this technique on the high-mass triggers during LIGO's second observing run to investigate the possibility of discovering new gravitational-wave signals from an entirely new class of high mass black hole binaries.
+
 
 
 \end{abstract}
@@ -72,6 +75,7 @@ Since the 1970s, there has been an accumulation of evidence for stellar-mass and
 If intermediate-mass black holes are present, the gravitational waves emitted from the merger of a binary black hole system with at least one intermediate-mass black hole (up to a mass of $400$ \msun) will be detectable by the ground-based gravitational-wave network. Gravitational waves from such systems should occur at a rate of $0-10\text{yr}^{-1}$ \cite{fregeau2006imbhbRatePrediction, mandel2008rates,rodriguez2015bbhRatePredictions}.  However, even after conducting a targeted match-filter based search for gravitational waves from intermediate-mass black holes the largest total mass detected so far is approximately $80$ \msun \cite{salemi2019search, abbott2019gwtc}. A possible explanation for the absence of intermediate-mass events may be due to their misclassification as short-duration instrumental noise transients \cite{blip_glitches}. These glitches can mimic astrophysical signals and hence decrease the significance of true gravitational wave events. 
 
 One method to account for glitches while searching for gravitational waves from coalescing compact binaries is by utilising a signal consistency test \cite{pycbc_short_duration_transients} or a signal coherence test amongst a network of detectors \cite{bci, bcr_paper,  bcr_gw151216, bayesian_odds}. A signal-coherence test such as the Bayesian coherence ratio (\bcr) \cite{bcr_paper} provides a Bayesian odds ratio comparing the probability that the data contains an astrophysical signal versus the probability that the data contains an incoherent glitch or noise. Although an odds ratio, the \bcr can be used  as a frequentistic \textit{ranking statistic}, ranking the likelihood that a trigger is due to a gravitational-wave signal \cite{bcr_paper}. The \bcr as a ranking statistic is much more powerful than a matched-filter SNR as the \bcr incorporates numerous features that may distinguish gravitational waves from noise and demands that signals must be coherent while glitches must be incoherent amongst different detectors. 
+
 
 In this paper we utilise the \bcr to calculate \pastro, the probability that a signal is of astrophysical origin [cite],  for all the high-mass (systems with total masses in the range of $55-500$ \msun) candidate gravitational-wave signals from compact binary coalescences in the detector data recorded during aLIGO's second observing run (O2).  We find that (a) our search does not identify any new stellar mass or intermediate mass black holes; (b) high-mass events reported in the GWTC-1, including GW170729 (an event with disputed $p_\text{astro}$ amongst various search pipelines) have high \pastro; and that (c) high-mass events detected from independent groups have low \pastro. 
 
@@ -120,7 +124,7 @@ Dont know the prior odds,
 \section{Significance of a high-mass Bayesian Search}\label{significance}
 
 There are two primary motivations for a targeted high-mass search that utilises Bayesian inference. The first is to help
-distinguish gravitataional-waves from high-mass systems from noise-transients, and the second is to try to alleviate the
+distinguish gravitational-waves from high-mass systems from noise-transients, and the second is to try to alleviate the
 discord in the significance of some of the ``quiet'' gravitational wave events between various search pipelines.
 
 \hypertarget{a-better-detection-statistic}{%
@@ -147,7 +151,7 @@ candidate on the right.
 
 }
 
-\caption[Comparing glitches to high-mass candidates.]{Spectrogram of a glitch on the left, and a candidate GW trigger on the right.}\label{fig:compareGlitchAndSignal}
+\caption[Comparing glitches to high-mass candidates.]{Spectogram of a glitch on the left, and a candidate GW trigger on the right.}\label{fig:compareGlitchAndSignal}
 \end{figure}
 
 \hypertarget{assigning-significance-to-gravitational-wave-triggers}{%
@@ -194,7 +198,7 @@ If this work does improve the significance of high-mass triggers, we will increa
 high-mass black hole system via gravitational waves. The detection statistic we will utilise is the Bayesian Coherence
 Ratio (or BCR), as seen in \citet{bcr_paper}. The BCR is discussed in detail in Appendix\textasciitilde\ref{BayesianCoherenceRatio}. In
 short, The \texttt{BCR} is an odds (evidence ratio) comparing two hypotheses: there's a coherent GW in the data, plus Gaussian
-noise vs there's only incoherent Gaussian noise or a glitch (modeled as a compact binary coalescence) in each detector
+noise vs there's only incoherent Gaussian noise or a glitch (modelled as a compact binary coalescence) in each detector
 \citep{bcr_paper}.
 
 \hypertarget{a-better-measure-of-significance}{%
@@ -213,10 +217,12 @@ displayed in Table\textasciitilde\ref{tab:O2significancesWObcr} with their p-ast
 
 \begin{table}[t]
 
-\caption[p-astro for various O2 foreground triggers]{\label{tab:O2significancesWObcr}p-astro from seveal detection pipelines for a subset of the O2 foreground triggers.}
+\caption[p-astro for various O2 foreground triggers]{\label{tab:O2significancesWObcr}p-astro from several detection pipelines for a subset of the O2 foreground triggers.}
 \centering
 \begin{tabular}{llrrrr}
-Event & Catalog & PyCBC & GstLAL & cWB & IAS\\
+\toprule
+Event & Catalogue & PyCBC & GstLAL & cWB & IAS\\
+\midrule
 GW170104 & GWTC-1 & 1.00 & 1.00 & 1.00 & 0.99\\
 GW170121 & IAS-1 & NA & NA & NA & 0.99\\
 GWC170402 & IAS-2 & NA & 0.09 & NA & 0.68\\
@@ -267,7 +273,7 @@ Ideally, we would like to compute the BCRs for all triggers (foreground and back
 the significance of astrophysically real triggers and decrease the significance of glitches. However, computational
 limitations prevent analysis of all triggers. Instead, we limit the data to several 8-day chunks from O2, selected based
 on the number of foreground triggers identified by \href{https://pycbc.org/}{\texttt{PyCBC}} in the various chunks, as seen in
-Figure\textasciitilde\ref{fig:o2TrigCount}. Currently, we are using O2 data as it is public, whereas O3 data is not. By analyzing O2
+Figure\textasciitilde\ref{fig:o2TrigCount}. Currently, we are using O2 data as it is public, whereas O3 data is not. By analysing O2
 triggers we can publish our results without any restrictions imposed by LIGO.
 
 
@@ -292,7 +298,8 @@ Table\textasciitilde\ref{tab:parameters} and the search space for these triggers
 \centering
 \begin{tabular}{lrr}
 \toprule
-  & Minimum & Maximmum\\
+  & Minimum & Maximum\\
+\midrule
 Component Mass 1 $[\text{M}_{\odot}]$ & 31.54 & 491.68\\
 Component Mass 2 $[\text{M}_{\odot}]$ & 1.32 & 121.01\\
 Total Mass $[\text{M}_{\odot}]$ & 56.93 & 496.72\\
@@ -309,13 +316,13 @@ Mass Ratio & 0.01 & 0.98\\
 
 }
 
-\caption[High-mass BCR search space.]{The template bank used by \href{https://pycbc.org/}{\texttt{PyCBC}} to search in O2's chunk 14. Our search is constrained to the high-mass parameter space enclosed by the dashed line (triggers with diurations \(<45s\).}\label{fig:templateBank}
+\caption[High-mass BCR search space.]{The template bank used by \href{https://pycbc.org/}{\texttt{PyCBC}} to search in O2's chunk 14. Our search is constrained to the high-mass parameter space enclosed by the dashed line (triggers with duration \(<45s\).}\label{fig:templateBank}
 \end{figure}
 
 By restricting the \href{https://pycbc.org/}{\texttt{PyCBC}} triggers only based on the template duration, we acquire common (high FAR) and rare (low
 FAR) triggers. It would be straightforward in principle to broaden our template-duration constraint to encompass all
 triggers produced by all the various search pipelines. However, we refrain from doing so to keep our computational costs
-manageable. A plot of the counts of the triggers in O2 after downsampling the triggers based on the template duration
+manageable. A plot of the counts of the triggers in O2 after down-sampling the triggers based on the template duration
 can be viewed in Figure\textasciitilde\ref{fig:o2FilteredTrigCount}.
 
 
@@ -353,7 +360,7 @@ We restrict the priors for Bayesian parameter estimation on the masses such that
 than 454ms in duration, as presented in Table\textasciitilde\ref{tab:parameters}. The spins are set to be aligned with a range from
 {[}0,1{]}. The prior on luminosity distance assigns probability uniformly in comoving volume, with an upper cutoff of 5 Gpc.
 The \href{https://pycbc.org/}{\texttt{PyCBC}} search that originally produced our set of triggers considered a more comprehensive range of masses and
-spins than we do in the BCR computation for this project. To accommodate this, we prescreened the triggers to only allow
+spins than we do in the BCR computation for this project. To accommodate this, we screened the triggers to only allow
 triggers with masses within our priors. The run time on a single trigger using the \href{https://arxiv.org/abs/1904.02180}{\texttt{dynesty}} implementation of nested
 sampling, with \(2,000\) live points and \(100\) walkers is usually between \(0.5-12\) hours (where the speed often depends on
 the SNR of the data segment).
@@ -372,7 +379,7 @@ comprise incoherent instrumental features (\(\mathcal{H}_I\))---meaning each det
 where \(Z^S\) is the evidence for \(\mathcal{H}_S\), and \(Z^{G}_i\) and
 \(Z^N_i\) are the evidences for \(\mathcal{H}_{Gi}\) and \(\mathcal{H}_{Ni}\),
 in the \(i^{\text{th}}\) detectors. The arbitrary weights \(\alpha\) and \(\beta\)
-parametrize our prior belief in each model:
+parametrise our prior belief in each model:
 
 \begin{itemize}
 \item
@@ -382,7 +389,7 @@ parametrize our prior belief in each model:
 \end{itemize}
 
 for all \(i\) detectors. As most of the data should be noise, we expect both \(\alpha\) and \(\beta\), to be less than 1.
-These parameters will be tuned to minimize the overlap between the signal and noise trigger populations.
+These parameters will be tuned to minimise the overlap between the signal and noise trigger populations.
 
 \hypertarget{trigger-sets-for-bcr-analysis}{%
 \subsection{Trigger sets for BCR analysis}\label{trigger-sets-for-bcr-analysis}}
