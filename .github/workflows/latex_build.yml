@@ -44,6 +44,14 @@ jobs:
         mkdir public
         ls
         mv main.pdf public/main.pdf
+        ls public
+    
+    - name: Upload PDF
+      uses: actions/upload-artifact@v2
+      with:
+        name: main.pdf
+        path: public/main.pdf # or path/to/artifact
+    
         
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
