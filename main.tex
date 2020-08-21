@@ -81,31 +81,32 @@ If intermediate-mass black holes are present, the gravitational waves emitted fr
 
 One method to account for glitches while searching for gravitational waves from coalescing compact binaries is by utilising an astrophysical Bayesian odds  \cite{bci, BCR1, BCR2, bcr_gw151216, bayesian_odds}. A true Bayesian odds calculated without using bootstrap techniques can provide events with a more accurate significance that is agnostic to a specific search strategy \cite{BCR2, bcr_gw151216,  bayesian_odds}. Additionally, a Bayesian odds can include information such as if the gravitational wave event's signal is coherent amongst the network of detectors, if the binary system that created the gravitational waves was precessing, and if the gravitational wave signal contains higher-order modes.  It is because Bayesian methods can incorporate all this physical information about a gravitational wave signal that the LIGO Scientific Collaboration uses these methods to determine the source parameters of gravitational wave events \cite{abbott2016ligo, abbott2019gwtc}. This paper demonstrates that the power of Bayesian methods used in parameter estimation can also successfully be used to discriminate between coherent gravitational-wave signals, incoherent glitches, and Gaussian noise in the form of a Bayesian search. \\
 
- In this paper we utilise a Bayesian method to search for the significant gravitational wave signals from high-mass (systems with total masses in the range of $55-500$ \msun) compact binary coalescences in the detector data recorded during aLIGO's second observing run (O2).  We find that (a) our search does not identify any unreported stellar mass or intermediate mass black holes; (b) high-mass events reported in the GWTC-1, including GW170729 (an event with disputed $p_\text{astro}$ amongst various search pipelines) have high low significance; and that (c) high-mass events detected from some independent groups have low significance. \\
+ In this paper we utilise a Bayesian method, called the\bcr \cite{BCR1}, to search for the significant gravitational wave signals from high-mass (systems with total masses in the range of $55-500$ \msun) compact binary coalescences in the detector data recorded during aLIGO's second observing run (O2).  We find that (a) our search does not identify any unreported stellar mass or intermediate mass black holes; (b) high-mass events reported in the GWTC-1, including GW170729 (an event with disputed $p_\text{astro}$ amongst various search pipelines) have high low significance; and that (c) high-mass events detected from some independent groups have low significance. \\
 
-The remainder of this paper is structured as follows. We outline our analysis methods, including details of our Bayesian  in Section~\ref{sec:method}. We present our results in Section~\ref{sec:result}, and discuss these results in the context of the significance of gravitational wave candidates in Section~\ref{sec:Conclusion}.
+The remainder of this paper is structured as follows. We outline our analysis methods, including details of the \bcr in Section~\ref{sec:method}. We present our results in Section~\ref{sec:result}, and discuss these results in the context of the significance of gravitational wave candidates in Section~\ref{sec:Conclusion}.
 
 
 \section{Method\label{sec:method}}
 
-
+\subsection{The Bayesian Coherence Ratio}
 
 
 \pastro, the probability that a signal is of astrophysical origin \cite{pastro_1,pastro_2,pastro_3},
 
-a signal consistency test \cite{pycbc_short_duration_transients} or a signal coherence test amongst a network of detectors. A signal-coherence test such as the Bayesian coherence ratio (\bcr) \cite{bcr_paper} provides a Bayesian odds ratio comparing the probability that the data contains an astrophysical signal versus the probability that the data contains an incoherent glitch or noise. Although an odds ratio, the \bcr can be used  as a frequentistic \textit{ranking statistic}, ranking the likelihood that a trigger is due to a gravitational-wave signal \cite{bcr_paper}. The \bcr as a ranking statistic is much more powerful than a matched-filter SNR as the \bcr incorporates numerous features that may distinguish gravitational waves from noise and demands that signals must be coherent while glitches must be incoherent amongst different detectors. \\
 
 
-% PyCBC asks for the 5 citations:
-% http://pycbc.org/pycbc/latest/html/credit.html#searches-for-compact-binary-coalescence
-Following \citet{bcr_paper}, the \bcr is an odds ratio of the coherent signal hypotheses $\mathcal{H_S}$ and the incoherent instrumental feature hypothesis $\mathcal{H_I}$ for a network of $D$ detectors. $\mathcal{H_I}$ states that each $i$th detector has either pure Gaussian noise $\mathcal{H_Ni}$ or a glitch $\mathcal{H_Gi}$. The \bcr is given by
+Following \citet{bcr_paper}, the \bcr is an odds ratio of the coherent signal hypotheses $\mathcal{H_S}$ and the incoherent instrumental feature hypothesis $\mathcal{H_I}$ for a network of $D$ detectors. $\mathcal{H_I}$ states that each $i$th detector has either pure Gaussian noise $\mathcal{H_N}$ or a glitch $\mathcal{H_G}$. The \bcr is given by
 \begin{equation}
 BCR = \frac{\alpha Z^S}{\Pi^D_{i=1}[\beta Z^G_i + (1-\beta)Z^N_i]}\ ,
 \end{equation}
-where $Z^S$, $Z_{Gi}$ and $Z_{Ni}$ are the Bayesian evidences (marginalised likelihoods) for $\mathcal{H_S}$, $\mathcal{H_Ni}$, and $\mathcal{H_Gi}$. $\alpha$ and $\beta$, are the prior odds for obtaining a signal $\alpha=P(\mathcal{H_S})/P(\mathcal{H_I})$, the prior odds for obtaining a glitch $\beta=P(\mathcal{H_G})/P(\mathcal{H_I})$.
+where $Z^S$, $Z_{Gi}$ and $Z_{Ni}$ are the Bayesian evidences (marginalised likelihoods) for $\mathcal{H_S}$, $\mathcal{H_N}$, and $\mathcal{H_G}$. $\alpha$ and $\beta$, are the prior odds for obtaining a signal $\alpha=P(\mathcal{H_S})/P(\mathcal{H_I})$, the prior odds for obtaining a glitch $\beta=P(\mathcal{H_G})/P(\mathcal{H_I})$. As the rate of signal and glitches are unknown, these priors $\alpha$ and $\beta$ are tuned to maximize the \bcr distributions for background data (signal-free data) and simulated signals $\cite{BCR1}.  
  
-To calculate the Bayesian evidences $Z^S$, $Z_{Gi}$ and $Z_{Ni}$, we carry out Bayesian inference with \bilby \cite{bilby}, using \dynesty \cite{dynesty} as our nested sampler. 
 
+
+ provides a Bayesian odds ratio comparing the probability that the data contains an astrophysical signal versus the probability that the data contains an incoherent glitch or noise. Although an odds ratio, the \bcr can be used  as a frequentistic \textit{ranking statistic}, ranking the likelihood that a trigger is due to a gravitational-wave signal \cite{bcr_paper}. The \bcr as a ranking statistic is much more powerful than a matched-filter SNR as the \bcr incorporates numerous features that may distinguish gravitational waves from noise and demands that signals must be coherent while glitches must be incoherent amongst different detectors. \\
+
+
+To calculate the Bayesian evidences $Z^S$, $Z_{Gi}$ and $Z_{Ni}$, we carry out Bayesian inference with \bilby \cite{bilby}, using \dynesty \cite{dynesty} as our nested sampler. 
 
 
 % We use the publicly available strain data associated with the 10 binary black hole events in GWTC-1. We implement the same priors as used in GWTC-1 for almost all parameters. The exceptions are eccentricity, which is not included in GWTC-1, and aligned dimensionless component spins, which are only supported in SEOBNRE between −1 and 0.6. Our prior on eccentricity is uniform in log10(e) in the range −6 ≤ log10(e) ≤ −0.7. Our aligned dimensionless component spin prior is uniform between −0.6 and 0.6. Our prior boundaries for cyclic parameters (e.g. coalescence phase, right ascension, and declination) are periodic, while our priors for non-cyclic parameters (e.g. mass and distance) have reflective boundaries.
@@ -125,7 +126,8 @@ To calculate the Bayesian evidences $Z^S$, $Z_{Gi}$ and $Z_{Ni}$, we carry out B
  
  
 
-
+% PyCBC asks for the 5 citations:
+% http://pycbc.org/pycbc/latest/html/credit.html#searches-for-compact-binary-coalescence
 high-mass candidate events, simulated signal events and  background events (signal-free events ) supplied by the \pycbc \cite{pycbc_code} search in O2  \cite{pycbc_og0, pycbc_og1, pycbc_og2, pycbc_og3, pycbc_og4, pycbc_og5}.  At its core, \pycbc performs a matched-filter search for binary merger signals using a template-bank of gravitational-wave template waveforms to generate triggers. For the trigger to be considered a  candidate event by \pycbc, it must be observed between detectors with the same template and with a time of arrival difference less than the gravitational-wave travel time between detectors \cite{pycbc_og0}. The simulated signal events are artificially created by injecting signals into the detector data. Similarly, \pycbc artificially constructs the background, signal-free, events by applying relative offsets, or time-shifts, between the data of different detectors \cite{pycbc_og0}. 
 
 
