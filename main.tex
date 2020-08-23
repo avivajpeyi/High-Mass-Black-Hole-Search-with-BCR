@@ -45,8 +45,17 @@
 \newcommand{\seob}{{\sc SEOBNRv4PHM}\xspace}
 \newcommand{\pycbc}{{\sc PyCBC}\xspace}
 \newcommand{\bcr}{{\sc BCR}\xspace}
+\newcommand{\psd}{{\sc $\sigma^2$}\xspace}
 \newcommand{\pastro}{{$p_\text{astro}$}\xspace}
 \newcommand{\msun}{{M${}_\odot$}\xspace}
+
+
+
+\newcommand{\av}[1]{\textcolor{orange}{[AV: #1]}}
+\newcommand{\rs}[1]{\textcolor{red}{[RS: #1]}}
+\newcommand{\et}[1]{\textcolor{blue}{[ET: #1]}}
+
+
 \begin{document}
 
 \preprint{APS/123-QED}
@@ -92,23 +101,63 @@ The remainder of this paper is structured as follows. We outline our analysis me
 
 \subsection{The Bayesian Coherence Ratio}
 
-
-\pastro, the probability that a signal is of astrophysical origin \cite{pastro_1,pastro_2,pastro_3},
-
-
-
 Following \citet{BCR1}, the \bcr is an odds ratio of the coherent signal hypotheses $\mathcal{H_S}$ and the incoherent instrumental feature hypothesis $\mathcal{H_I}$ for a network of $D$ detectors. $\mathcal{H_I}$ states that each $i$th detector has either pure Gaussian noise $\mathcal{H_N}$ or a glitch $\mathcal{H_G}$. The \bcr is given by
 \begin{equation}
 BCR = \frac{\alpha Z^S}{\Pi^D_{i=1}[\beta Z^G_i + (1-\beta)Z^N_i]}\ ,
 \end{equation}
-where $Z^S$, $Z_{Gi}$ and $Z_{Ni}$ are the Bayesian evidences (marginalised likelihoods) for $\mathcal{H_S}$, $\mathcal{H_N}$, and $\mathcal{H_G}$. $\alpha$ and $\beta$, are the prior odds for obtaining a signal $\alpha=P(\mathcal{H_S})/P(\mathcal{H_I})$, the prior odds for obtaining a glitch $\beta=P(\mathcal{H_G})/P(\mathcal{H_I})$. As the rate of signal and glitches are unknown, these priors $\alpha$ and $\beta$ are tuned to maximise the \bcr distributions for background data (signal-free data) and simulated signals $\cite{BCR1}.  
+where $Z^S$, $Z^G_i $ and $Z^N_i }$ are the Bayesian evidences (marginalised likelihoods) for $\mathcal{H_S}$, $\mathcal{H_N}$, and $\mathcal{H_G}$. $\alpha$ and $\beta$, are the prior odds for obtaining a signal $\alpha=P(\mathcal{H_S})/P(\mathcal{H_I})$ and the prior odds for obtaining a glitch $\beta=P(\mathcal{H_G})/P(\mathcal{H_I})$. As the rate of signal and glitches are unknown, these priors $\alpha$ and $\beta$ are tuned to maximise the \bcr distributions for background data (signal-free data) and simulated signals \cite{BCR1}.  \\
+
+We assume that each detector's noise is Gaussian and stationary over the period being analysed \cite{ligo_psd}. In practice, we estimate the noise using a noise power spectral density \psd. The method of estimating the \psd, along with details on the implementation of our Bayesian inference pipeline is presented in the following section \av{(Not sure if the details on the PSD generation should be here or not...)}. Using the \psd, we can write 
+\begin{equation}
+Z^N_i =  \frac{1}{2\pi \sigma^2} \text{exp}\left(-\frac{1}{2} \frac{d_i}{\sigma^2} \right) \ ,
+\end{equation}
+for the data $d_i$ in each of the $i$ detectors in a network of $D$ detectors..  
+
+We model coherent signal with parameters $\vec{\theta}$ using \imrphenomp $\mu_{\text{IMR}}(\vec{\theta})$. For this model to be coherent, the $\vec{\theta}$ must be consistent in each dataset $d_i$ for a network of $D$ detectors. Note that $\mu_{\text{IMR}}(\vec{\theta})$ is a phenomenological aligned spin waveform template constructed in the frequency domain that models the in-spiral, merger, and ringdown (IMR) of a compact binary coalescence \citep{khan2016frequency}. Although gravitational wave templates such as \seob $\mu_{\text{SEOB}}$ created from numerical relativity simulations incorporate more physics such as information on higher-order modes, we still use $\mu_{\text{IMR}}\vec{\theta}$ as this phenomenological model is faster to evaluate than numerical relativity models. Hence, the coherent signal evidence is calculated as
+\begin{equation}
+Z^S = \int \Pi^D_{i=1} \left[\frac{1}{2\pi \sigma^2} \text{exp}\left(\right)-\frac{1}{2} \frac{(d_i-\mu_{\text{IMR}}\vec{\theta})^2}{\sigma^2} \right) \right] \pi(\vec{\theta}) \text{d}\vec{\theta}  \ .
+\end{equation}
+
+\av{Introduce pi before the above}
+
+Finally, as glitches are challenging to model and poorly understood, we utilise a surrogate model for glitches: the glitches are modelled using $\mu_{\text{IMR}}\vec{\theta}$ with uncorrelated  parameters amongst the different detectors such that  $\vec{\theta}_i \neq \vec{\theta}_j$ for two detectors $i$ and $j$ \cite{bci}.  Modelling glitches with gravitational wave templates captures the worst case scenario for when glitches appear similar to gravitational wave signals. Thus, we can write $Z^G_i$ as 
+\begin{equation}
+Z^G_i = \int \frac{1}{2\pi \sigma^2} \text{exp}\left(\right)-\frac{1}{2} \frac{(d -\mu_{\text{IMR}}\vec{\theta})^2}{\sigma^2} \right) \pi(\vec{\theta}) \text{d}\vec{\theta}  \ .
+\end{equation}
+
+
+
+
+\hypertarget{bayesian-parameter-estimation}{%
+	\subsection{Bayesian Parameter Estimation}\label{bayesian-parameter-estimation}}
+
+
+To generate posterior probability distributions and calculate Bayesian evidences for our signal, glitch and noise models, we carry out Bayesian inference with \bilby \cite{bilby}, employing \dynesty \cite{dynesty} as our nested sampler. Although nested sampling, an algorithm introduced by \cite{skilling_nested_sampling}, is an estimate of the true Bayesian evidence, 
+
+
+To generate the \psd, we take 31 neighbouring, "off-source", non-overlapping,  $4\ s$  segments of time-series data prior to the data being analysed. A Tukey window with a roll off of $0.2\ s$ is applied to each data segment to suppress spectral leakage after which the segments are fast-Fourier transformed and median-averaged to create a \psd. This method, like other \psd estimation methods, adds statistical uncertainties to the \psd \cite{psd_student_t}.  To marginalise over the statistical uncertainty we use the median-likelihood presented by \citet{psd_student_t} to re-weight our posterior samples as a post-processing step and shift our Bayesian Evidence estimations closer to their true astrophysical values. 
+
+We restrict the priors for Bayesian parameter estimation on the masses such that we only consider signals that are less
+than 454ms in duration, as presented in Table\textasciitilde\ref{tab:parameters}. The spins are set to be aligned with a range from
+{[}0,1{]}. The prior on luminosity distance assigns probability uniformly in comoving volume, with an upper cutoff of 5 Gpc.
+The \href{https://pycbc.org/}{\texttt{PyCBC}} search that originally produced our set of triggers considered a more comprehensive range of masses and
+spins than we do in the BCR computation for this project. To accommodate this, we screened the triggers to only allow
+triggers with masses within our priors. The run time on a single trigger using the \href{https://arxiv.org/abs/1904.02180}{\texttt{dynesty}} implementation of nested
+sampling, with \(2,000\) live points and \(100\) walkers is usually between \(0.5-12\) hours (where the speed often depends on
+the SNR of the data segment).
+
+
  
 
 
+
+
+we use the noise power spectral densities created with a median-average method by taking 31 neighbouring, "off-source", non-overlapping,  4 second segments of data prior to the data being analysed. Before computing the PSD,   prior to fast-Fourier transforming the the windowed time-domain strain before averaging the PSD chunks.As this method does not provide a perfect estimation of the true noise power spectral density  These power spectral densities are ? with a studuent-T's distribution to account for ? \cite{psd_student_t}. 
+
+
+\pastro, the probability that a signal is of astrophysical origin \cite{pastro_1,pastro_2,pastro_3},
+
  provides a Bayesian odds ratio comparing the probability that the data contains an astrophysical signal versus the probability that the data contains an incoherent glitch or noise. Although an odds ratio, the \bcr can be used  as a frequentistic \textit{ranking statistic}, ranking the likelihood that a trigger is due to a gravitational-wave signal \cite{BCR}. The \bcr as a ranking statistic is much more powerful than a matched-filter SNR as the \bcr incorporates numerous features that may distinguish gravitational waves from noise and demands that signals must be coherent while glitches must be incoherent amongst different detectors. \\
-
-
-To calculate the Bayesian evidences $Z^S$, $Z_{Gi}$ and $Z_{Ni}$, we carry out Bayesian inference with \bilby \cite{bilby}, using \dynesty \cite{dynesty} as our nested sampler. 
 
 
 % We use the publicly available strain data associated with the 10 binary black hole events in GWTC-1. We implement the same priors as used in GWTC-1 for almost all parameters. The exceptions are eccentricity, which is not included in GWTC-1, and aligned dimensionless component spins, which are only supported in SEOBNRE between −1 and 0.6. Our prior on eccentricity is uniform in log10(e) in the range −6 ≤ log10(e) ≤ −0.7. Our aligned dimensionless component spin prior is uniform between −0.6 and 0.6. Our prior boundaries for cyclic parameters (e.g. coalescence phase, right ascension, and declination) are periodic, while our priors for non-cyclic parameters (e.g. mass and distance) have reflective boundaries.
@@ -142,49 +191,8 @@ Dont know the prior odds,
 
 
 We use \bilbypipe to both acquire the publicly accessible LIGO data in 4s-long data segments containing each trigger (analysis segments) and to generate PSDs via Welch's method for each data segment by taking 124 seconds of the data before the analysis segment. If the data quality is not marked as ``Science Mode'' for either the PSD or analysis data, then the analysis of that trigger is skipped. Gravitational-wave templates
-are produced using \imrphenomp \footnote{\texttt{IMRPhenomPv2} is a standard phenomenological waveform model constructed in the
-  frequency domain that models the inspiral, merger, and ringdown (IMR) of a compact binary coalescence with aligned spins
-  \citep{khan2016frequency}.}. Although gravitational wave templates such as \ created from numerical relativity simulations
-incorporate more physics such as information on higher-order modes, we still use \imrphenomp as it is faster to evaluate than numerical
-relativity models.
+are produced using \imrphenomp. 
 
-\hypertarget{bayesian-parameter-estimation}{%
-\subsection{Bayesian Parameter Estimation}\label{bayesian-parameter-estimation}}
-
-We restrict the priors for Bayesian parameter estimation on the masses such that we only consider signals that are less
-than 454ms in duration, as presented in Table\textasciitilde\ref{tab:parameters}. The spins are set to be aligned with a range from
-{[}0,1{]}. The prior on luminosity distance assigns probability uniformly in comoving volume, with an upper cutoff of 5 Gpc.
-The \href{https://pycbc.org/}{\texttt{PyCBC}} search that originally produced our set of triggers considered a more comprehensive range of masses and
-spins than we do in the BCR computation for this project. To accommodate this, we screened the triggers to only allow
-triggers with masses within our priors. The run time on a single trigger using the \href{https://arxiv.org/abs/1904.02180}{\texttt{dynesty}} implementation of nested
-sampling, with \(2,000\) live points and \(100\) walkers is usually between \(0.5-12\) hours (where the speed often depends on
-the SNR of the data segment).
-
-\hypertarget{bcrCalculation}{%
-\subsection{BCR calculation}\label{bcrCalculation}}
-
-The Bayesian coherence ratio (BCR), as seen in \citet{BCR1}, is the odds between the hypothesis that the data comprise a
-coherent, compact binary coalescence signal in Gaussian noise (\(\mathcal{H}_S\)), and the hypothesis that they instead
-comprise incoherent instrumental features (\(\mathcal{H}_I\))---meaning each detector has either a glitch in Gaussian noise
-(\(\mathcal{H}_N\)) or pure Gaussian noise (\(\mathcal{H}_G\)). For a network of \(D\) detectors,
-
-\begin{equation}
-\mathrm{BCR} = \frac{\alpha Z^{S}}{\prod_{i=1}^{D}\left[\beta Z_{i}^{G}+(1-\beta) Z_{i}^{N}\right]}\ , \label{eq:bcr}
-\end{equation}
-where \(Z^S\) is the evidence for \(\mathcal{H}_S\), and \(Z^{G}_i\) and
-\(Z^N_i\) are the evidences for \(\mathcal{H}_{Gi}\) and \(\mathcal{H}_{Ni}\),
-in the \(i^{\text{th}}\) detectors. The arbitrary weights \(\alpha\) and \(\beta\)
-parametrise our prior belief in each model:
-
-\begin{itemize}
-\item
-  \(\alpha = P(\mathcal{H}_S)/P(\mathcal{H}_I)\)
-\item
-  \(\beta = P(\mathcal{H}_{Gi}|\mathcal{H}_I)=1-P(\mathcal{H}_{N}|\mathcal{H}_I)\)
-\end{itemize}
-
-for all \(i\) detectors. As most of the data should be noise, we expect both \(\alpha\) and \(\beta\), to be less than 1.
-These parameters will be tuned to minimise the overlap between the signal and noise trigger populations.
 
 \hypertarget{trigger-sets-for-bcr-analysis}{%
 \subsection{Trigger sets for BCR analysis}\label{trigger-sets-for-bcr-analysis}}
@@ -314,20 +322,6 @@ have obtained from the analysis of various O2 data chunks.
 
 
 
-
-
-\begin{itemize}
-	\item briefly explain PyCBC search
-	\item define triggers
-	\item Extract PyCBC foreground, background and software injection trigger's GPS times based on template duration of triggers
-	\item analyse the triggers using Bayesian Parameter Estimation to determine $\log{Z_s}$, $\log{Z_g}$ and $\log{Z_n}$
-	\item reweight results to account for uncertainties in PSDs
-	\item Calculate BCR
-	\item Calculate PDFs
-	\item Find $\alpha$ and $\beta$ values such that separation of background and software injection PDFs is maximally apart.
-	\item use tuned $\alpha$ and $\beta$ from previous step to calculate BCRs for foreground
-	\item calculate the $p_{astro}$ of the foreground events to determine the probability of the trigger being from an astrophysical source. 
-\end{itemize}
 
 
 
