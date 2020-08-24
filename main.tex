@@ -1,12 +1,12 @@
 
 \documentclass[%
- reprint,
+ %reprint,
 %superscriptaddress,
 %groupedaddress,
 %unsortedaddress,
 %runinaddress,
 %frontmatterverbose, 
-%preprint,
+preprint,
 %preprintnumbers,
 %nofootinbib,
 %nobibnotes,
@@ -22,6 +22,21 @@
 ]{revtex4}
 
 \usepackage{aas_macros}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{color,units}
+\usepackage[dvipsnames]{xcolor} % for more colours!
+
+\usepackage{lineno}
+\usepackage{xspace}
+\usepackage{dcolumn}
+\usepackage{longtable}
+\usepackage[normalem]{ulem} %% for striking out text
+\usepackage{subfigure}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
 
 
 \usepackage{dcolumn}% Align table columns on decimal point
@@ -31,6 +46,8 @@
 \usepackage{hyperref}% add hypertext capabilities
 \usepackage{graphicx} % Include figure files
 \graphicspath{{Figures/}} %Setting the graphicspath
+
+                 % Astronomical Journal
 
 \newcommand{\prior}{{\sc prior}\xspace}
 \newcommand{\bilby}{{\sc Bilby}\xspace}
@@ -45,7 +62,7 @@
 \newcommand{\seob}{{\sc SEOBNRv4PHM}\xspace}
 \newcommand{\pycbc}{{\sc PyCBC}\xspace}
 \newcommand{\bcr}{{\sc BCR}\xspace}
-\newcommand{\psd}{{\sc $\sigma^2$}\xspace}
+\newcommand{\psd}{{\sc $\sigma^2_i$}\xspace}
 \newcommand{\pastro}{{$p_\text{astro}$}\xspace}
 \newcommand{\msun}{{M${}_\odot$}\xspace}
 
@@ -92,94 +109,89 @@ If intermediate-mass black holes are present, the gravitational waves emitted fr
 
 One method to account for glitches while searching for gravitational waves from coalescing compact binaries is by utilising an astrophysical Bayesian odds  \cite{bci, BCR1, BCR2, bcr_gw151216, bayesian_odds}. A true Bayesian odds calculated without using bootstrap techniques can provide events with a more accurate significance that is agnostic to a specific search strategy \cite{BCR2, bcr_gw151216,  bayesian_odds}. Additionally, a Bayesian odds can include information such as if the gravitational wave event's signal is coherent amongst the network of detectors, if the binary system that created the gravitational waves was precessing, and if the gravitational wave signal contains higher-order modes.  It is because Bayesian methods can incorporate all this physical information about a gravitational wave signal that the LIGO Scientific Collaboration uses these methods to determine the source parameters of gravitational wave events \cite{abbott2016ligo, abbott2019gwtc}. This paper demonstrates that the power of Bayesian methods used in parameter estimation can also successfully be used to discriminate between coherent gravitational-wave signals, incoherent glitches, and Gaussian noise in the form of a Bayesian search. \\
 
- In this paper we utilise a Bayesian method, called the\bcr \cite{BCR1}, to search for the significant gravitational wave signals from high-mass (systems with total masses in the range of $55-500$ \msun) compact binary coalescences in the detector data recorded during aLIGO's second observing run (O2).  We find that (a) our search does not identify any unreported stellar mass or intermediate mass black holes; (b) high-mass events reported in the GWTC-1, including GW170729 (an event with disputed $p_\text{astro}$ amongst various search pipelines) have high low significance; and that (c) high-mass events detected from some independent groups have low significance. \\
+In this paper we utilise a Bayesian method, called the \bcr \cite{BCR1}, to search for the significant gravitational wave signals from high-mass (systems with total masses in the range of $55-500$ \msun) compact binary coalescences in the detector data recorded during aLIGO's second observing run (O2).  We find that (a) our search does not identify any unreported stellar mass or intermediate mass black holes; (b) high-mass events reported in the GWTC-1, including GW170729 (an event with disputed $p_\text{astro}$ amongst various search pipelines) have high low significance; and that (c) high-mass events detected from some independent groups have low significance. \\
 
 The remainder of this paper is structured as follows. We outline our analysis methods, including details of the \bcr in Section~\ref{sec:method}. We present our results in Section~\ref{sec:result}, and discuss these results in the context of the significance of gravitational wave candidates in Section~\ref{sec:Conclusion}.
 
 
 \section{Method\label{sec:method}}
 
+\av{I have broken this section up into subsections for my convenience, we can remove them later}
+
 \subsection{The Bayesian Coherence Ratio}
 
 Following \citet{BCR1}, the \bcr is an odds ratio of the coherent signal hypotheses $\mathcal{H_S}$ and the incoherent instrumental feature hypothesis $\mathcal{H_I}$ for a network of $D$ detectors. $\mathcal{H_I}$ states that each $i$th detector has either pure Gaussian noise $\mathcal{H_N}$ or a glitch $\mathcal{H_G}$. The \bcr is given by
 \begin{equation}
-BCR = \frac{\alpha Z^S}{\Pi^D_{i=1}[\beta Z^G_i + (1-\beta)Z^N_i]}\ ,
+BCR = \frac{\alpha Z^S}{\prod\limits^D_{i=1}[\beta Z^G_i + (1-\beta)Z^N_i]}\ ,
 \end{equation}
-where $Z^S$, $Z^G_i $ and $Z^N_i }$ are the Bayesian evidences (marginalised likelihoods) for $\mathcal{H_S}$, $\mathcal{H_N}$, and $\mathcal{H_G}$. $\alpha$ and $\beta$, are the prior odds for obtaining a signal $\alpha=P(\mathcal{H_S})/P(\mathcal{H_I})$ and the prior odds for obtaining a glitch $\beta=P(\mathcal{H_G})/P(\mathcal{H_I})$. As the rate of signal and glitches are unknown, these priors $\alpha$ and $\beta$ are tuned to maximise the \bcr distributions for background data (signal-free data) and simulated signals \cite{BCR1}.  \\
+where $Z^S$, $Z^G_i$ and $Z^N_i$ are the Bayesian evidences (marginalised likelihoods) for $\mathcal{H_S}$, $\mathcal{H_N}$, and $\mathcal{H_G}$. $\alpha$ and $\beta$, are the prior odds for obtaining a signal $\alpha=P(\mathcal{H_S})/P(\mathcal{H_I})$ and the prior odds for obtaining a glitch $\beta=P(\mathcal{H_G})/P(\mathcal{H_I})$. As the rate of signal and glitches are unknown, these priors $\alpha$ and $\beta$ are tuned to maximise the \bcr distributions for background data (signal-free data) and simulated signals \cite{BCR1}.  \\
 
-We assume that each detector's noise is Gaussian and stationary over the period being analysed \cite{ligo_psd}. In practice, we estimate the noise using a noise power spectral density \psd. The method of estimating the \psd, along with details on the implementation of our Bayesian inference pipeline is presented in the following section \av{(Not sure if the details on the PSD generation should be here or not...)}. Using the \psd, we can write 
+\subsection{Bayesian Evidence Evaluation}
+\subsubsection{Noise Model}
+We assume that each detector's noise is Gaussian and stationary over the period being analysed \cite{ligo_psd}. In practice, we estimate the noise using a noise power spectral density \psd for each of the $i$ detectors. \\
+
+To generate the \psd, we take 31 neighbouring, ``off-source'', non-overlapping,  $4\ s$  segments of time-series data prior to the data segment $d_i$ being analysed. A Tukey window with a roll off of $0.2\ \text{s}$ is applied to each data segment to suppress spectral leakage after which the segments are fast-Fourier transformed and median-averaged to create a \psd \cite{ligo_psd}. This method, like other \psd estimation methods, adds statistical uncertainties to the \psd \cite{psd_student_t}. To marginalise over the statistical uncertainty we use the median-likelihood presented by \citet{psd_student_t} as a post-processing step and shift our Bayesian Evidence estimations closer to their true astrophysical values.
+
+Using the \psd, for each data segment $d_i$ in each of the $i$ detectors in a network of $D$ detectors, we can write 
 \begin{equation}
-Z^N_i =  \frac{1}{2\pi \sigma^2} \text{exp}\left(-\frac{1}{2} \frac{d_i}{\sigma^2} \right) \ ,
+Z^N_i =  \frac{1}{2\pi \sigma^2_i} \text{exp}\left(-\frac{1}{2} \frac{d_i}{\sigma^2_i} \right) .
 \end{equation}
-for the data $d_i$ in each of the $i$ detectors in a network of $D$ detectors..  
 
-We model coherent signal with parameters $\vec{\theta}$ using \imrphenomp $\mu_{\text{IMR}}(\vec{\theta})$. For this model to be coherent, the $\vec{\theta}$ must be consistent in each dataset $d_i$ for a network of $D$ detectors. Note that $\mu_{\text{IMR}}(\vec{\theta})$ is a phenomenological aligned spin waveform template constructed in the frequency domain that models the in-spiral, merger, and ringdown (IMR) of a compact binary coalescence \citep{khan2016frequency}. Although gravitational wave templates such as \seob $\mu_{\text{SEOB}}$ created from numerical relativity simulations incorporate more physics such as information on higher-order modes, we still use $\mu_{\text{IMR}}\vec{\theta}$ as this phenomenological model is faster to evaluate than numerical relativity models. Hence, the coherent signal evidence is calculated as
+\subsubsection{Coherent Signal Model}
+We model coherent signal using a binary black hole waveform template $\mu(\vec{\theta})$, where the vector $\vec{\theta}$ contains a point in the 15 dimensional space describing precessing binary-black hole mergers. For the signal to be coherent, $\vec{\theta}$ must be consistent in each $4\ \text{s}$ data segment $d_i$ for a network of $D$ detectors, Hence, the coherent signal evidence is calculated as
 \begin{equation}
-Z^S = \int \Pi^D_{i=1} \left[\frac{1}{2\pi \sigma^2} \text{exp}\left(\right)-\frac{1}{2} \frac{(d_i-\mu_{\text{IMR}}\vec{\theta})^2}{\sigma^2} \right) \right] \pi(\vec{\theta}) \text{d}\vec{\theta}  \ .
+\label{eq:zs}
+Z^S = \int\limits_{\vec{\theta}} \prod\limits^{D}_{i=1} \left[\frac{1}{2\pi \sigma^2_i} \text{exp}\left(-\frac{1}{2} \frac{(d_i-\mu(\vec{\theta}))^2}{\sigma^2_i} \right) \right] \pi(\vec{\theta}| \mathcal{H_S})\  \text{d}\vec{\theta} \ ,
 \end{equation}
+where $\pi(\theta| \mathcal{H_S})$ is the prior for the parameters in the coherent signal hypothesis. 
 
-\av{Introduce pi before the above}
-
-Finally, as glitches are challenging to model and poorly understood, we utilise a surrogate model for glitches: the glitches are modelled using $\mu_{\text{IMR}}\vec{\theta}$ with uncorrelated  parameters amongst the different detectors such that  $\vec{\theta}_i \neq \vec{\theta}_j$ for two detectors $i$ and $j$ \cite{bci}.  Modelling glitches with gravitational wave templates captures the worst case scenario for when glitches appear similar to gravitational wave signals. Thus, we can write $Z^G_i$ as 
+\subsubsection{Incoherent Glitch Model}
+Finally, as glitches are challenging to model and poorly understood, we utilise a surrogate model for glitches: the glitches are modelled using $\mu(\vec{\theta})$ with uncorrelated  parameters amongst the different detectors such that  $\vec{\theta}_i \neq \vec{\theta}_j$ for two detectors $i$ and $j$ \cite{bci}.  Modelling glitches with gravitational wave templates captures the worst case scenario for when glitches appear similar to gravitational wave signals. Thus, we can write $Z^G_i$ as 
 \begin{equation}
-Z^G_i = \int \frac{1}{2\pi \sigma^2} \text{exp}\left(\right)-\frac{1}{2} \frac{(d -\mu_{\text{IMR}}\vec{\theta})^2}{\sigma^2} \right) \pi(\vec{\theta}) \text{d}\vec{\theta}  \ .
+\label{eq:zg}
+Z^G_i = \int\limits_{\vec{\theta}} \frac{1}{2\pi \sigma^2_i} \text{exp}\left(-\frac{1}{2} \frac{(d_i -\mu(\vec{\theta}))^2}{\sigma^2_i} \right) \pi(\vec{\theta}| \mathcal{H_G})\  \text{d}\vec{\theta}  \ ,
 \end{equation}
+where $\pi(\theta| \mathcal{H_G})$ is the prior for the parameters in the incoherent glitch hypothesis. 
 
 
 
 
-\hypertarget{bayesian-parameter-estimation}{%
-	\subsection{Bayesian Parameter Estimation}\label{bayesian-parameter-estimation}}
+
+\section{Analysis}\label{sec:Analysis}
+
+Advanced LIGO's second observing run O2 lasted $38$ weeks \cite{GWOSC}. The software package, \pycbc \cite{pycbc_code}, processed the O2 data in 22 chunks (approximately 2 weeks for one chunk) and found several gravitational wave events and some gravitational wave candidates \cite{pycbc_og0, pycbc_og1, pycbc_og2, pycbc_og3, pycbc_og4, pycbc_og5}.  
+
+At its core, \pycbc performs a matched-filter search for binary merger signals using a template-bank of gravitational-wave template waveforms to generate triggers. For the trigger to be considered a \textbf{candidate trigger} by \pycbc, it must be observed between detectors with the same template and with a time of arrival difference less than the gravitational-wave travel time between detectors \cite{pycbc_og0}. To test its search, \pycbc also conducts searches for simulated signals. \textbf{Simulated triggers} are artificial triggers created by injecting signals into the detector data. These simulated signal studies provides \pycbc with metrics on its sensitivity. Finally, to quantify the rareness of candidate events, \pycbc artificially constructs a \textbf{background trigger} set to compare the candidate events against. These background triggers are signal-free events, created by applying relative offsets, or time-shifts, between the data of different detectors \cite{pycbc_og0}. Note that the time-shifts are greater than the gravitational-wave travel time between detectors.  
+
+The \pycbc search in O2 produced numerous candidate, simulated and background triggers. For our high-mass study, we screen the triggers to only allow
+triggers with masses within the ranges of the parameters presented in Table\textasciitilde\ref{tab:parameters}. Plot of the \pycbc triggers from one chuk  To calculate the \bcr for these triggers, we carry out Bayesian inference with \bilby \cite{bilby}, employing \dynesty \cite{dynesty} as our nested sampler. Nested sampling, an algorithm introduced by \cite{skilling_nested_sampling}, provides an estimate of the true Bayesian evidence and is often utilised for parameter estimation within the LIGO collaboration \cite{bilby}.
+
+We restrict the priors for Bayesian inference on the masses to only consider signals shorter than $454 \text{ms}$ in duration, as presented in Table\textasciitilde\ref{tab:parameters}. The spins are set to be aligned with a uniform range for the dimensionless spin magnitude from $\left[0,1\right]$. The prior on luminosity distance assigns probability uniformly in comoving volume, with an upper cutoff of $5\ \text{Gpc}$. We implement the same priors as used in GWTC-1 for the remaining parameters. The priors we use for the coherent signal and incoherent glitch hypotheses are identical.\\
+
+The waveform template we utilise is \imrphenomp $\mu_{\text{IMR}}(\vec{\theta})$, a phenomenological waveform template constructed in the frequency domain that models the in-spiral, merger, and ringdown (IMR) of a compact binary coalescence \citep{khan2016frequency}. Although gravitational wave templates such as \seob \cite{seob} created from numerical relativity simulations incorporate more physics such as information on higher-order modes, we still use $\mu_{\text{IMR}}(\vec{\theta})$ as it evaluates faster than numerical relativity models. 
+
+Finally, we neglect detector calibration uncertainty and acquire data from from the Gravitational Wave Open Science Center \cite{GWOSC}. The data we use is the publicly accessible O2 strain data from the Hanford and Livingston detectors. To ensure the data is usable we verify that the analysis and PSD data are obtained when the detectors are  in ``Science Mode''. The data requisition and quality checks are conducted using \gwpy \cite{}. 
+
+For the Bayesian Inference, we use a ? likelihood.... \av{talk about TDP marginalisation, cite Eric and COlms paper}
 
 
-To generate posterior probability distributions and calculate Bayesian evidences for our signal, glitch and noise models, we carry out Bayesian inference with \bilby \cite{bilby}, employing \dynesty \cite{dynesty} as our nested sampler. Although nested sampling, an algorithm introduced by \cite{skilling_nested_sampling}, is an estimate of the true Bayesian evidence, 
+The run-time for to calculate a single Bayesian evidence after using \dynesty with $1,000$ live points and $100$ walkers is usually between $0.5-12\ \text{hours}$ (where the speed often depends on the SNR of the data segment). 
 
 
-To generate the \psd, we take 31 neighbouring, "off-source", non-overlapping,  $4\ s$  segments of time-series data prior to the data being analysed. A Tukey window with a roll off of $0.2\ s$ is applied to each data segment to suppress spectral leakage after which the segments are fast-Fourier transformed and median-averaged to create a \psd. This method, like other \psd estimation methods, adds statistical uncertainties to the \psd \cite{psd_student_t}.  To marginalise over the statistical uncertainty we use the median-likelihood presented by \citet{psd_student_t} to re-weight our posterior samples as a post-processing step and shift our Bayesian Evidence estimations closer to their true astrophysical values. 
 
-We restrict the priors for Bayesian parameter estimation on the masses such that we only consider signals that are less
-than 454ms in duration, as presented in Table\textasciitilde\ref{tab:parameters}. The spins are set to be aligned with a range from
-{[}0,1{]}. The prior on luminosity distance assigns probability uniformly in comoving volume, with an upper cutoff of 5 Gpc.
-The \href{https://pycbc.org/}{\texttt{PyCBC}} search that originally produced our set of triggers considered a more comprehensive range of masses and
-spins than we do in the BCR computation for this project. To accommodate this, we screened the triggers to only allow
-triggers with masses within our priors. The run time on a single trigger using the \href{https://arxiv.org/abs/1904.02180}{\texttt{dynesty}} implementation of nested
-sampling, with \(2,000\) live points and \(100\) walkers is usually between \(0.5-12\) hours (where the speed often depends on
-the SNR of the data segment).
 
 
  
-
-
-
-
-we use the noise power spectral densities created with a median-average method by taking 31 neighbouring, "off-source", non-overlapping,  4 second segments of data prior to the data being analysed. Before computing the PSD,   prior to fast-Fourier transforming the the windowed time-domain strain before averaging the PSD chunks.As this method does not provide a perfect estimation of the true noise power spectral density  These power spectral densities are ? with a studuent-T's distribution to account for ? \cite{psd_student_t}. 
-
 
 \pastro, the probability that a signal is of astrophysical origin \cite{pastro_1,pastro_2,pastro_3},
 
  provides a Bayesian odds ratio comparing the probability that the data contains an astrophysical signal versus the probability that the data contains an incoherent glitch or noise. Although an odds ratio, the \bcr can be used  as a frequentistic \textit{ranking statistic}, ranking the likelihood that a trigger is due to a gravitational-wave signal \cite{BCR}. The \bcr as a ranking statistic is much more powerful than a matched-filter SNR as the \bcr incorporates numerous features that may distinguish gravitational waves from noise and demands that signals must be coherent while glitches must be incoherent amongst different detectors. \\
 
-
-% We use the publicly available strain data associated with the 10 binary black hole events in GWTC-1. We implement the same priors as used in GWTC-1 for almost all parameters. The exceptions are eccentricity, which is not included in GWTC-1, and aligned dimensionless component spins, which are only supported in SEOBNRE between −1 and 0.6. Our prior on eccentricity is uniform in log10(e) in the range −6 ≤ log10(e) ≤ −0.7. Our aligned dimensionless component spin prior is uniform between −0.6 and 0.6. Our prior boundaries for cyclic parameters (e.g. coalescence phase, right ascension, and declination) are periodic, while our priors for non-cyclic parameters (e.g. mass and distance) have reflective boundaries.
-
-% Generating a posterior probability distribution demands many thousands of likelihood calculations, each requiring waveform template evaluation. While standard quasi-circular waveform models are fast enough to facilitate reasonable computation times, eccentric waveforms including merger and ringdown physics are not. SEOBNRE takes roughly a million times longer to evaluate a GW150914-like signal than aligned-spin quasi-circular waveform model IMRPHENOMD
- 
- 
-%  We use nested sampling, introduced by Skilling (2006) and popular for gravitational-wave data analysis due to its handling of high-dimensional spaces (Veitch et al. 2015). For a thorough review of Bayesian inference in the context of gravitational-wave astrophysics, see Thrane & Talbot (2018).
- 
- 
-% where μ is our waveform template and σ is the detector noise amplitude spectral density.1 We assume Gaussian noise, using the noise power spectral densities σ2 that were used to produce the GWTC-1 results. We neglect calibration uncertainty. We generate μ using SEOBNRE (Cao & Han 2017), an effective one-body numerical-relativity waveform model that can produce non-circular waveforms with eccentricities in the range 0 ≤ e ≤ 0.2 at 10 Hz. The SEOBNRE waveform model incorporates more complex physics than the waveform used in Lower et al. (2018). It includes aligned dimensionless component spin magnitudes between −1 and 0.6, and models the merger and ringdown in addition to the inspiral.
-
-
-% We carry out Bayesian inference with BILBY (Ashton et al. 2019), using DYNESTY (Speagle 2019) as our nested sampler. We use the publicly available strain data associated with the 10 binary black hole events in GWTC-1. We implement the same priors as used in GWTC-1 for almost all parameters. The exceptions are eccentricity, which is not included in GWTC-1, and aligned dimensionless component spins, which are only supported in SEOBNRE between −1 and 0.6. Our prior on eccentricity is uniform in log10(e) in the range −6 ≤ log10(e) ≤ −0.7. Our aligned dimensionless component spin prior is uniform between −0.6 and 0.6. Our prior boundaries for cyclic parameters (e.g. coalescence phase, right ascension, and declination) are periodic, while our priors for non-cyclic parameters (e.g. mass and distance) have reflective boundaries.
-
-% Generating a posterior probability distribution demands many thousands of likelihood calculations, each requiring waveform template evaluation. While standard quasi-circular waveform models are fast enough to facilitate reasonable computation times, eccentric waveforms including merger and ringdown physics are not. SEOBNRE takes roughly a million times longer to evaluate a GW150914-like signal than aligned-spin quasi-circular waveform model IMRPHENOMD
- 
  
 
 % PyCBC asks for the 5 citations:
 % http://pycbc.org/pycbc/latest/html/credit.html#searches-for-compact-binary-coalescence
-high-mass candidate events, simulated signal events and  background events (signal-free events ) supplied by the \pycbc \cite{pycbc_code} search in O2  \cite{pycbc_og0, pycbc_og1, pycbc_og2, pycbc_og3, pycbc_og4, pycbc_og5}.  At its core, \pycbc performs a matched-filter search for binary merger signals using a template-bank of gravitational-wave template waveforms to generate triggers. For the trigger to be considered a  candidate event by \pycbc, it must be observed between detectors with the same template and with a time of arrival difference less than the gravitational-wave travel time between detectors \cite{pycbc_og0}. The simulated signal events are artificially created by injecting signals into the detector data. Similarly, \pycbc artificially constructs the background, signal-free, events by applying relative offsets, or time-shifts, between the data of different detectors \cite{pycbc_og0}. 
+high-mass candidate events, simulated signal events and  background events (signal-free events ) supplied by the \pycbc \cite{pycbc_code} search in O2  \
 
 
 Figure~\ref{fig:templateBank} depicts the \pycbc template bank, the high-mass search space and the candidate events, simulated events and background events from a one-week stretch of \pycbc's search in O2. 
@@ -190,8 +202,6 @@ Week long stretches of analysis because noise-non stationary, glitches will occu
 Dont know the prior odds, 
 
 
-We use \bilbypipe to both acquire the publicly accessible LIGO data in 4s-long data segments containing each trigger (analysis segments) and to generate PSDs via Welch's method for each data segment by taking 124 seconds of the data before the analysis segment. If the data quality is not marked as ``Science Mode'' for either the PSD or analysis data, then the analysis of that trigger is skipped. Gravitational-wave templates
-are produced using \imrphenomp. 
 
 
 \hypertarget{trigger-sets-for-bcr-analysis}{%
@@ -313,7 +323,7 @@ based on the combination that results with the maximum KL divergence.
 
 }
 
-\caption[KL Divergences for one BCR tunable parameter]{KL Divergences for O2 Chunk 14's software injection and background trigger BCR probability distributions with \(alpha=1^{-6}\).}\label{fig:klDivLine}
+\caption[KL  Divergences for one BCR tunable parameter]{KL Divergences for O2 Chunk 14's software injection and background trigger BCR probability distributions with \(alpha=1^{-6}\).}\label{fig:klDivLine}
 \end{figure}
 
 In Chapter\textasciitilde\ref{progress} we present some of the preliminary BCR search results we
@@ -395,6 +405,9 @@ Mass Ratio & 0.01 & 0.98\\
 \end{figure}
 
 
+\section{\label{sec:Results}Results}
+blah
+
 
 
 \section{\label{sec:Conclusion}Conclusion}
@@ -416,7 +429,9 @@ entirely new class of high mass black hole binaries.
 
 %%%%%%---ACKNOWLEDGEMENTS---%%%%%%%%%%%%
 \begin{acknowledgments}
-Helpful comments, OzGrav, LIGO, NSF
+Helpful comments, OzGrav, LIGO, NSF.
+
+This research has made use of data, software and/or web tools obtained from the Gravitational Wave Open Science Center (https://www.gw-openscience.org), a service of LIGO Laboratory, the LIGO Scientific Collaboration and the Virgo Collaboration. LIGO is funded by the U.S. National Science Foundation. Virgo is funded by the French Centre National de Recherche Scientifique (CNRS), the Italian Istituto Nazionale della Fisica Nucleare (INFN) and the Dutch Nikhef, with contributions by Polish and Hungarian institutes.
 
 \end{acknowledgments}
 %%%%%%%%%%%%%%%%%%%%%%%%
