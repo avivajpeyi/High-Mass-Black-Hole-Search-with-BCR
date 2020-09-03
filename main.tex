@@ -21,6 +21,7 @@ preprint,
 %floatfix,
 ]{revtex4}
 
+
 \usepackage{aas_macros}
 \usepackage{amssymb}
 \usepackage{amsmath}
@@ -109,7 +110,7 @@ One method to account for glitches while searching for gravitational waves from 
 
 In this paper we utilise a Bayesian method, called the \bcr \cite{BCR1}, to search for the significant gravitational wave signals from high-mass (systems with total masses in the range of $55-500$ \msun) compact binary coalescences in the detector data recorded during aLIGO's second observing run (O2).  We find that (a) our search does not identify any unreported stellar mass or intermediate mass black holes; (b) high-mass events reported in the GWTC-1, including GW170729 (an event with disputed $p_\text{astro}$ amongst various search pipelines) have high low significance; and that (c) high-mass events detected from some independent groups have low significance. \\
 
-The remainder of this paper is structured as follows. We outline our methods, including details of the \bcr and the retrieval of our candidate events in Section~\ref{sec:method}. We present details on the implementation of our analysis in Section~\ref{sec:Analysis}. Finally we present our results in Section~\ref{sec:result}, and discuss these results in the context of the significance of gravitational wave candidates in Section~\ref{sec:Conclusion}.
+The remainder of this paper is structured as follows. We outline our methods, including details of the \bcr and the retrieval of our candidate events in Section~\ref{sec:method}. We present details on the implementation of our analysis in Section~\ref{sec:Analysis}. Finally we present our results in Section~\ref{sec:Results}, and discuss these results in the context of the significance of gravitational wave candidates in Section~\ref{sec:Conclusion}.
 
 
 \section{Method\label{sec:method}}
@@ -256,11 +257,11 @@ After the calculating the \bcr for the entire set of high-mass background and si
 
 \begin{figure}[!h]
 {\centering \includegraphics[width=0.75\linewidth]{images/kl_divergence_grid.png} }
-\caption[Grid of KL-Distances for different prior odds]{A grid of $D_{KL}(p_b|p_s)$ for different configurations of $\alpha$ and $\beta$, calculated from triggers obtained between $\text{April 23 - May 8, 2017}$. The red lines mark $\alpha$ and $\beta$ for the maximum $D_{KL}(p_b|p_s)$.}\label{fig:fig:Dkl}
+\caption[Grid of KL-Distances for different prior odds]{A grid of $D_{KL}(p_b|p_s)$ for different configurations of $\alpha$ and $\beta$, calculated from triggers obtained between $\text{April 23 - May 8, 2017}$. The red lines mark $\alpha$ and $\beta$ for the maximum $D_{KL}(p_b|p_s)$.}\label{fig:Dkl}
 \end{figure}
 
 
-Finally, using the tuned prior odds the \bcr for the candidate events can be calculated. Figure~\ref{fig:bcrCdf} shows the \bcr distributions for the background triggers, simulated triggers and candidate events. The bulk of the background and simulated trigger distributions are separate but have a slight overlap due to some of the simulated signal's being very faint \av{but the BCR should still be able to find the injections and set them to have high BCRs? Could it be that the signals are injected over sketchy-glitch like data? How can I verify this?}. This suggests that the \bcr can successfully distinguish signals from noise or glitches. The vertical lines in Figure~\ref{fig:bcrCdf} displays the \bcr for gravitational wave candidate events. On comparing the candidate event \bcr values with the background distribution, we can estimate $p_text{astro}$ values for the candidate events. 
+Finally, using the tuned prior odds the \bcr for the candidate events can be calculated. Figure~\ref{fig:bcrCdf} shows the \bcr distributions for the background triggers, simulated triggers and candidate events. The bulk of the background and simulated trigger distributions are separate but have a slight overlap due to some of the simulated signal's being very faint \av{but the BCR should still be able to find the injections and set them to have high BCRs? Could it be that the signals are injected over sketchy-glitch like data? How can I verify this?}. This suggests that the \bcr can successfully distinguish signals from noise or glitches. The vertical lines in Figure~\ref{fig:bcrCdf} displays the \bcr for gravitational wave candidate events. On comparing the candidate event \bcr values with the background distribution, we can estimate $p_\text{astro}$ values for the candidate events. 
 
 
 \begin{figure}[!h]
@@ -274,27 +275,30 @@ Finally, using the tuned prior odds the \bcr for the candidate events can be cal
 
 
 \section{\label{sec:Results}Results}
+\av{I should use Pratten et al's table + values here}
+In aLIGO's first two observing runs, eleven gravitational wave events were found in the data by the LIGO-Virgo scientific collaboration \citep{abbott2019gwtc}. Since the public release of LIGO's first and second observing run's data, several groups have searched the data for gravitational waves independently of LIGO. One particular research group of interest is a research team at the Institute for Advanced Study (IAS). The group constructed searches to look for the LIGO-confirmed the gravitational wave events detected by the LIGO-Virgo collaboration, and in the process of doing so, claim to have discovered several others events \citep{IAS0, IAS1, IAS2}. Some of these events have total masses $>85$ \msun, which is larger than the average total mass of the LIGO detections. Some of these IAS and LIGO events are displayed in Table\textasciitilde\ref{tab:O2significancesWObcr} with their $p_\text{astro}$ reported by various LIGO and IAS search pipelines.\\
 
-In aLIGO's first two observing runs, eleven gravitational wave events were found in the data by the LIGO-Virgo scientific collaboration \citep{abbott2019gwtc}. Since the public release of LIGO's first and second observing run's data, several groups have searched the data for gravitational waves independently of LIGO. One particular research group of interest is a research team at the Institute for Advanced Study (IAS). The group constructed searches to look for the LIGO-confirmed the gravitational wave events detected by the LIGO-Virgo collaboration, and in the process of doing so, claim to have discovered several others events \citep{IAS0, IAS1, IAS2}. Some of these events have total masses \(>85 M_{\odot}\), which is larger than the average total mass of the LIGO detections. Some of these IAS and LIGO events are displayed in Table\textasciitilde\ref{tab:O2significancesWObcr} with their p-astro reported by various LIGO and IAS search pipelines.\\
-
-\begin{table}[t]
-\caption[p-astro for various O2 foreground triggers]{\label{tab:O2significancesWObcr}p-astro from several detection pipelines for a subset of the O2 foreground triggers.}
+\begin{table}
+\caption[$p_\text{astro}$ for various O2 foreground triggers]{\label{tab:O2significancesWObcr}$p_\text{astro}$ from several detection pipelines for a subset of the O2 foreground triggers.}
 \centering
-\begin{tabular}{llrrrr}
-\toprule
-Event & Catalogue & PyCBC & GstLAL & cWB & IAS\\
-\midrule
-GW170104 & GWTC-1 & 1.00 & 1.00 & 1.00 & 0.99\\
-GW170121 & IAS-1 & NA & NA & NA & 0.99\\
-GWC170402 & IAS-2 & NA & 0.09 & NA & 0.68\\
-GW170403 & IAS-1 & NA & NA & NA & 0.56\\
-IMBHC170423 & IMBH-marginal & NA & 0.00 & 1.00 & NA\\
-GW170425 & IAS-1 & NA & NA & NA & 0.77\\
-GW170729 & GWTC-1 & 0.52 & 0.98 & 0.94 & NA\\
+\begin{tabular}{lllllll} 
+\hline
+\textbf{Event} & \textbf{Catalogue} & \textbf{PyCBC} & \textbf{GstLAL} & \textbf{cWB} & \textbf{IAS} & \textbf{BCR} \\ 
+\hline
+GW170104 & GWTC-1 & 1 & 1 & 1 & 0.99 & 0.99 \\
+GW170121 & IAS-1 & NA & NA & NA & 0.99 & 0.65 \\
+GWC170402 & IAS-2 & NA & 0.086 & NA & 0.68 & 0.33 \\
+GW170403 & IAS-1 & NA & NA & NA & 0.56 & 0.33 \\
+IMBHC170423 & IMBH-marginal & NA & 0.95 & 1 & NA & 0.01 \\
+GW170425 & IAS-1 & NA & NA & NA & 0.77 & 0.36 \\
+GW170502 & Udall et al. & NA & NA & NA & NA & 0.40 \\
+GW170729 & GWTC-1 & 0.52 & 0.98 & 0.94 & NA & 0.98
 \end{tabular}
 \end{table}
 
-From this Table\textasciitilde\ref{tab:O2significancesWObcr}, it is evident there is some uncertainty if these events can be considered real gravitational-wave events -- are these events significantly different from the background or not? The various pipelines have different answers. Our \bcr $p_{astro}$ shows support that the LIGO-VIRGO events come from an astrophysical source, while the candidate events from the IAS group appear to have a lower probability of originating from an astrophysical source.\\
+
+
+From this Table\textasciitilde\ref{tab:O2significancesWObcr}, it is evident there is some uncertainty if these events can be considered real gravitational-wave events -- are these events significantly different from the background or not? The various pipelines have different answers. Our \bcr $p_\text{astro}$ shows support that the LIGO-VIRGO events come from an astrophysical source, while the candidate events from the IAS group appear to have a lower probability of originating from an astrophysical source.\\
 
 
 
@@ -303,10 +307,10 @@ From this Table\textasciitilde\ref{tab:O2significancesWObcr}, it is evident ther
 
 
 \section{\label{sec:Conclusion}Conclusion}
-The detection of high mass black holes $>100$ \msun will shed light on the formation of globular clusters, supermassive black holes and thus galaxy formation \citep{lodato2006supermassive, 2018IMBHreview}. LIGO is theoretically
-sensitive to the merger of binary black holes with total masses up to 500 M \msun which are expected to occur at a rate of 0-10 yr\(^{-1}\) \cite{mandel2008rates, fregeau2006imbhbRatePrediction}. However, even after \citet{salemi2019search}'s targeted match-filter based search for gravitational waves from high-mass black holes the largest total mass detected so far is approximately 80 \msun \citep{abbott2019gwtc}. A possible explanation for the absence of high mass events may be due to their misclassification as short-duration instrumental noise transients \citep{blipGlitches}. High-mass mergers have very few in-band wave cycles, and hence can easily be mistaken for short-duration instrumental transients. \\
 
-We start by developing a targeted search for gravitational waves from high-mass black hole systems. This new targeted search utilises Bayesian inference and thus is a more sensitive tool for detecting high-mass binary black hole mergers as compared to traditional match-filtering searches. We have applied this technique on the high-mass triggers during LIGO's second observing run to investigate the possibility of discovering new gravitational-wave signals from an entirely new class of high mass black hole binaries.
+The detection of high mass black holes $>100$ \msun will shed light on the formation of globular clusters, supermassive black holes and thus galaxy formation \citep{lodato2006supermassive, 2018IMBHreview}. LIGO is theoretically sensitive to the merger of binary black holes with total masses up to 500 M \msun which are expected to occur at a rate of 0-10 yr\(^{-1}\) \cite{mandel2008rates, fregeau2006imbhbRatePrediction}. However, even after \citet{ligo_imbh_search}'s targeted match-filter based search for gravitational waves from high-mass black holes the largest total mass detected so far is approximately 80 \msun \citep{abbott2019gwtc}. A possible explanation for the absence of high mass events may be due to their misclassification as short-duration instrumental noise transients \citep{blipGlitches}. High-mass mergers have very few in-band wave cycles, and hence can easily be mistaken for short-duration instrumental transients. \\
+
+We have developing a targeted search for gravitational waves from high-mass black hole systems. This targeted search utilises Bayesian inference and provides a ranking statistic that contains a lot of physical information about the high-mass systems. We have applied this technique on all the high-mass triggers identified by \pycbc during LIGO's second observing run to investigate the possibility of discovering new gravitational-wave signals from high mass black hole binaries. Although we were unable to uncover new gravitational waves events, we were able to report high $p_{astro}$ for events already detected by LIGO, and low $p_{astro}$ for some events identified by external pipelines. 
 %%%%%%---SECTIONS-END---%%%%%%%%%%%%
 
 %%%%%%---ACKNOWLEDGEMENTS---%%%%%%%%%%%%
