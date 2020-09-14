@@ -23,20 +23,11 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
         
-      - name: Declare git variables
+      - name: Declare git variable
         id: vars
         shell: bash
-        run: |
-          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-
-      - name: Another step
-        run: |
-          echo "Branch: ${{ steps.vars.outputs.branch }}"
-          echo "Sha: ${{ steps.vars.outputs.sha_short }}"
-
-      - name: Test global var
-        run: echo $GITHUB_SHA
-
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+        
       - uses: actions/github-script@0.3.0
         id: author-date
         with:
@@ -45,21 +36,17 @@ jobs:
             const commit_details = await github.git.getCommit({owner: context.repo.owner, repo: context.repo.repo, commit_sha: context.sha});
             return commit_details.data.author.date
             
-    
-      - run: echo $COMMITTED_AT
+      - name: Write to .githash.txt
+        run: |
+          echo "Draft $SHA_SHORT on $COMMITTED_AT"
+          echo "Draft $SHA_SHORT on $COMMITTED_AT" > .githash.txt
         env:
           COMMITTED_AT: ${{ steps.author-date.outputs.result }}
+          SHA_SHORT: ${{ steps.vars.outputs.sha_short }} 
 
-      - name: Final message
+      - name: Commit .githash.txt
         run: |
-          echo "Draft $GITHUB_SHA on $COMMITTED_AT"
-          echo "Draft $GITHUB_SHA on $COMMITTED_AT" >> .githash.txt
-        env:
-          COMMITTED_AT: ${{ steps.author-date.outputs.result }}
-
-      - name: Commit files # commit the output folder
-        run: |
-          git config --local user.email "test@github.com"
+          git config --local user.email "avi_gitbot@github.com"
           git config --local user.name "GitHub Action test"
           git add .githash.txt
           git commit -m "Update githash"
