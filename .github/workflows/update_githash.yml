@@ -42,14 +42,14 @@ jobs:
           script: |
             const commit_details = await github.git.getCommit({owner: context.repo.owner, repo: context.repo.repo, commit_sha: context.sha});
             return commit_details.data.author.date
-      - run: echo $COMMITTED_AT
+      - run: echo "##[set-output name=commited_at;]$(echo $COMMITTED_AT)"  
         env:
           COMMITTED_AT: ${{ steps.author-date.outputs.result }}
 
       - name: Final message
         run: |
-          echo "Draft ${{ steps.vars.outputs.sha_short }} on ${{ COMMITTED_AT }}"
-          echo "Draft ${{ steps.vars.outputs.sha_short }} on ${{ COMMITTED_AT }}" >> .githash.txt
+          echo "Draft ${{ steps.vars.outputs.sha_short }} on ${{ steps.vars.outputs.commited_at }}"
+          echo "Draft ${{ steps.vars.outputs.sha_short }} on ${{ steps.vars.outputs.commited_at }}" >> .githash.txt
 
       - name: Commit files # commit the output folder
         run: |
