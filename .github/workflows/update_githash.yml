@@ -27,13 +27,15 @@ jobs:
         id: vars
         shell: bash
         run: |
-          echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
 
       - name: Another step
         run: |
           echo "Branch: ${{ steps.vars.outputs.branch }}"
           echo "Sha: ${{ steps.vars.outputs.sha_short }}"
+
+      - name: Test global var
+        run: echo $GITHUB_SHA
 
       - uses: actions/github-script@0.3.0
         id: author-date
@@ -42,14 +44,18 @@ jobs:
           script: |
             const commit_details = await github.git.getCommit({owner: context.repo.owner, repo: context.repo.repo, commit_sha: context.sha});
             return commit_details.data.author.date
-      - run: echo "##[set-output name=commited_at;]$(echo ${{ steps.author-date.outputs.result }})"  
+            
+    
+      - run: echo $COMMITTED_AT
         env:
           COMMITTED_AT: ${{ steps.author-date.outputs.result }}
 
       - name: Final message
         run: |
-          echo "Draft ${{ steps.vars.outputs.sha_short }} on ${{ steps.vars.outputs.commited_at }}"
-          echo "Draft ${{ steps.vars.outputs.sha_short }} on ${{ steps.vars.outputs.commited_at }}" >> .githash.txt
+          echo "Draft $GITHUB_SHA on $COMMITTED_AT"
+          echo "Draft $GITHUB_SHA on $COMMITTED_AT" >> .githash.txt
+        env:
+          COMMITTED_AT: ${{ steps.author-date.outputs.result }}
 
       - name: Commit files # commit the output folder
         run: |
