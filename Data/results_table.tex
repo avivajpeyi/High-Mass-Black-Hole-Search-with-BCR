@@ -1,40 +1,43 @@
 \begin{table*}
 \centering
 \caption[Table summarising various pipeline \pastro values]{
-    Table summarising the \pastro of events and candidate events from various detection pipelines, 
-    along with the PyCBC triggers with $\pastrobcr > 0.5$. Note that only the 
-    triggers and events within our prior space are displayed. The various pipeline \pastro represented in this table, 
+    Table summarising the \pastro of gravitational wave events from various detection pipelines, 
+    along with the event candidates with $\pastrobcr > 0.3$. Only the 
+    candidates and events within our prior space are displayed. The various pipeline \pastro represented in this table, 
     \pastroext, are from the following pipelines: 
-    PyCBC ${}^{\ddagger}$ \cite{GWTC1}, 
-    GstLAL ${}^{\|}$ \cite{GWTC1}, 
-    PyCBC OGC-2${}^{\dagger}$ \cite{pycbc_ogc_2} 
-    and IAS ${}^{\ast}$ \cite{IAS1, IAS2}. 
-    Note that the catalogues labelled IAS-1 and IAS-2 correspond to the candidates published in \citet{IAS1} and \citet{IAS2}.
-    \av{I am using the same symbols as Pratten et al. Should i state that I am following their labelling convention? i need to add Pratten et al vals}
+    GstLAL ${}^{|}$~\cite{GWTC1}, 
+    PyCBC ${}^{\ddagger}$~\cite{GWTC1}, 
+    PyCBC OGC-2 ${}^{\dagger}$~\cite{pycbc_ogc_2}, 
+    PyCBC `single-search' ${}^{\sharp}$~\cite{pycbc_single_det}, 
+    IAS ${}^{\ast}$~\cite{IAS1, IAS2}, and 
+    \citet{bayesian_odds}'s significances ${}^{\star}$.
+    The catalogues labelled IAS-1 and IAS-2 correspond to the candidates published in \citet{IAS1} and \citet{IAS2}.
     }
 \label{tab:results}
 \def\arraystretch{1.5} 
  \setlength{\tabcolsep}{0.5em}
 \begin{tabular}{ll|c|c|c}
 
-    Event &     Catalogue & \pastrobcr &                \pastroext &           GPS \\
+    Event & Catalogue & \pastrobcr &                            \pastroext &           GPS \\
 \hline
- GW170104 &        GWTC-1 &        0.93 &  $1.00^{|};1.00^{\ddagger}$ & 1167559934.60 \\
- GW170121 &         IAS-1 &        0.72 & $1.00^{\dagger};1.00^{\ast}$ & 1169069152.57 \\
- GW170202 &         IAS-1 &        0.46 & $0.13^{\dagger};0.68^{\ast}$ & 1170079033.71 \\
-GWC170222 & - &        0.53 &                          - & 1171814474.97 \\
-GWC170302 &         IAS-1 &        0.73 &               $0.45^{\ast}$ & 1172487815.48 \\
- GW170304 &         IAS-1 &        0.83 & $0.70^{\dagger};0.99^{\ast}$ & 1172680689.36 \\
- GW170402 &         IAS-2 &        0.22 &               $0.68^{\ast}$ & 1175205126.57 \\
- GW170403 &         IAS-1 &        0.43 & $0.03^{\dagger};0.56^{\ast}$ & 1175295987.22 \\
-GWC170412 &        GWTC-1 &        0.82 &               $0.06{}^{|}$ & 1176047817.00 \\
- GW170425 &         IAS-1 &        0.31 & $0.21^{\dagger};0.77^{\ast}$ & 1177134830.19 \\
- GW170608 &        GWTC-1 &        0.95 &  $0.92^{|};1.00^{\ddagger}$ & 1180922492.50 \\
- GW170727 &         IAS-1 &        0.93 & $0.99^{\dagger};0.98^{\ast}$ & 1185152686.02 \\
- GW170729 &        GWTC-1 &        0.94 &  $0.98^{|};0.52^{\ddagger}$ & 1185389805.33 \\
- GW170809 &        GWTC-1 &        0.99 &  $0.99^{|};1.00^{\ddagger}$ & 1186302517.75 \\
- GW170814 &        GWTC-1 &        1.00 &  $1.00^{|};1.00^{\ddagger}$ & 1186741859.53 \\
-GW170817A &         IAS-2 &        0.76 &               $0.86^{\ast}$ & 1186974182.72 \\
+   161202 &   - &        0.41 &                                      - & 1164687281.45 \\
+ GW170104 &    GWTC-1 &        0.93 &   $1.00^{|};1.00^{\ddagger};1.0^{\star}$ & 1167559934.60 \\
+ GW170121 &     IAS-1 &        0.72 & $1.00^{\dagger};1.00^{\ast};0.53^{\star}$ & 1169069152.57 \\
+ GW170202 &     IAS-1 &        0.46 & $0.13^{\dagger};0.68^{\ast};0.12^{\star}$ & 1170079033.71 \\
+   170206 &   - &        0.42 &                                      - & 1170410799.98 \\
+   170222 &   - &        0.53 &                                      - & 1171814474.97 \\
+   170302 &     IAS-1 &        0.73 &                $0.45^{\ast};0.0^{\star}$ & 1172487815.48 \\
+ GW170304 &     IAS-1 &        0.83 & $0.70^{\dagger};0.99^{\ast};0.03^{\star}$ & 1172680689.36 \\
+ GW170402 &     IAS-2 &        0.22 &       $0.68^{\ast};0.03^{\sharp};0.0^{\star}$ & 1175205126.57 \\
+ GW170403 &     IAS-1 &        0.43 & $0.03^{\dagger};0.56^{\ast};0.27^{\star}$ & 1175295987.22 \\
+   170421 &   - &        0.37 &                                      - & 1176789156.14 \\
+ GW170425 &     IAS-1 &        0.25 & $0.21^{\dagger};0.77^{\ast};0.74^{\star}$ & 1177134830.18 \\
+ GW170608 &    GWTC-1 &        0.95 &   $0.92^{|};1.00^{\ddagger};1.0^{\star}$ & 1180922492.50 \\
+ GW170727 &     IAS-1 &        0.93 & $0.99^{\dagger};0.98^{\ast};0.66^{\star}$ & 1185152686.02 \\
+ GW170729 &    GWTC-1 &        0.94 &   $0.98^{|};0.52^{\ddagger};1.0^{\star}$ & 1185389805.30 \\
+ GW170809 &    GWTC-1 &        0.99 &   $0.99^{|};1.00^{\ddagger};1.0^{\star}$ & 1186302517.75 \\
+ GW170814 &    GWTC-1 &        1.00 &   $1.00^{|};1.00^{\ddagger};1.0^{\star}$ & 1186741859.53 \\
+GW170817A &     IAS-2 &        0.76 &      $0.86^{\ast};0.36^{\sharp};0.02^{\star}$ & 1186974182.72 \\
 
 \end{tabular}
 \end{table*}

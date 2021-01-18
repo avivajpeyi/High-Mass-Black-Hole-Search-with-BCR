@@ -264,7 +264,6 @@ The \fap can be used to construct a \pastro, the probability that a signal is of
     \pastro = 1 -  \fap \ .
 \end{equation}
 
-\av{this p-astro doesnt sit well with me... }
 
 
 \section{Analysis}\label{sec:Analysis}
@@ -305,7 +304,7 @@ Mass Ratio & 0.01 & 0.98\\
 % time for chunk 14
 % 1176955218, Apr 23, 2017, 4:00 UTC
 % 1178294418, May 08, 2017, 16:00 UTC
-\caption[High-mass BCR search space.]{The template bank used by \pycbc to search a section of O2 data from $\text{April 23 - May 8, 2017}$. Our search is constrained to the high-mass parameter space enclosed by the dashed line. \av{This plot isnt adding anything... is it needed?}}\label{fig:templateBank}
+\caption[High-mass BCR search space.]{The template bank used by \pycbc to search a section of O2 data from $\text{April 23 - May 8, 2017}$. Our search is constrained to the high-mass parameter space enclosed by the dashed line. \av{Update plot }}\label{fig:templateBank}
 \end{figure}
 
 
@@ -354,8 +353,6 @@ After the calculating the \bcr for the entire set of high-mass background and si
 
 Finally, using the tuned prior odds the \bcr for the candidate events can be calculated. Figure~\ref{fig:bcrCdf} shows the \bcr distributions for the background triggers, simulated triggers and candidate events. The bulk of the background and simulated trigger distributions are separate but have a slight overlap due to some of the simulated signal's being very faint. This suggests that the \bcr can successfully distinguish signals from noise or glitches. The vertical lines in Figure~\ref{fig:bcrCdf} displays the \bcr for gravitational wave candidate events. On comparing the candidate event \bcr values with the background distribution, we can estimate \pastro values for the candidate events. 
 
-\av{talk about the correct time}
-
 \begin{figure}[!ht]
 {\centering \includegraphics[width=0.75\linewidth]{images/bcr_cdf} }
 \caption[BCR distribution example]{Histograms represent the survival function (1-CDF) from our selection of $\sim$ 3,000 background triggers (grey) and 648 simulated signals (blue) triggers obtained from \pycbc's search of data from $\text{April 23 - May 8, 2017}$. \av{change BCR to\bcr in axes labels}Vertical lines mark the ln BCRs of two glitches (orange and yellow), IAS's GW170121 (pink), and GWTC-1's GW170104 (dark blue) \av{this plot also doesn't add much, is it needed?}.}\label{fig:bcrCdf}
@@ -376,12 +373,12 @@ We analyse the $60\ 996$ background, $5\ 146$ simulated, and $25$ foreground tri
 \subsection{GWTC-1 Events}
 All the confirmed gravitational wave events from binary black hole mergers reported in GWTC-1 and within our prior space, (specifically GW170104, GW170608, GW170729, GW170809 and GW170814), have $\pastrobcr$ greater than $0.9$, indicating a high probability of the presence of an astrophysical signal. 
 
-In addition to the above confirmed gravitational wave events from GWTC-1, we have also analysed several candidate events discussed in GWTC-1, most of which have low \pastrobcr. For example, consider the candidate event GWC170412, assigned a $\pastro$ of $0.06$ by \gstlal and has a $\pastrobcr$ of $0.01$. This candidate was reported to be excess power caused due noise appearing non-stationary between 60-200 Hz~\cite{GWTC1}. This candidate acts as an example of how $\pastrobcr$ may be utilised to not only to detect signals but also to eliminate terrestrial noise sources. 
+In addition to the above confirmed gravitational wave events from GWTC-1, we have also analysed several candidate events discussed in GWTC-1, most of which have low \pastrobcr. For example, consider the candidate event 170412, assigned a $\pastro$ of $0.06$ by \gstlal and has a $\pastrobcr$ of $0.01$. This candidate was reported to be excess power caused due noise appearing non-stationary between 60-200 Hz~\cite{GWTC1}. This candidate acts as an example of how $\pastrobcr$ may be utilised to not only to detect signals but also to eliminate terrestrial noise sources. 
 
 \subsection{IAS Events}
 Our analysis of the \av{double check that these fall in our search space!!} high-mass IAS events and candidates in O2 has resulted in three events (GW170202, GW170403, GW170425) with disfavourable $\pastrobcr<0.5$. Additionally, five events (GW170121, GW170304, GW170402, GW170727, GW170817A) and one candidate event (GWC170302) reported by IAS have $\pastrobcr>0.5$.
 
-Event candidates GW170727 and GWC170302 are of particular interest, with \pastrobcr of 0.94 and 0.73. GW170727 was emitted from a black hole binary system with a source frame total mass $\approx 70\ \msun$. In addition to the high \pastrobcr reported by our study, \citet{IAS1} and \citet{pycbc_ogc_2} have also reported high \pastro values of 0.98 and 0.99. On the other hand, GWC170302 is a sub marginal-candidate reported by \cite{IAS1} with a \pastro of 0.45 appears to have a higher significance our analysis, resulting in a \pastrobcr of 0.73 .  
+Event candidates GW170727 and GWC170302 are of particular interest, with \pastrobcr of 0.94 and 0.73. GW170727 was emitted from a black hole binary system with a source frame total mass $\approx 70\ \msun$. In addition to the high \pastrobcr reported by our study, \citet{IAS1} and \citet{pycbc_ogc_2} have also reported high \pastro values of 0.98 and 0.99. On the other hand, GWC170302 is a sub marginal-candidate reported by \cite{IAS1} with a \pastro of 0.45 appears to have a higher significance our analysis, resulting in a \pastrobcr of $0.73$.  
 
 \av{GW170202's component black holes have has source masses (23, 16) below that of our prior space which may be why it has a low \pastrobcr}
 
@@ -391,20 +388,34 @@ Event candidates GW170727 and GWC170302 are of particular interest, with \pastro
 
 \av{why do IAS2:GW170425 and IAS2:GW170402 have low \pastro?} 
 
-\subsection{Novel Candidates}
-Although no clear detections were made with the \bcr, a marginal-candidate GWC170222 has been discovered with a \pastrobcr of 0.53.  
+\subsection{New Candidate Events}
+Although no clear detections were made with the \bcr, a marginal-candidate 170222 has been discovered with a \pastrobcr of $0.53$. This candidate has its similar masses when compared to those of GWTC-1. 
 
 
 
 
 \section{\label{sec:Conclusion}Conclusion}
 
+In this paper we demonstrate that the Bayesian Coherence Ratio~\cite{BCR1} can be used as a ranking statistic to provide a better measure of significance for gravitational wave candidates by re-analysing the significance of high-mass binary black hole triggers from O2. This method is takes a step towards building a unified Bayesian framework that provides a search-pipeline agnostic measure of significance, utilising the same level of physical information incorporated during parameter estimation. We focused our analysis to the high-mass regime as this region of the parameter space is plagued with a high number of short duration terrestrial artefacts that can mimic signals. Additionally, although we focused our analysis to the high-mass region, this method can be extended to include the entire set of gravitational wave candidates.
 
-\av{Although a true Bayesian search for gravitational waves, as presented by ~\cite{BCR2}, does not require noise estimation using empirical methods, this Bayesian framework utilises `time-slides'}
 
-\rs{lead with something specific to your work; what did you find/learn? how can it be extended? what does it imply for high mass BBH? How do the reported BCRs on interesting events compare to other bayesian measures of significance/odds? etc...It might be useful to take a look at some of the pycbc search papers for how to summarize results from a search}The detection of high mass black holes $>100$ \msun will shed light on the formation of globular clusters, supermassive black holes and thus galaxy formation~\citep{SMBHformationDirectCollapse, 2018IMBHreview}. LIGO is theoretically sensitive to the merger of binary black holes with total masses up to $500\ \msun$ which are expected to occur at a rate of 0-10 yr\(^{-1}\)~\cite{mandel2008rates, fregeau2006imbhbRatePrediction}. However, even after~\citet{ligo_imbh_search}'s targeted match-filter based search for gravitational waves from high-mass black holes the largest total mass detected so far is approximately 80 \msun~\citep{GWTC1}. A possible explanation for the absence of high mass events may be due to their misclassification as short-duration instrumental noise transients~\citep{blip_glitches}. High-mass mergers have very few in-band wave cycles, and hence can easily be mistaken for short-duration instrumental transients. 
+In addition to the high-mass triggers, we also analyse the high-mass binary black hole events in O2 reported by LIGO~\cite{GWTC1} and IAS~\cite{IAS1, IAS2}. Using \pastrobcr, we find that the analysed GWTC-1 events have high probabilities of originating from an astrophysical. source. We also find that some of the GWTC-1 marginal triggers that have corroborated terrestrial sources (for example candidate 170412) have low \pastrobcr, indicating the ability of this method to discriminate between terrestrial artefacts and astrophysical signals. Our analysis on the IAS events has demonstrated that GW17072 is highly likely to originate from an astrophysical source, while GW17040 is not. Finally, we did not identify any new gravitational wave events but we did find some a marginal candidate 170222. 
 
-We have developing a targeted search for gravitational waves from high-mass black hole systems. This targeted search utilises Bayesian inference and provides a ranking statistic that contains a lot of physical information about the high-mass systems. We have applied this technique on all the high-mass triggers identified by \pycbc during LIGO's second observing run to investigate the possibility of discovering new gravitational-wave signals from high mass black hole binaries. Although we were unable to uncover new gravitational waves events, we were able to report high $p_{astro}$ for events already detected by LIGO, and low $p_{astro}$ for some events identified by external pipelines. 
+To improve our analysis, we may t
+
+Future work:
+\begin{itemize}
+    \item increase nlive 
+    \item atm just HL but we should do HVLK (more the detectors, more true, even if one detector is subthreshold)
+    \item try to use more physical waveforms
+    \item glitch model
+    \item astrophysical priors rather than uniform
+\end{itemize}
+
+
+
+
+
 %%%%%%---SECTIONS-END---%%%%%%%%%%%%
 
 %%%%%%---ACKNOWLEDGEMENTS---%%%%%%%%%%%%
@@ -415,6 +426,15 @@ This research has made use of data, software and/or web tools obtained from the 
 
 \end{acknowledgments}
 %%%%%%%%%%%%%%%%%%%%%%%%
+
+\appendix
+
+\section{Tuning signal and glitch prior odds} 
+
+Table of the signal and glitch prior odds utilised for each section of data. One KL plot
+
+
+\section{Posteriors}
 
 \bibliography{high_mass_bib}% Produces the bibliography via BibTeX.
 
