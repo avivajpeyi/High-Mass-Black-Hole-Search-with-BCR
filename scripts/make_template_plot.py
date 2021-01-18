@@ -126,7 +126,11 @@ def plot_template_bank():
     for scatter_data in scatter_points:
         ax_m1m2.scatter(scatter_data["data"].mass_1, scatter_data["data"].mass_2, **scatter_data["plot_kwargs"])
 
-    ax_m1m2.legend()
+    bank_patch = ax_m1m2.scatter([], [], label="Template Bank", marker=".", color="r")
+    prior_patch, = ax_m1m2.plot([], [], label="Prior", linestyle="--", color="b")
+    handles = [bank_patch, prior_patch]
+    ax_m1m2.legend(handles=handles, fontsize="large", markerscale=3, bbox_to_anchor=(1,1), loc="upper left", frameon=False)
+
     plt.tight_layout()
     plt.savefig("../images/template_bank.png")
 
