@@ -396,25 +396,13 @@ Although no clear detections were made with the \bcr, a marginal-candidate 17022
 
 \section{\label{sec:Conclusion}Conclusion}
 
-In this paper we demonstrate that the Bayesian Coherence Ratio~\cite{BCR1} can be used as a ranking statistic to provide a better measure of significance for gravitational wave candidates by re-analysing the significance of high-mass binary black hole triggers from O2. This method is takes a step towards building a unified Bayesian framework that provides a search-pipeline agnostic measure of significance, utilising the same level of physical information incorporated during parameter estimation. We focused our analysis to the high-mass regime as this region of the parameter space is plagued with a high number of short duration terrestrial artefacts that can mimic signals. Additionally, although we focused our analysis to the high-mass region, this method can be extended to include the entire set of gravitational wave candidates.
+In this paper, we demonstrate that the Bayesian Coherence Ratio~\cite{BCR1} can be used as a ranking statistic to provide a better measure of significance for gravitational wave candidates by re-analysing the significance of high-mass binary black hole triggers from O2. This method takes a step towards building a unified Bayesian framework that provides a search-pipeline agnostic measure of significance, utilising the same level of physical information incorporated during parameter estimation. 
 
+We focused our analysis on the high-mass regime as this region of the parameter space is plagued with a high number of short duration terrestrial artefacts that can mimic signals. In addition to the high-mass triggers, we also analyse the high-mass binary black hole events in O2 reported by LIGO~\cite{GWTC1} and IAS~\cite{IAS1, IAS2}. Using \pastrobcr, we find that the analysed GWTC-1 events have high probabilities of originating from an astrophysical source. We also find that some of the GWTC-1 marginal triggers that have corroborated terrestrial sources (for example candidate 170412) have low \pastrobcr, indicating this method's ability to discriminate between terrestrial artefacts and astrophysical signals. Our analysis on the IAS events has demonstrated that GW17072 is highly likely to originate from an astrophysical source, while GW17040 is not. Finally, we did not identify any new gravitational-wave events, but we did find some a marginal candidate 170222. 
 
-In addition to the high-mass triggers, we also analyse the high-mass binary black hole events in O2 reported by LIGO~\cite{GWTC1} and IAS~\cite{IAS1, IAS2}. Using \pastrobcr, we find that the analysed GWTC-1 events have high probabilities of originating from an astrophysical. source. We also find that some of the GWTC-1 marginal triggers that have corroborated terrestrial sources (for example candidate 170412) have low \pastrobcr, indicating the ability of this method to discriminate between terrestrial artefacts and astrophysical signals. Our analysis on the IAS events has demonstrated that GW17072 is highly likely to originate from an astrophysical source, while GW17040 is not. Finally, we did not identify any new gravitational wave events but we did find some a marginal candidate 170222. 
+Although our analysis targets high-mass triggers, this method can be extended to include the entire body range of LIGO-detectable gravitational wave sources. Additionally, to further improve the method's infrastructure, we can use more robust gravitational wave templates (such as templates that incorporate higher-order modes), and sophisticated glitch models. Future analysis can also incorporate data from all available detectors in a network to increase the \pastro's sensitivity. The BCR can discern better whether a candidate is a coherent astrophysical candidate or an incoherent glitch with data from more detectors. 
 
-To improve our analysis, we may t
-
-Future work:
-\begin{itemize}
-    \item increase nlive 
-    \item atm just HL but we should do HVLK (more the detectors, more true, even if one detector is subthreshold)
-    \item try to use more physical waveforms
-    \item glitch model
-    \item astrophysical priors rather than uniform
-\end{itemize}
-
-
-
-
+\av{as the core of this method is PE, improvements in PE can be adapted into this method}
 
 %%%%%%---SECTIONS-END---%%%%%%%%%%%%
 
