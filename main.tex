@@ -299,7 +299,7 @@ Mass Ratio & 0.01 & 0.98\\
 
 
 
-\begin{figure}[!ht]
+\begin{figure*}[!ht]
 
 {\centering \includegraphics[width=0.75\linewidth]{images/template_bank.png}
 
@@ -308,7 +308,7 @@ Mass Ratio & 0.01 & 0.98\\
 % 1176955218, Apr 23, 2017, 4:00 UTC
 % 1178294418, May 08, 2017, 16:00 UTC
 \caption[High-mass BCR search space.]{The template bank used by \pycbc to search a section of O2 data from $\text{April 23 - May 8, 2017}$. Our search is constrained to the high-mass parameter space enclosed by the dashed line. \av{Update plot }}\label{fig:templateBank}
-\end{figure}
+\end{figure*}
 
 
 \subsection{Calculating the BCR for triggers}
@@ -354,7 +354,7 @@ After the calculating the \bcr for the entire set of high-mass background and si
 Finally, using the tuned prior odds the \bcr for the candidate events can be calculated. Figure~\ref{fig:bcrCdf} shows the \bcr distributions for the background triggers, simulated triggers and candidate events. The bulk of the background and simulated trigger distributions are separate but slightly overlap due to some of the simulated signal's being very faint. The separation suggests that the \bcr can successfully distinguish signals from noise or glitches. The vertical lines in Figure~\ref{fig:bcrCdf} displays the \bcr for gravitational wave candidate events. On comparing the candidate event \bcr values with the background distribution, we can estimate \pastro values for the candidate events. 
 
 \begin{figure}[!ht]
-{\centering \includegraphics[width=0.75\linewidth]{images/bcr_cdf} }
+{\centering \includegraphics[width=0.75\linewidth]{images/bcr_cdf_smaller_legend.png} }
 \caption[BCR distribution example]{Histograms represent the survival function (1-CDF) from our selection of $\sim$ 3,000 background triggers (grey) and 648 simulated signals (blue) triggers obtained from \pycbc's search of data from $\text{April 23 - May 8, 2017}$. \av{change BCR to\bcr in axes labels}Vertical lines mark the ln BCRs of two glitches (orange and yellow), IAS's GW170121 (pink), and GWTC-1's GW170104 (dark blue) \av{this plot also doesn't add much, is it needed?}.}\label{fig:bcrCdf}
 \end{figure}
 
