@@ -76,6 +76,7 @@
 
 \newcommand{\pastro}{\fancytext{p_\text{astro}}}
 \newcommand{\pastrobcr}{\fancytext{p_\text{astro}^{\text{BCR}}}}
+\newcommand{\untunedpastrobcr}{\fancytext{p_\text{astro}^{\text{BCR}\prime}}}
 \newcommand{\pastroext}{\fancytext{p_\text{astro}^{\text{ext}}}}
 \newcommand{\pval}{\fancytext{\text{p-value}}}
 % Table settings
@@ -361,7 +362,7 @@ Finally, using the tuned prior odds the \bcr for the candidate events can be cal
 \section{\label{sec:Results}Results}
 
 \input{Data/results_table}
-We analyse the $60\ 996$ background, $5\ 146$ simulated, and $25$ foreground triggers reported by \pycbc's search of the data from the second observing run, restricting our analysis to the triggers that fall within our Bayesian prior space as described in Section~\ref{sec:method}. In addition to these triggers, we also analyse events and candidate events reported by GWTC-1 and the IAS group (note that some of these were identified as candidates by the \pycbc search). In Table~\ref{tab:results}, we summarise the \pastrobcr, along with the \pastro of other pipelines for comparison. Note that although the various pipeline \pastro are not mathematically equivalent, by comparing pipeline \pastro values for a given event, we can compare how significant each pipeline deems various candidates.  
+We analyse the $60\ 996$ background, $5\ 146$ simulated, and $25$ candidate triggers reported by \pycbc's search of the data from the second observing run, restricting our analysis to the triggers that fall within our Bayesian prior space as described in Section~\ref{sec:method}. In addition to these triggers, we also analyse events and candidate events reported by GWTC-1 and the IAS group (note that some of these were identified as candidates by the \pycbc search). In Table~\ref{tab:results}, we summarise the \pastrobcr, along with the \pastro of other pipelines for comparison. Note that although the various pipeline \pastro are not mathematically equivalent, by comparing pipeline \pastro values for a given event, we can compare how significant each pipeline deems various candidates. The $\alpha$ and $\beta$ values utilised for each time-frame of O2 are reported in Appendix~\ref{apdx:alphabeta}
 
 
 \subsection{GWTC-1 Events}
@@ -370,20 +371,17 @@ All the confirmed gravitational wave events from binary black hole mergers repor
 In addition to the above confirmed gravitational wave events from GWTC-1, we have also analysed several candidate events discussed in GWTC-1, most of which have low \pastrobcr. For example, consider the candidate event 170412, assigned a $\pastro$ of $0.06$ by \gstlal and has a $\pastrobcr$ of $0.01$. This candidate was reported to be excess power caused due noise appearing non-stationary between 60-200 Hz~\cite{GWTC1}. This candidate acts as an example of how $\pastrobcr$ may be utilised  to eliminate terrestrial noise sources, in addition to detecting signals
 
 \subsection{IAS Events}
-Our analysis of the \av{double check that these fall in our search space!!} high-mass IAS events and candidates in O2 has resulted in three events with disfavourable $\pastrobcr<0.5$ (GW170202, GW170403, GW170425). On the other hand, five events (GW170121, GW170304, GW170402, GW170727, GW170817A) and one candidate event (170302) reported by IAS have $\pastrobcr>0.5$.
+Our analysis of the high-mass IAS events and candidates in O2 has resulted in three events with disfavourable $\pastrobcr<0.5$ (GWC170402, GW170403, GW170425), and four events and one candidate with $\pastrobcr\geq0.5$ (GW170121, 170302, GW170304, GW170727, GW170817A). 
 
-GW170727 and 170302 are of particular interest, with \pastrobcr of 0.94 and 0.73. GW170727 was emitted from a black hole binary system with a source frame total mass $\approx 70\ \msun$. In addition to the high \pastrobcr reported by our study, \citet{IAS1} and \citet{pycbc_ogc_2} have also reported high \pastro values of 0.98 and 0.99, making it a viable gravitational-wave event candidate. Similarly, the sub-marginal-candidate 170302 reported by \cite{IAS1} with a \pastro of 0.45 appears to have a higher significance from our analysis, resulting in a \pastrobcr of $0.73$.  
+GWC170402, detected by \citet{IAS2}, is reported to have a signal that is not described well by waveforms for circular binaries with aligned spins. Hence, we might have received a low \pastrobcr due to our usage of \imrphenomp, a waveform that does not account for eccentricity. Additionally, the search conducted by \citet{IAS2} was a single-detector search. Our ranking statistic relies on the signal to appear coherent, even if just faintly coherent, amongst the various detectors to have a high \pastrobcr. Hence, the lack of coherence and the non-eccentric waveform may be the leading factors for a low \pastro. GW170403 and GW170425 which have $\pastrobcr<0.35$ also have low  \pastro reported by \citet{pycbc_ogc_2},  suggesting that these events may have been false alarms.
 
-\av{GW170202's component black holes have source masses (23, 16) below that of our prior space which may be why it has a low \pastrobcr}
+From the candidates with $\pastrobcr>0.5$, GW170727 and 170302 are of particular interest, with \pastrobcr of $0.92$ and $0.63$. GW170727 was emitted from a black hole binary system with a source frame total mass $\approx 70\ \msun$. In addition to the high \pastrobcr reported by our study, \citet{IAS1} and \citet{pycbc_ogc_2} have also reported high \pastro values of 0.98 and 0.99, making it a viable gravitational-wave event candidate. Similarly, the sub-marginal-candidate 170302 reported by \cite{IAS1} with a \pastro of 0.45 appears to have a higher significance from our analysis, resulting in a \pastrobcr of $0.63$.  
 
+% \av{Interesting that GW170817A has high \pastrobcr as IAS2's pipeline works well on single detector events (marginal in other detectors)} 
 
-\av{Interesting that GW170817A has high \pastrobcr as IAS2's pipeline works well on single detector events (marginal in other detectors)} 
-
-
-\av{why do IAS2:GW170425 and IAS2:GW170402 have low \pastro?} 
 
 \subsection{New Candidate Events}
-Although no clear detections are made with the \bcr, a marginal-candidate 170222 has been discovered with a \pastrobcr of $0.53$. This candidate has its similar masses when compared to those of GWTC-1. The other candidates with \pastrobcr
+Although no clear detections are made with the \bcr, a marginal-candidate 170222 has been discovered with a $\pastrobcr\sim0.5$. This candidate has its similar masses when compared to those of GWTC-1. The remaining coherent trigger candidates all have $\pastrobcr\ll0.5$ making them unlikely to originate from astrophysical sources. 
 
 
 
@@ -394,7 +392,7 @@ In this paper, we demonstrate that the Bayesian Coherence Ratio~\cite{BCR1} can 
 
 We focused our analysis on the high-mass regime as this region of the parameter space is plagued with a high number of short duration terrestrial artefacts that can mimic signals. In addition to the high-mass triggers, we also analyse the high-mass binary black hole events in O2 reported by LIGO~\cite{GWTC1} and IAS~\cite{IAS1, IAS2}. Using \pastrobcr, we find that the analysed GWTC-1 events have high probabilities of originating from an astrophysical source. We also find that some of the GWTC-1 marginal triggers that have corroborated terrestrial sources (for example candidate 170412) have low \pastrobcr, indicating this method's ability to discriminate between terrestrial artefacts and astrophysical signals. Our analysis on the IAS events has demonstrated that GW17072 is highly likely to originate from an astrophysical source, while GW17040 is not. Finally, we did not identify any new gravitational-wave events, but we did find some a marginal candidate 170222. 
 
-Although our analysis targets high-mass triggers, this method can be extended to include the entire body range of LIGO-detectable gravitational wave sources. Additionally, to further improve the method's infrastructure, we can use more robust gravitational wave templates (such as templates that incorporate higher-order modes), and sophisticated glitch models. Future analysis can also incorporate data from all available detectors in a network to increase the \pastro's sensitivity. The BCR can discern better whether a candidate is a coherent astrophysical candidate or an incoherent glitch with data from more detectors. 
+Although our analysis targets high-mass triggers, this method can be extended to include the entire body range of LIGO-detectable gravitational wave sources. Additionally, to further improve the method's infrastructure, we can use more robust gravitational wave templates (such as templates that incorporate higher-order modes), and sophisticated glitch models. Future analysis can also incorporate data from all available detectors in a network to increase the sensitivity of \pastrobcr. The BCR can discern better whether a candidate is a coherent astrophysical candidate or an incoherent glitch with data from more detectors. 
 
 \av{as the core of this method is PE, improvements in PE can be adapted into this method}
 
@@ -411,12 +409,13 @@ This research has made use of data, software and/or web tools obtained from the 
 
 \appendix
 
-\section{Tuning signal and glitch prior odds} 
+\section{Tuned prior odds}\label{apdx:alphabeta}
 
-Table of the signal and glitch prior odds utilised for each section of data. One KL plot
+O2 lasted several months over which the detector's sensitivity varied.  Hence, a part of our analysis entailed tuning the prior odds for obtaining a signal and a glitch, $\alpha$ and $\beta$, as described in Section~\ref{sec:method}. Table~\ref{tab:priorodds} presents the signal and glitch prior odds utilised for each time-frame of O2 data.
+\input{Data/alpha_beta_table}
 
-
-\section{Posteriors}
+Tuning the prior odds can dramatically affect the \pastrobcr. For example, consider Table~\ref{tab:tuningresults}, which reports tuned \pastrobcr and un-tuned \untunedpastrobcr (where $\alpha=1$ and $\beta=1$) for various high-mass events and candidates. By tuning the prior odds, the \pastrobcr for some IAS events (for example, GW170403 and GW170817A) can change by more than 0.5, resulting in a candidate being promoted/demotion of candidate significance. 
+\input{Data/tuning_results_table}
 
 \bibliography{high_mass_bib}% Produces the bibliography via BibTeX.
 
