@@ -6,15 +6,32 @@ from matplotlib import pyplot as plt
 from matplotlib import rcParams
 from matplotlib.lines import Line2D
 
+
 rcParams["font.size"] = 30
 rcParams["font.family"] = "serif"
 rcParams["font.sans-serif"] = ["Computer Modern Sans"]
 rcParams["text.usetex"] = True
 rcParams['axes.labelsize'] = 30
-rcParams['xtick.labelsize'] = 25
-rcParams['ytick.labelsize'] = 25
 rcParams['axes.titlesize'] = 30
 rcParams['axes.labelpad'] = 10
+rcParams['axes.linewidth'] = 2.5
+rcParams['axes.edgecolor'] = 'black'
+rcParams['xtick.labelsize'] = 25
+rcParams['xtick.major.size'] = 10.0
+rcParams['xtick.minor.size'] = 5.0
+rcParams['ytick.labelsize'] = 25
+rcParams['ytick.major.size'] = 10.0
+rcParams['ytick.minor.size'] = 5.0
+plt.rcParams['xtick.direction'] = 'in'
+plt.rcParams['ytick.direction'] = 'in'
+plt.rcParams['xtick.minor.width'] = 1
+plt.rcParams['xtick.major.width'] = 3
+plt.rcParams['ytick.minor.width'] = 1
+plt.rcParams['ytick.major.width'] = 2.5
+plt.rcParams['xtick.top'] = True
+plt.rcParams['ytick.right'] = True
+
+
 
 BANK = "../data/template_bank.csv"
 INJECTION = "../data/chunk21_res/injection_res.csv"
@@ -46,7 +63,7 @@ def plot():
         event_txt = x_in_q["trigger_label"].split(":")[1]
         ax_cdf.axvline(x=xval, color=c)
         ax_cdf.annotate(
-            event_txt, xy=(xval, 1), ha='left', va='top', rotation=-90,
+            event_txt, xy=(xval, 0.95), ha='left', va='top', rotation=-90,
             color="#ff8c00", fontweight="extra bold", fontfamily='sans-serif')
 
     # add_foreground_events_to_plot(ax_cdf, plot_data['foreground']['df'],
@@ -73,7 +90,7 @@ def plot():
     frame = l.get_frame()
     frame.set_linewidth(0)
 
-    fname = '../images/bcr_cdf.png'
+    fname = '../images/bcr_cdf_smaller_legend.png'
     fig.savefig(fname, bbox_extra_artists=[l], bbox_inches='tight')
     print("Saved fig")
 

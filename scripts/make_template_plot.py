@@ -5,13 +5,29 @@ from matplotlib import pyplot as plt
 from matplotlib import rcParams
 from tqdm import tqdm
 
-rcParams["font.size"] = 20
+rcParams["font.size"] = 30
 rcParams["font.family"] = "serif"
 rcParams["font.sans-serif"] = ["Computer Modern Sans"]
-rcParams["text.usetex"] = False
+rcParams["text.usetex"] = True
 rcParams['axes.labelsize'] = 30
 rcParams['axes.titlesize'] = 30
-rcParams['axes.labelpad'] = 20
+rcParams['axes.labelpad'] = 10
+rcParams['axes.linewidth'] = 2.5
+rcParams['axes.edgecolor'] = 'black'
+rcParams['xtick.labelsize'] = 25
+rcParams['xtick.major.size'] = 10.0
+rcParams['xtick.minor.size'] = 5.0
+rcParams['ytick.labelsize'] = 25
+rcParams['ytick.major.size'] = 10.0
+rcParams['ytick.minor.size'] = 5.0
+plt.rcParams['xtick.direction'] = 'in'
+plt.rcParams['ytick.direction'] = 'in'
+plt.rcParams['xtick.minor.width'] = 1
+plt.rcParams['xtick.major.width'] = 3
+plt.rcParams['ytick.minor.width'] = 1
+plt.rcParams['ytick.major.width'] = 2.5
+plt.rcParams['xtick.top'] = True
+plt.rcParams['ytick.right'] = True
 
 BANK = "../data/template_bank.csv"
 INJECTION = "../data/chunk14/injection_triggers.csv"
@@ -141,7 +157,7 @@ def plot_template_bank():
     m2_range = [1, 200]
 
     fig, ax_m1m2 = plt.subplots(nrows=1, ncols=1,
-                                figsize=(12, 6))  # 3, 2
+                                figsize=(13, 6))  # 3, 2
 
     axis_label_kwargs = dict(fontsize="x-large")
 
@@ -154,7 +170,7 @@ def plot_template_bank():
     ax_m1m2.set_xscale("log")
 
     # set scale limits
-    ax_m1m2.set_xlim(m1_range[0], m1_range[1])
+    ax_m1m2.set_xlim(m1_range[0], m1_range[1]+100)
     ax_m1m2.set_ylim(m2_range[0], m2_range[1])
 
     # contour line
@@ -169,7 +185,7 @@ def plot_template_bank():
                         **scatter_data["plot_kwargs"])
 
     bank_patch = ax_m1m2.scatter([], [], label="Template Bank", marker=".", color="pink")
-    prior_patch = ax_m1m2.plot([], [], label="Prior", linestyle="--", color="k")
+    prior_patch, = ax_m1m2.plot([], [], label="Prior", linestyle="--", color="k")
     fg_patch = ax_m1m2.scatter([], [], label="Foreground Triggers", marker="s", color="orange")
     bg_patch = ax_m1m2.scatter([], [], label="Background Triggers", marker=".", color="gray")
     inj_patch = ax_m1m2.scatter([], [], label="Simulated Triggers", marker=".", color="skyblue")
