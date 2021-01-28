@@ -54,7 +54,7 @@ def plot():
     cdf_data = _add_rank_pdf(plot_data, xrange, ax_cdf, cdf=True)
     ax_cdf.set_ylim(0, 1)
     ax_cdf.set_ylabel('1-CDF', fontsize="x-large")
-    ax_cdf.set_xlabel(r'$\rho_{\mathrm{BCR}}$', fontsize="x-large")
+    ax_cdf.set_xlabel(r'ln $\rho_{\mathrm{BCR}}$', fontsize="x-large")
 
 
     for idx, x_in_q in plot_data['foreground']['df'].iterrows():
