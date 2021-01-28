@@ -14,6 +14,9 @@ rcParams['axes.titlesize'] = 30
 rcParams['axes.labelpad'] = 20
 
 BANK = "../data/template_bank.csv"
+INJECTION = "../data/chunk14/injection_triggers.csv"
+BACKGROUND = "../data/chunk14/background_triggers.csv"
+FOREGROUND = "../data/chunk14/foreground_triggers.csv"
 CATALOG = "../data/catalog.csv"
 
 
@@ -56,11 +59,11 @@ def contour_condition(m1: float, m2: float, mc: float, q: float, M: float) -> in
     :return: 1 if above parameters inside criteria (defined in function), otherwise 0
     """
     if (
-            31 <= m1 <= 491
-            and 1.32 <= m2 <= 121
-            and 0.01 <= q <= 0.98
-            and 8 <= mc <= 174
-            and 56 <= M <= 496
+            26 <= m1 <= 500
+            and 1.1 <= m2 <= 115
+            and 0.01 <= q <= 0.99
+            and 7 <= mc <= 166
+            and 47 <= M <= 500
     ):
         return 1
     else:
@@ -87,20 +90,45 @@ def get_event_status(catalogue_df):
 
 def plot_template_bank():
     template_bank = pd.read_csv(BANK, index_col=0)
+    foreground = pd.read_csv(FOREGROUND, index_col=False)
+    background = pd.read_csv(BACKGROUND, index_col=False)
+    injection = pd.read_csv(INJECTION, index_col=False)
+
+    print(injection[['mass_1', 'mass_2', 'mass_total', 'mass_chirp', 'mass_ratio']].describe().transpose()[['min','max']])
+    print(background[['mass_1', 'mass_2', 'mass_total', 'mass_chirp',
+                     'mass_ratio']].describe().transpose()[['min','max']])
 
     scatter_points = [
         # TEMPLATE BANK
         dict(
             data=template_bank,
             plot_kwargs=dict(
-                color="pink", s=0.5, marker=".", alpha=0.1, label="Template Bank"
+                color="pink", s=0.2, marker=".", alpha=0.2, label="Template Bank"
             ),
         ),
         # ALL CATALOGUE EVENTS
+        # dict(
+        #     data=pd.DataFrame(dict(mass_1=catalogs_df.mass_1_source,
+        #                            mass_2=catalogs_df.mass_2_source)),
+        #     plot_kwargs=dict(color="skyblue", s=5, marker="o", label="Catalogue Events"),
+        # ),
         dict(
-            data=pd.DataFrame(dict(mass_1=catalogs_df.mass_1_source,
-                                   mass_2=catalogs_df.mass_2_source)),
-            plot_kwargs=dict(color="blue", s=5, marker="o", label="Catalogue Events"),
+            data=background,
+            plot_kwargs=dict(
+                color="gray", s=20, marker=".", alpha=0.1, label="Background Triggers"
+            ),
+        ),
+        dict(
+            data=injection,
+            plot_kwargs=dict(
+                color="skyblue", s=30, marker="o", alpha=0.1, label="Simulated Triggers"
+            ),
+        ),
+        dict(
+            data=foreground,
+            plot_kwargs=dict(
+                color="orange", s=40, marker="s", alpha=1, label="Candidate Triggers"
+            ),
         ),
     ]
 
@@ -112,9 +140,8 @@ def plot_template_bank():
     m1_range = [1, 500]
     m2_range = [1, 200]
 
-    SIZE = 3
     fig, ax_m1m2 = plt.subplots(nrows=1, ncols=1,
-                                figsize=(3 * SIZE, 1.5 * SIZE))  # 3, 2
+                                figsize=(12, 6))  # 3, 2
 
     axis_label_kwargs = dict(fontsize="x-large")
 
@@ -135,15 +162,18 @@ def plot_template_bank():
                                              prior_line["contour_condition"])
 
     ax_m1m2.contour(m1_line, m2_line, m1m2_z, [0], **prior_line["plot_kwargs"])
+    # ax_m1m2.contour(background.mass_1, background.mass_2, [0], **prior_line["plot_kwargs"])
 
     for scatter_data in scatter_points:
         ax_m1m2.scatter(scatter_data["data"].mass_1, scatter_data["data"].mass_2,
                         **scatter_data["plot_kwargs"])
 
-    bank_patch = ax_m1m2.scatter([], [], label="Template Bank", marker=".",
-                                 color="pink")
-    prior_patch, = ax_m1m2.plot([], [], label="Prior", linestyle="--", color="k")
-    handles = [bank_patch, prior_patch]
+    bank_patch = ax_m1m2.scatter([], [], label="Template Bank", marker=".", color="pink")
+    prior_patch = ax_m1m2.plot([], [], label="Prior", linestyle="--", color="k")
+    fg_patch = ax_m1m2.scatter([], [], label="Foreground Triggers", marker="s", color="orange")
+    bg_patch = ax_m1m2.scatter([], [], label="Background Triggers", marker=".", color="gray")
+    inj_patch = ax_m1m2.scatter([], [], label="Simulated Triggers", marker=".", color="skyblue")
+    handles = [bank_patch, prior_patch, fg_patch, bg_patch, inj_patch]
     ax_m1m2.legend(handles=handles, fontsize="large", markerscale=3,
                    bbox_to_anchor=(1, 1), loc="upper left", frameon=False)
 
