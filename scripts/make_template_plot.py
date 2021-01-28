@@ -186,7 +186,7 @@ def plot_template_bank():
 
     bank_patch = ax_m1m2.scatter([], [], label="Template Bank", marker=".", color="pink")
     prior_patch, = ax_m1m2.plot([], [], label="Prior", linestyle="--", color="k")
-    fg_patch = ax_m1m2.scatter([], [], label="Foreground Triggers", marker="s", color="orange")
+    fg_patch = ax_m1m2.scatter([], [], label="Candidate Triggers", marker="s", color="orange")
     bg_patch = ax_m1m2.scatter([], [], label="Background Triggers", marker=".", color="gray")
     inj_patch = ax_m1m2.scatter([], [], label="Simulated Triggers", marker=".", color="skyblue")
     handles = [bank_patch, prior_patch, fg_patch, bg_patch, inj_patch]
