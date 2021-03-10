@@ -108,7 +108,7 @@
 \newcolumntype{b}{>{\columncolor{white}}c}
 
 % author comments
-\newcommand{\av}[1]{\textcolor{orange}{[AV: #1]}}
+\newcommand{\avi}[1]{\textcolor{orange}{[AV: #1]}}
 \newcommand{\rs}[1]{\textcolor{red}{[RS: #1]}}
 \newcommand{\et}[1]{\textcolor{blue}{[ET: #1]}}
 
@@ -195,34 +195,11 @@ We find that (a) high-mass events reported in the GWTC-1, including GW170729 (th
 The remainder of this paper is structured as follows. We outline our methods, including details of our ranking statistic and the retrieval of our candidate events in Section~\ref{sec:method}. We present details on the implementation of our analysis in Section~\ref{sec:Analysis}. Finally, we present our results in Section~\ref{sec:Results}, and discuss these results in the context of the significance of gravitational-wave candidates in Section~\ref{sec:Conclusion}.
 
 
-\subsection{Notes for motivation}
-\begin{itemize}
-    \item if truly Bayesian -- then its more astrophysical 
-    \item we're focused on odds -- but using it as a ranking statistic
-    \item GOAL: look for an IMBH, not to perfect the statistic     
-    \item  detection statistic that is based on a Bayesian approach -- a different way of looking for IMBHs, in place of matched-filter
-    \item normal statistic -- is maximum likelihood appraach (highest SNR), this one marginalises over all the templates -- closer to an "odds" like goal
-    \item this is NOT BCR2, this is a ranking statistic 
-    \item between Isi et al and Ashton et al,  more like Ashton and not matched filtering 
-    \item we didnt do a full Ashton because (no need to argue why we didnt do this)
-    \item whats out there, where does this fit into lit, what are we doing vs not doing 
-    \item  reproduced all these other results 
-    \item new in this paper: using Bayesian coherence (an ingredient in Ashton et al) and looking for NEW signals in triggers, the PRatten et al looks at all the catalogued triggers. 
-\end{itemize}
-
-\begin{itemize}
-    \item  IMBH signals look a lot like glitches
-    \item  We compute \bcr which needs $\alpha$ $\beta$
-    \item  We don't know the true probability $P(\mathcal{H}_S), P(\mathcal{H}_I)$ 
-    \item hence we cannot take \bcr at face value because we dont know the true distributions of the above
-    \item Studying p(\bcr| d=background) p(\bcr| d=signals) gives us confidence to discriminate between signals and glitches
-    \item  we "rank" the BCR of foreground triggers based on that of background triggers which allows us to compute a frequentist estimator for its significance.
-\end{itemize}
 
 
 
 
-\section{New Method\label{sec:method}}
+\section{Method\label{sec:method}}
 
 The gravitational wave community uses Bayesian inference to perform parameter estimation and model selection. This work utilises Bayesian inference to calculate the significance of high-mass candidate triggers\footnote{\textit{Trigger:} point in time when the matched-filter SNR is larger than a threshold value for a given gravitational wave template~\cite{pycbc_og1}. \textit{Candidate Trigger:} trigger that may be from astrophysical origins.} in LIGO's second observing run. We calculate the significance of triggers using the Bayesian Coherence Ratio~\cite{BCR1}, \bcr, as a ranking statistic, a step toward building a unified Bayesian framework to search for candidates and estimate their parameters.
 
@@ -288,135 +265,18 @@ For \pycbc to consider a trigger to be a candidate trigger, a trigger that may b
 Our work demonstrates that the \bcr can be used in the same way as \pycbcstat to measure candidate triggers' statistical significance.  The \bcr can be a powerful ranking statistic as the \bcr incorporates information of not only all possible binary black hole systems that might have merged to produce the trigger but also the various incoherent glitches that might cause a false-detection. 
 
 
-\section{Method\label{sec:method}}
-
-\rs{I like the idea of the general intro: I suggest saying that you'll begin by introducing the Bayesian formalism, then defning the BCR, then discussing how we construct a ranking statistic using foreground and background. As it stands, there's a lot of discussion about how the BCR differs to other searches, and some technical details, but you haven't yet said what it *is*.
-Before talking about how the BCR differs from other searches etc.., I think there needs to be a description of what it is and where it comes from. (essentially describing everything up to the current eq. 4). This sets up the framework, and you can then talk about why we construct it for both foreground and background to get a ranking statistic. }.
-The gravitational wave community uses Bayesian inference to perform parameter estimation and model selection. In this work, we utilise Bayesian inference to calculate the significance of high-mass candidate events in O2 by using the \bcr as a ranking statistic, taking a step toward building a unified Bayesian framework to search for candidates and estimate their parameters.
-
-
-\rs{Suggest revisiting the rest of this intro to section 2 after moving the discussion of Bayes theorem and the BCR.}
-Although a dedicated Bayesian search for gravitational waves, as presented by ~\citet{BCR2}, does not require noise estimation using empirical methods, this Bayesian significance ranking technique utilises \textit{time-slides}. To perform time-slides, data from independent observatories are time-shifted by amounts greater than the light-travel time between the two detectors. Each unique time-slide amount creates an artificial signal-free `background' data set. When search pipelines scan these background data sets for gravitational wave events, they can find \textit{triggers}\footnotemark, even though the background data set should not contain coherent astrophysical signals. These triggers in background data are labelled background triggers, while coherent triggers obtained in non-time-slid data are labelled candidate triggers.
-
-\footnotetext{\textit{Triggers} are points in time when the matched-filter SNR is larger than a threshold value for a given gravitational wave template~\cite{pycbc_og1}.}
-
-Calculating the \bcr ranking statistic for each background trigger builds a background \bcr distribution. With a background distribution,  it is possible to assign a statistical significance of how likely a candidate trigger, detected by the search pipelines over non-time slid data, is due to a gravitational wave signal. 
-
-This section discusses (a) the method to retrieve triggers, and (b) the \bcr and how it is utilised as a ranking statistic to calculate the significance of candidate triggers.
-
-
-\subsection{Triggers for Analysis}
-\rs{I suggest moving this section to after you define the BCR and the need to estimate its significance empirically}
-The LIGO Scientific collaboration operates several search pipelines that scan for gravitational waves from compact binary mergers such as \texttt{GstLAL}, \texttt{MBTA}, \texttt{SPIIR} and \pycbc~\cite{GWTC1}.
-
-The output of \pycbc's search is a list of candidate trigger times and their corresponding \pycbc ranking statistic \pycbcstat. The \pycbcstat statistic is akin to the matched-filter signal-to-noise ratio \snr. However, unlike \snr, \pycbcstat includes some information on the candidate signal's intrinsic and extrinsic properties and other information that feeds into determining if the signal can have astrophysical origins~\cite{pycbc_og6}. The additional physical information incorporated in \pycbcstat makes it a more accurate measure of significance than the standard \snr. 
-
-Whenever a local maximum of $\pycbcstat > \snr_\text{T}$, where $\snr_\text{T}$ is some threshold value, the \pycbc search pipeline produces a single-detector trigger associated with the detector and time where the apparent signal in the data has its merger~\cite{pycbc_og6}.
-
-For \pycbc to consider a trigger to be a \textit{candidate trigger}, a trigger that may be from astrophysical origins, the trigger must be observed between detectors with the same template and a time of arrival difference less than the gravitational-wave travel time~\cite{pycbc_og1}. To test its search, \pycbc also conducts searches for \textit{simulated triggers}, artificial triggers manufactured by injecting signals into the detector data. These simulated signal studies provide \pycbc with metrics on its search's sensitivity. Finally, to quantify the statistical significance of candidate events, \pycbc artificially constructs a \textit{background trigger} set to compare against the candidate events. These background triggers are coherent signal-free events, constructed by applying relative offsets, or time-slides, between the data of different detectors~\cite{pycbc_og6}. The time-slides to generate the background triggers are greater than the gravitational-wave travel time between detectors to ensure that the background triggers are not of astrophysical origins. 
-
-Our work demonstrates that the \bcr can be used in the same way as \pycbcstat to measure candidate triggers' statistical significance.  The \bcr can be a powerful ranking statistic as the \bcr incorporates information of not only all possible binary black hole systems that might have merged to produce the trigger but also the various incoherent glitches that might cause a false-detection. 
-
-Before we discuss how we use the \bcr as a measure of significance, we introduce the method to calculate the \bcr in the following section.
-
-
-\subsection{The Bayesian Coherence Ratio}
-
-Bayes theorem states that the posterior probability distribution $p(\parameters|d,\mathcal{H})$ for data $d$ and a vector of parameters \parameters that describe a model which quantifies a hypothesis $\mathcal{H}$, is given by
-\begin{equation}
-p(\parameters|d,\mathcal{H}) = \frac{\mathcal{L}(d|\parameters, \mathcal{H}) \ \pi(\parameters | \mathcal{H})}{\mathcal{Z}(d|\mathcal{H})}\ , 
-\end{equation}
-where $\mathcal{L}(d|\parameters, \mathcal{H})$ is the likelihood of the data given the parameters \parameters and the hypothesis, $\pi(\parameters | \mathcal{H})$ is the prior probability of the parameters, and finally,
-\begin{equation}
-    \mathcal{Z}(d|\mathcal{H}) = \int\limits_{\parameters} \ \mathcal{L}(d|\parameters,\mathcal{H}) \ \pi(\parameters | \mathcal{H}) \ d\parameters
-\end{equation} is the likelihood after marginalising over the parameters \parameters.  To compare two hypotheses $\mathcal{H}_A$ and $\mathcal{H}_B$ with the Bayes theorem one can calculate an odds ratio
-\begin{equation}
-    \mathcal{O}^A_B = \frac{\mathcal{Z}^A\ \pi(\parameters^A)}{\mathcal{Z}^B\ \pi(\parameters^B)}\ ,
-\end{equation}
-where $\mathcal{Z}^A$ and $\mathcal{Z}^B$ are the shorthand for the evidences  $\mathcal{Z}(d|\mathcal{H}_A)$ and $\mathcal{Z}(d|\mathcal{H}_B)$. The odds ratio can tell us which of the two hypotheses is more likely. For example, if $\mathcal{O}^A_B >> 1$, then this odds ratio indicates that the $\mathcal{H}_A$ describes the data much better than $\mathcal{H}_B$. 
-
-The \bcr is a Bayesian odds ratio like the above, of a coherent signal hypotheses $\mathcal{H}_S$ and an incoherent instrumental feature hypothesis $\mathcal{H}_I$ for a network of $D$ detectors. $\mathcal{H_I}$ states that each detector $i$ has either pure stationary Gaussian noise $\mathcal{H}_N$ or an incoherent noise transient (glitch) $\mathcal{H}_G$. Following~\citet{BCR1}, the \bcr is given by
-\begin{equation}
-\label{eq:bcr}
-\bcr = \frac{\alpha Z^S}{\prod\limits^D_{i=1} \ [\beta Z^G_i + (1-\beta)Z^N_i]}\ ,
-\end{equation}
-where $Z^S$, $Z^G_i$ and $Z^N_i$ are the Bayesian evidences (marginalised likelihoods) for $\mathcal{H}_S$, $\mathcal{H}_N$, and $\mathcal{H}_G$. $\alpha$ and $\beta$, are the prior odds for obtaining a signal $\alpha=P(\mathcal{H}_S)/P(\mathcal{H}_I)$ and the prior odds for obtaining a glitch $\beta=P(\mathcal{H}_G)/P(\mathcal{H}_I)$. \rs{In the case that these hypotheses are exhaustive and mutually exclusive, $\rho_{BCR}$ is the optimal discriminator between signals, glitches or noise.}
-
-\rs{I suggest taking a pause here and talking about how we plan to use the BCR. You can recycle a lot of information from Isi+. A *key* point is that IMBH signals look a lot like glitches and we computing $\rho_{BCR}$ and we don't want to make a guess at a distribution for glitches and signals in this mass space (because we don't really know anything!) Looking at how the BCR is distributed for the background can give us some confidence that we construct a good discriminator between background and foreground
-So, we don't take it at face value because we don't think we have a good model for the signal and/or glitch distribution. Thus, we "rank" the BCR of foreground triggers based on that of background triggers which allows us to compute a frequentist estimator for its significance. I suggest moving the current section II.E to be directly after this subsection. Note that you don't need to say where background triggers come from yet -- it suffices to say that background triggers are just data known to contain no coherent GW signals. }
-As the rate of signal and glitches are unknown, these priors $\alpha$ and $\beta$ are tuned to maximise the \bcr distributions for background data (coherent signal-free data) and simulated signals~\cite{BCR1}.  
-
-\subsection{Bayesian Evidence Evaluation}
-\subsubsection{Noise Model}
-\rs{I suggest moving this subsection to an appendix}
-We assume that each detector's noise is Gaussian and stationary over the period being analysed~\cite{ligo_psd}. In practice, we assume that the noise has a mean of zero that the noise variance $\sigma^2$ is proportional to the noise power spectral density (PSD) \psd of the data. Using the \psd, for each data segment $d_i$ in each of the $i$ detectors in a network of $D$ detectors, we can write 
-\begin{equation}
-\label{eq:zn}
-Z^N_i = \mathcal{N}(d_i) = \frac{1}{2\pi \psd_i} \ \text{exp}\left(-\frac{1}{2} \frac{d_i}{\psd_i} \right) \ ,
-\end{equation}
-where $\mathcal{N}(d_i)$ is a normal distribution with $\mu=0$ and $\sigma^2\sim \psd$. 
-
-\subsubsection{Coherent Signal Model}
-We model coherent signal using a binary black hole waveform template \template, where the vector \parameters contains a point in the 15 dimensional space describing precessing binary-black hole mergers. For the signal to be coherent, \parameters must be consistent in each 4-second data segment $d_i$ for a network of $D$ detectors, Hence, the coherent signal evidence is calculated as
-\begin{equation}
-\label{eq:zs}
-Z^S = \int\limits_{\parameters} \prod\limits^{D}_{i=1} \left[ \mathcal{L}(d_i|\template)\right] \pi(\parameters | \mathcal{H}_S)\  \text{d}\parameters \ ,
-\end{equation}
-where $\pi(\parameters| \mathcal{H}_S)$ is the prior for the parameters in the coherent signal hypothesis, and $\mathcal{L}(d_i|\template))$ is the likelihood for the coherent signal hypothesis that depends on the gravitational wave template \template and its parameters \parameters. 
-
-\subsubsection{Incoherent Glitch Model}
-Finally, as glitches are challenging to model and poorly understood, we utilise a surrogate model for glitches: the glitches are modelled using gravitational wave templates  \template with uncorrelated  parameters amongst the different detectors such that  $\parameters_i \neq \parameters_j$ for two detectors $i$ and $j$~\cite{bci}.  Modelling glitches with \template captures the worst case scenario: when glitches appear similar to gravitational wave signals. Thus, we can write $Z^G_i$ as 
-\begin{equation}
-\label{eq:zg}
-Z^G_i = \int\limits_{\parameters} \mathcal{L}(d_i|\template)\ \pi(\parameters| \mathcal{H}_G)\  \text{d}\parameters  \ ,
-\end{equation}
-where $\pi(\theta| \mathcal{H}_G)$ is the prior for the parameters in the incoherent glitch hypothesis. 
-
-\subsection{Tuning the BCR}
-
-After calculating the \bcr for a set of background triggers and simulated triggers from as stretch of detector-data (a data chunk), we can compute probability distributions for the background and simulated triggers, $p_b(\bcr)$ and $p_s(\bcr)$. We expect the background trigger and simulated signal \bcr values to favour the incoherent glitch and the coherent signal hypothesis, respectively. Ideally, these distributions representing two unique populations should be distinctly separate and have no overlap in their \bcr values. The prior odds parameters $\alpha$ and $\beta$ from Eq.~\ref{eq:bcr} help separate the two distributions. Altering $\alpha$ translates the \bcr probability distributions while adjusting $\beta$ spreads the distributions. Although Bayesian hyper-parameter estimation can determine the optimal values for $\alpha$ and $\beta$, an easier approach is to adjust the parameters for each data chunk's \bcr distribution. In this study, we tune $\alpha$ and $\beta$ to maximally separate the \bcr distributions for the background and simulated triggers. 
-
-To calculate the separation between $p_b(\bcr)$ and $p_s(\bcr)$, we use the Kullback--Leibler divergence (KL divergence) $D_{KL}$, given by
-\begin{equation}
-    D_{KL}(p_b | p_s) = \sum\limits_{x\in \bcr} p_b(x) \log \left( \frac{p_b(x)}{p_a(x)} \right)  \ .
-\end{equation}
-The $D_{KL}=0$ when the distributions are identical and increases as the asymmetry between the distributions increases. 
-
-We limit our search for the maximum KL-divergence in the $\alpha$ and $\beta$ ranges of $[10^{-10}, 10^0]$ as values outside this range are nonphysical. We set our values for $\alpha$ and $\beta$ to those which provide the highest KL-divergence and calculate the \bcr for candidate events present in this data chunk. Note that we conduct the analysis in data chunks of a few days rather than an entire data set of a few months as the background may be different at different points of the entire data set.
-
-\subsection{Calculating the Significance of Candidate events}
-With the tuned values of $\alpha$ and $\beta$ we can calculate the \bcr for candidate events. As mentioned previously, irrespective of the Bayesian interpretation for \bcr, we treat the \bcr as a traditional detection statistic to obtain a frequentist estimate of the significance of candidate event measured against the time-slid background \bcr distribution. 
-
-We expect the background trigger \bcr values to favour the incoherent glitch hypothesis (the null hypothesis). Candidate event \bcr values will either be statistically insignificant compared to the background triggers, implying the candidate is a glitch, or statistically significant to the background distribution, indicating the possible presence of an astrophysical signal. To quantify the significance level, we can calculate a false alarm probability with trial factors \fap for the candidate events. The \fap is the probability that a candidate event originating from a non-astrophysical source can be is falsely identified as a signal.
-
-To calculate the \fap, consider each candidate \bcr as a single statistical trail that can occur at a fixed false alarm probability $f$, where $f$ is the probability of observing a background $\bcr'$ greater than or equal to the candidate \bcr,
-\begin{equation}
-    f = \frac{\text{Count of } \bcr' \leq \bcr}{\text{Count of } \bcr'} \ .
-\end{equation}
-The false alarm probability with trails \fap that the \bcr measurement occurs at least once for $N$ trials $(N > 0)$, where $N$ is the number of candidate triggers, can be written as
-\begin{equation}
-    \fap = 1 - (1-f)^N \ .
-\end{equation}
-
-The \fap can be used to construct a \pastro, the probability that a signal is of astrophysical origin~\cite{pastro_1,pastro_2,pastro_3}
-\begin{equation}
-    \pastro = 1 -  \fap \ .
-\end{equation}
-
-
 \section{Analysis}\label{sec:Analysis}
 
 \subsection{Acquisition of triggers}
-Advanced LIGO's second observing run O2 lasted $38$ weeks~\cite{GWOSC}. The software package, \pycbc~\cite{pycbc_code}, processed the O2 data in 22 time-frames (approximately 2 weeks for one time-frames) and found several gravitational wave events and numerous gravitational wave candidates~\cite{pycbc_og0, pycbc_og1, pycbc_og2, pycbc_og3, pycbc_og4, pycbc_og5, pycbc_og6}. Some candidate events were vetoed to be glitches, while others were rejected due to their low significance. The data is divided into these time-frames because the detector's sensitivity does not stay constant throughout the eight-month-long observing period.
+Advanced LIGO's second observing run O2 lasted $38$ weeks~\cite{GWOSC}. The software package, \pycbc~\cite{pycbc_code}, was used by LIGO to process the O2 data in 22 time-frames (approximately 2 weeks for one time-frame) and found several gravitational wave events and numerous gravitational wave candidates~\cite{pycbc_og0, pycbc_og1, pycbc_og2, pycbc_og3, pycbc_og4, pycbc_og5, pycbc_og6}. Some candidate events were vetoed to be glitches, while others were rejected due to their low significance. The data is divided into these time-frames because the detector's sensitivity does not stay constant throughout the eight-month-long observing period.
 
 In addition to finding candidate events, \pycbc also identified several million background triggers for each time-frame, by searching background data manufactured by time-sliding data within that time-frame. The background triggers help quantify the candidate events' significance for the respective time-frames. Finally, to test the search's sensitivity, \pycbc produced and searched for thousands of simulated signals. 
 
 For our study, we filter the background, simulated and candidate events to include only high-mass events with masses in the ranges of the parameters presented in Table~\ref{tab:parameters}. A plot of the \pycbc triggers from one time-frame, during April 23 - May 8, 2017, is presented in Figure~\ref{fig:templateBank}. This figure also depicts the gravitational wave templates used during the search through this time-frame of data. 
 
-
 \begin{table}[t]
 
-\caption[BBH parameters corresponding to duration $<454\ \text{ms}$]{\label{tab:parameters}Template Banks's parameters for templates with duration $<454 \ \text{ms}$.}
+\caption[BBH parameters corresponding to duration $<454\ \text{ms}$]{\label{tab:parameters}High-mass parameter space (parameters corresponding to signals with durations $<454 \ \text{ms}$). }
 \centering
 \begin{tabular}{lrr}
 \toprule
@@ -440,12 +300,12 @@ Mass Ratio & 0.01 & 0.98\\
 % time for chunk 14
 % 1176955218, Apr 23, 2017, 4:00 UTC
 % 1178294418, May 08, 2017, 16:00 UTC
-\caption[High-mass BCR search space.]{The template bank (pink) used by \pycbc to search a section of O2 data from $\text{April 23 - May 8, 2017}$. Our search is constrained to the high-mass parameter space enclosed by the dashed line. The candidate, background and simulated triggers detected in this region of the parameter space during this period are plotted in orange, grey and blue respectively.  }\label{fig:templateBank}
+\caption[High-mass BCR search space.]{The template bank (pink) used by \pycbc to search a section of O2 data from $\text{April 23 - May 8, 2017}$. Our search is constrained to the high-mass parameter space enclosed by the dashed line. The candidate, background and simulated triggers detected in this region of the parameter space during this period are plotted in orange, grey and blue respectively.  \avi{Should I remove the `template bank' and only display the various triggers?}}\label{fig:templateBank}
 \end{figure*}
 
 
 \subsection{Calculating the BCR for triggers}
-To evaluate $Z^S$, $Z^G_i$ and $Z^N_i$ as shown in Eqs.~\ref{eq:zn}-\ref{eq:zg} and calculate the \bcr Eq.~\ref{eq:bcr} for these triggers, we carry out Bayesian inference with \bilby~\cite{bilby}, employing \dynesty~\cite{dynesty} as our nested sampler. Nested sampling, an algorithm introduced by~\citet{skilling2004, skilling2006}, provides an estimate of the true Bayesian evidence and is often utilised for parameter estimation within the LIGO collaboration~\cite{bilby, bilby_paper, pbilby_paper}.
+To evaluate $Z^S$, $Z^G_i$ and $Z^N_i$ and calculate the \bcr Eq.~\ref{eq:bcr} for triggers, we carry out Bayesian inference with \bilby~\cite{bilby, bilby_pipe}, employing \dynesty~\cite{dynesty} as our nested sampler. Nested sampling, an algorithm introduced by~\citet{skilling2004, skilling2006}, provides an estimate of the true Bayesian evidence and is often utilised for parameter estimation within the LIGO collaboration~\cite{bilby, bilby_paper, pbilby_paper}.
 
 The most computationally intensive step during Bayesian inference is evaluating the likelihood $\mathcal{L}(d_i|\template)$. To accelerate our analysis, we use a likelihood that explicitly marginalises over coalescence time, phase at coalescence, and luminosity distance (Eq.~80 from~\citet{intro_to_gw_bayes}). While this marginalised likelihood reduces the run time without introducing errors to our evidence evaluation, it does not generates samples for the marginalised parameters. However, these parameter samples can be calculated as a post-processing step~\cite{intro_to_gw_bayes}.
 
@@ -473,18 +333,17 @@ We set the priors $\pi(\parameters|\mathcal{H}_S)$ and $\pi(\parameters|\mathcal
     \end{tabular}
 \end{table}
 
-The waveform template we utilise is \imrphenomp, a phenomenological waveform template constructed in the frequency domain that models the in-spiral, merger, and ringdown (IMR) of a compact binary coalescence~\citep{khan2016frequency}. Although gravitational wave templates such as \seob~\cite{seobnrv4phm} which incorporate more physics, such as information on higher-order modes, we still use \imrphenomp as it is inexpensive compared to waveforms fitted against numerical-relativity simulations.
+The waveform template we utilise is \imrphenomp, a phenomenological waveform template constructed in the frequency domain that models the in-spiral, merger, and ringdown (IMR) of a compact binary coalescence~\citep{khan2016frequency}. Although there exist gravitational wave templates such as \seob~\cite{seobnrv4phm} which incorporate more physics, such as information on higher-order modes, we use \imrphenomp as it is computationally inexpensive compared to others.
 
-We take 31 neighbouring, off-source, non-overlapping,  4-second  segments of time-series data before the analysis data segment $d_i$ to generate the PSD. We use off-source to avoid the inclusion of a signal in the PSD calculation. A Tukey window with 0.2-second roll-offs is applied to each data segment to suppress spectral leakage after which the segments are fast-Fourier transformed and median-averaged to create a PSD~\cite{ligo_psd}. Like other PSD estimation methods, this method adds statistical uncertainties to the PSD~\cite{psd_student_t, chatziioannou2019noise}. To marginalise over the statistical uncertainty, we use the median-likelihood presented by~\citet{psd_student_t} as a post-processing step and shift our Bayesian Evidence estimations closer to their astrophysical values. 
+We take 31 neighbouring, off-source, non-overlapping,  4-second  segments of time-series data before the analysis data segment $d_i$ to generate the PSD. We use off-source to avoid the inclusion of a signal in the PSD calculation. A Tukey window with 0.2-second roll-offs is applied to each data segment to suppress spectral leakage after which the segments are fast-Fourier transformed and median-averaged to create a PSD~\cite{ligo_psd}. Like other PSD estimation methods, this method adds statistical uncertainties to the PSD~\cite{psd_student_t, chatziioannou2019noise}. To marginalise over the statistical uncertainty, we use the median-likelihood presented by~\citet{psd_student_t} as a post-processing step. 
+\avi{Greg would like me to discuss the effect of the PSD marginalization in more detail}
 
 Finally, we neglect detector calibration uncertainty and acquire data from from the Gravitational Wave Open Science Center~\cite{GWOSC}. The data we use is the publicly accessible O2 strain data from the Hanford and Livingston detectors, recorded while the detectors are in ``Science Mode''. We obtain the data using \gwpy~\cite{gwpy}. 
 
-The run-time to calculate a single Bayesian evidence after using \dynesty with $1,000$ live points and $100$ walkers is usually between $1-12\ \text{hours}$ (where the run time is proportional to the SNR of the data segment). \bilbypipe orchestrates the creation of the PSDs and execution of the parameter estimation jobs~\cite{bilby_pipe}.
-
 \subsection{Assigning \pastro to candidate events}
-After the calculating the \bcr for the entire set of high-mass background and simulated triggers, we calculate probability distributions $p_b(\bcr)$ and $p_s(\bcr)$ for each 2-week time-frame of O2 data. These distributions are used to obtain the `tuned' prior-odd $\alpha$ and $\beta$ values that maximise $D_{KL}(p_b|p_s)$ for each time-frame of data.
+After the calculating the \bcr for the entire set of high-mass background and simulated triggers, we calculate probability distributions $p_b(\bcr)$ and $p_s(\bcr)$ for each 2-week time-frame of O2 data. These distributions are used to `tune' prior-odd $\alpha$ and $\beta$ values.
 
-Finally, using the tuned prior odds the \bcr for the candidate events can be calculated. Figure~\ref{fig:bcrCdf} shows the \bcr distributions for the background triggers, simulated triggers and candidate events. The bulk of the background and simulated trigger distributions are separate but slightly overlap due to some of the simulated signal's being very faint. The separation suggests that the \bcr can successfully distinguish signals from noise or glitches. The vertical lines in Figure~\ref{fig:bcrCdf} displays the \bcr for gravitational wave candidate events. On comparing the candidate event \bcr values with the background distribution, we can estimate \pastro values for the candidate events. 
+Using the tuned prior odds the \bcr for the candidate events can be calculated. Figure~\ref{fig:bcrCdf} shows the \bcr distributions for the background triggers, simulated triggers and candidate events. The bulk of the background and simulated trigger distributions are separate but slightly overlap due to some of the simulated signal's being very faint. The separation suggests that the \bcr can successfully distinguish signals from noise or glitches. The vertical lines in Figure~\ref{fig:bcrCdf} displays the \bcr for gravitational wave candidate events. On comparing the candidate event \bcr values with the background distribution, we can estimate \pastro values for the candidate events. 
 
 \begin{figure}[!ht]
 {\centering \includegraphics[width=0.75\linewidth]{images/bcr_cdf_smaller_legend.png} }
@@ -495,18 +354,17 @@ Finally, using the tuned prior odds the \bcr for the candidate events can be cal
 \section{\label{sec:Results}Results}
 
 \input{Data/results_table}
-We analyse the $60\ 996$ background, $5\ 146$ simulated, and $25$ candidate triggers reported by \pycbc's search of the data from the second observing run, restricting our analysis to the triggers that fall within our Bayesian prior space as described in Section~\ref{sec:method}. In addition to these triggers, we also analyse events and candidate events reported by GWTC-1 and the IAS group (note that some of these were identified as candidates by the \pycbc search). In Table~\ref{tab:results}, we summarise the \pastrobcr, along with the \pastro of other pipelines for comparison. Note that although the various pipeline \pastro are not mathematically equivalent, by comparing pipeline \pastro values for a given event, we can compare how significant each pipeline deems various candidates. The $\alpha$ and $\beta$ values utilised for each time-frame of O2 are reported in Appendix~\ref{apdx:alphabeta}
-
+We analyse the $60\ 996$ background, $5\ 146$ simulated, and $25$ candidate triggers reported by \pycbc's search on the data from LIGO's second observing run, restricting our analysis to the triggers that fall within our mass-space as described in Section~\ref{sec:method}. In addition to these triggers, we also analyse events and candidate events reported by GWTC-1 and the IAS group (note that some of these were identified as candidates by the \pycbc search). In Table~\ref{tab:results}, we summarise the \pastrobcr, along with the \pastro of other pipelines for comparison. Although the various pipeline \pastro are not mathematically equivalent, by comparing pipeline \pastro values for a given candidate, we can compare how significant each pipeline deems various candidates. The $\alpha$ and $\beta$ values utilised for each time-frame are reported in Appendix~\ref{apdx:alphabeta}.
 
 \subsection{GWTC-1 Events}
 All the confirmed gravitational wave events from binary black hole mergers reported in GWTC-1 and within our prior space, (specifically GW170104, GW170608, GW170729, GW170809 and GW170814), have $\pastrobcr$ greater than $0.9$, indicating a high probability of the presence of an astrophysical signal. 
 
-In addition to the above confirmed gravitational wave events from GWTC-1, we have also analysed several candidate events discussed in GWTC-1, most of which have low \pastrobcr. For example, consider the candidate event 170412, assigned a $\pastro$ of $0.06$ by \gstlal and has a $\pastrobcr$ of $0.01$. This candidate was reported to be excess power caused due noise appearing non-stationary between 60-200 Hz~\cite{GWTC1}. This candidate acts as an example of how $\pastrobcr$ may be utilised  to eliminate terrestrial noise sources, in addition to detecting signals
+In addition to the above confirmed gravitational wave events from GWTC-1, we have also analysed several candidate events from GWTC-1, most of which have low \pastrobcr. For example, consider the candidate event 170412, assigned a $\pastro$ of $0.06$ by \gstlal and has a $\pastrobcr$ of $0.01$. This candidate was reported to be excess power caused due noise appearing non-stationary between 60-200 Hz~\cite{GWTC1}. This candidate acts as an example of how $\pastrobcr$ may be utilised to eliminate candidates originating from terrestrial noise sources.
 
 \subsection{IAS Events}
 Our analysis of the high-mass IAS events and candidates in O2 has resulted in three events with disfavourable $\pastrobcr<0.5$ (GWC170402, GW170403, GW170425), and four events and one candidate with $\pastrobcr\geq0.5$ (GW170121, 170302, GW170304, GW170727, GW170817A). 
 
-GWC170402, detected by \citet{IAS2}, is reported to have a signal that is not described well by waveforms for circular binaries with aligned spins. Hence, we might have received a low \pastrobcr due to our usage of \imrphenomp, a waveform that does not account for eccentricity. Additionally, the search conducted by \citet{IAS2} was a single-detector search. Our ranking statistic relies on the signal to appear coherent, even if just faintly coherent, amongst the various detectors to have a high \pastrobcr. Hence, the lack of coherence and the non-eccentric waveform may be the leading factors for a low \pastro. GW170403 and GW170425 which have $\pastrobcr<0.35$ also have low  \pastro reported by \citet{pycbc_ogc_2},  suggesting that these events may have been false alarms.
+GWC170402, detected by \citet{IAS2}, is reported to have a signal that is not described well by waveforms for circular binaries with aligned spins. Hence, we might have received a low \pastrobcr due to our usage of \imrphenomp, a waveform that does not account for eccentricity. Additionally, the search conducted by \citet{IAS2} was a single-detector search. Our ranking statistic relies on the signal to appear coherent, even if just faintly coherent, amongst the various detectors to have a high \pastrobcr. The lack of coherence and the non-eccentric waveform may be the leading factors for a low \pastro. GW170403 and GW170425 which have $\pastrobcr<0.35$ also have low  \pastro reported by \citet{pycbc_ogc_2},  suggesting that these events may have been false alarms.
 
 From the candidates with $\pastrobcr>0.5$, GW170727 and 170302 are of particular interest, with \pastrobcr of $0.92$ and $0.63$. GW170727 was emitted from a black hole binary system with a source frame total mass $\approx 70\ \msun$. In addition to the high \pastrobcr reported by our study, \citet{IAS1} and \citet{pycbc_ogc_2} have also reported high \pastro values of 0.98 and 0.99, making it a viable gravitational-wave event candidate. Similarly, the sub-marginal-candidate 170302 reported by \cite{IAS1} with a \pastro of 0.45 appears to have a higher significance from our analysis, resulting in a \pastrobcr of $0.63$.  
 
@@ -514,9 +372,7 @@ From the candidates with $\pastrobcr>0.5$, GW170727 and 170302 are of particular
 
 
 \subsection{New Candidate Events}
-Although no clear detections are made with the \bcr, a marginal-candidate 170222 has been discovered with a $\pastrobcr\sim0.5$. This candidate has its similar masses when compared to those of GWTC-1. The remaining coherent trigger candidates all have $\pastrobcr\ll0.5$ making them unlikely to originate from astrophysical sources. 
-
-
+Although no clear detections are made with the \bcr, a marginal-candidate 170222 has been discovered with a $\pastrobcr\sim0.5$. This candidate has its similar masses when compared to those of GWTC-1. The remaining coherent trigger candidates all have $\pastrobcr\ll0.5$ making them unlikely to originate from astrophysical sources. \avi{wjat more can I say about this?}
 
 
 \section{\label{sec:Conclusion}Conclusion}
@@ -535,6 +391,9 @@ Although our analysis targets high-mass triggers, this method can be extended to
 \begin{acknowledgments}
 
 This research has made use of data, software and/or web tools obtained from the Gravitational Wave Open Science Center (https://www.gw-openscience.org), a service of LIGO Laboratory, the LIGO Scientific Collaboration and the Virgo Collaboration. LIGO is funded by the U.S. National Science Foundation. Virgo is funded by the French Centre National de Recherche Scientifique (CNRS), the Italian Istituto Nazionale della Fisica Nucleare (INFN) and the Dutch Nikhef, with contributions by Polish and Hungarian institutes.
+
+Thank Stuart Anderson, CIT
+
 
 
 \end{acknowledgments}
@@ -589,7 +448,7 @@ We limit our search for the maximum KL-divergence in the $\alpha$ and $\beta$ ra
 
 \section{Tuned prior odds}\label{apdx:alphabeta}
 
-O2 lasted several months over which the detector's sensitivity varied. Hence, a part of our analysis entailed tuning the prior odds for obtaining a signal and a glitch, $\alpha$ and $\beta$, as described in Section~\ref{sec:method}. Table~\ref{tab:priorodds} presents the signal and glitch prior odds utilised for each time-frame of O2 data. \av{note: havent tuned all chunks yet -- and tbh the 'tuning' could be better, atm brute force searching a 2d log-spce grid}
+O2 lasted several months over which the detector's sensitivity varied. Hence, a part of our analysis entailed tuning the prior odds for obtaining a signal and a glitch, $\alpha$ and $\beta$, as described in Section~\ref{sec:method}. Table~\ref{tab:priorodds} presents the signal and glitch prior odds utilised for each time-frame of O2 data. \avi{note: havent tuned all chunks yet -- and tbh the 'tuning' could be better, atm brute force searching a 2d log-spce grid}
 \input{Data/alpha_beta_table}
 
 Tuning the prior odds can dramatically affect the \pastrobcr. For example, consider Table~\ref{tab:tuningresults}, which reports tuned \pastrobcr and un-tuned \untunedpastrobcr (where $\alpha=1$ and $\beta=1$) for various high-mass events and candidates. By tuning the prior odds, the \pastrobcr for some IAS events (for example, GW170403 and GW170817A) can change by more than 0.5, resulting in the promotion/demotion of a candidate's significance.
