@@ -25,3 +25,6 @@
 *.synctex.gz
 .idea
 *.DS_Store
+!/data/candidates.csv
+data/candidates.csv
+images/known_events.png

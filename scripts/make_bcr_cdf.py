@@ -5,11 +5,24 @@ from bcr_pipeline.post_processing.bcr_plotting.make_ranking_stat_probability_plo
 from matplotlib import pyplot as plt
 from matplotlib import rcParams
 from matplotlib.lines import Line2D
+from matplotlib.ticker import (MultipleLocator,
+                               FormatStrFormatter,
+                               AutoMinorLocator)
+import matplotlib.font_manager
+from matplotlib import rc
+
+# matplotlib.font_manager.findfont("font.sans-serif", rebuild_if_missing=False)
+all_fonts = matplotlib.font_manager.findSystemFonts()
+print(f"Avail fonts: {all_fonts}")
+
+font_path = "/Users/avaj0001/Library/Fonts/ScopeOn-Regular.ttf"
+# prop = matplotlib.font_manager.FontProperties(fname=font_path)
 
 
+rc('text.latex', preamble=r'\usepackage{cmbright}')
 rcParams["font.size"] = 30
-rcParams["font.family"] = "serif"
-rcParams["font.sans-serif"] = ["Computer Modern Sans"]
+rcParams["font.family"] = "sans-serif"
+# rcParams["font.sans-serif"] = ["/Users/avaj0001/Library/Fonts/ScopeOn-Regular.ttf"]
 rcParams["text.usetex"] = True
 rcParams['axes.labelsize'] = 30
 rcParams['axes.titlesize'] = 30
@@ -53,7 +66,7 @@ def plot():
     fig, ax_cdf = plt.subplots(nrows=1, ncols=1, figsize=(7, 5))
     cdf_data = _add_rank_pdf(plot_data, xrange, ax_cdf, cdf=True)
     ax_cdf.set_ylim(0, 1)
-    ax_cdf.set_ylabel('1-CDF', fontsize="x-large")
+    ax_cdf.set_ylabel('Survival Probability', fontsize="x-large")
     ax_cdf.set_xlabel(r'ln $\rho_{\mathrm{BCR}}$', fontsize="x-large")
 
 
@@ -64,7 +77,7 @@ def plot():
         ax_cdf.axvline(x=xval, color=c)
         ax_cdf.annotate(
             event_txt, xy=(xval, 0.95), ha='left', va='top', rotation=-90,
-            color="#ff8c00", fontweight="extra bold", fontfamily='sans-serif')
+            color="#ff8c00", fontweight="extra bold")
 
     # add_foreground_events_to_plot(ax_cdf, plot_data['foreground']['df'],
     #                               x_vals=cdf_data['bins'],
@@ -79,19 +92,24 @@ def plot():
     # l = ax_cdf.legend(custom_lines, labels, **lg_kwargs)
 
     lg_kwargs = dict(fontsize="small", loc="lower right",
-                     facecolor='white', framealpha=0.2, handlelength=0.75,  handletextpad=0.3, labelspacing=0.2)
+                     facecolor='white', framealpha=0.2, handlelength=0.75,  handletextpad=0.3, labelspacing=0.2, markerscale=2)
 
     l = ax_cdf.legend(
-        [Line2D([0], [0], color="#d8d8d8", lw=2),
-         Line2D([0], [0], color="#daf0f8", lw=2)],
-        ["Background", "Simulated"],
+        [Line2D([0], [0], color="tab:gray", linewidth=4),
+         Line2D([0], [0], color="skyblue", linewidth=4),
+         Line2D([0], [0], color="tab:orange", linewidth=4),],
+        ["Background", "Simulated", "Foreground"],
         **lg_kwargs
     )
     frame = l.get_frame()
     frame.set_linewidth(0)
 
     fname = '../images/bcr_cdf_smaller_legend.png'
-    fig.savefig(fname, bbox_extra_artists=[l], bbox_inches='tight')
+
+    ax_cdf.yaxis.set_major_formatter(FormatStrFormatter('% 1.1f'))
+    fig.savefig(fname, bbox_extra_artists=[l], bbox_inches='tight',  transparent=True)
+    print(f"current font family: { plt.rcParams['font.family']}")
+    print(f"Avail fonts: {plt.rcParams['font.sans-serif']}")
     print("Saved fig")
 
 
