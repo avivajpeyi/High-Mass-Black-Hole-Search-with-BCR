@@ -25,7 +25,7 @@ rcParams["text.usetex"] = True
 rcParams['axes.labelsize'] = 30
 rcParams['axes.titlesize'] = 30
 rcParams['axes.labelpad'] = 10
-rcParams['axes.linewidth'] = 2.5
+rcParams['axes.linewidth'] = 3
 rcParams['axes.edgecolor'] = 'black'
 rcParams['xtick.labelsize'] = 25
 rcParams['xtick.major.size'] = 10.0
@@ -105,6 +105,7 @@ def plot(data_type='orig', add_legend=False):
     # colors = ["#d8d8d8", "#daf0f8", "#0173b2", "#e9b457"]
     # custom_lines = [Line2D([0], [0], color=c, lw=4) for c in colors]
     # l = ax_cdf.legend(custom_lines, labels, **lg_kwargs)
+    ax_cdf.grid(False)
     bbox_extra_artists = []
     if add_legend:
         lg_kwargs = dict(fontsize="small", loc="lower right",
