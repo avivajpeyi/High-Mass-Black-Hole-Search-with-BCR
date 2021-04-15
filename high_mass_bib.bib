@@ -16,6 +16,63 @@ archivePrefix = {arXiv},
        adsurl = {https://ui.adsabs.harvard.edu/abs/2020arXiv201014527A},
       adsnote = {Provided by the SAO/NASA Astrophysics Data System}
 }
+@ARTICLE{Galaudage:2020:PhRvD,
+       author = {{Galaudage}, Shanika and {Talbot}, Colm and {Thrane}, Eric},
+        title = "{Gravitational-wave inference in the catalog era: Evolving priors and marginal events}",
+      journal = {\prd},
+     keywords = {Astrophysics - High Energy Astrophysical Phenomena},
+         year = 2020,
+        month = oct,
+       volume = {102},
+       number = {8},
+          eid = {083026},
+        pages = {083026},
+          doi = {10.1103/PhysRevD.102.083026},
+archivePrefix = {arXiv},
+       eprint = {1912.09708},
+ primaryClass = {astro-ph.HE},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2020PhRvD.102h3026G},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+
+@ARTICLE{Farr:2015:PhRvD,
+       author = {{Farr}, Will M. and {Gair}, Jonathan R. and {Mandel}, Ilya and {Cutler}, Curt},
+        title = "{Counting and confusion: Bayesian rate estimation with multiple populations}",
+      journal = {\prd},
+     keywords = {95.75.Pq, 02.50.Tt, 02.70.Rr, 04.30.Tv, Mathematical procedures and computer techniques, Inference methods, General statistical methods, Gravitational-wave astrophysics, Astrophysics - Instrumentation and Methods for Astrophysics},
+         year = 2015,
+        month = jan,
+       volume = {91},
+       number = {2},
+          eid = {023005},
+        pages = {023005},
+          doi = {10.1103/PhysRevD.91.023005},
+archivePrefix = {arXiv},
+       eprint = {1302.5341},
+ primaryClass = {astro-ph.IM},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2015PhRvD..91b3005F},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+
+@ARTICLE{Gaebel:2019:MNRAS,
+       author = {{Gaebel}, Sebastian M. and {Veitch}, John and {Dent}, Thomas and {Farr}, Will M.},
+        title = "{Digging the population of compact binary mergers out of the noise}",
+      journal = {\mnras},
+     keywords = {gravitational waves, methods: statistical, Astrophysics - Instrumentation and Methods for Astrophysics},
+         year = 2019,
+        month = apr,
+       volume = {484},
+       number = {3},
+        pages = {4008-4023},
+          doi = {10.1093/mnras/stz225},
+archivePrefix = {arXiv},
+       eprint = {1809.03815},
+ primaryClass = {astro-ph.IM},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2019MNRAS.484.4008G},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
 
 @ARTICLE{Abbott:2019:PhRvX,
        author = {{Abbott}, B.~P. and {Abbott}, R. and {Abbott}, T.~D. and {Abraham}, S. and et al.},
@@ -250,6 +307,7 @@ archivePrefix = {arXiv},
 }
 
 
+
 @article{paynter_evidence_2021,
 	title = {Evidence for an intermediate-mass black hole from a gravitationally lensed gamma-ray burst},
 	issn = {2397-3366},
@@ -259,6 +317,17 @@ archivePrefix = {arXiv},
 	author = {Paynter, James and Webster, Rachel and Thrane, Eric},
 	month = mar,
 	year = {2021}
+}
+
+@article{kanner2016leveraging,
+  title={Leveraging waveform complexity for confident detection of gravitational waves},
+  author={Kanner, Jonah B and Littenberg, Tyson B and Cornish, Neil and Millhouse, Meg and Xhakaj, Enia and Salemi, Francesco and Drago, Marco and Vedovato, Gabriele and Klimenko, Sergey},
+  journal={Physical Review D},
+  volume={93},
+  number={2},
+  pages={022002},
+  year={2016},
+  publisher={APS}
 }
 
 
@@ -284,6 +353,7 @@ archivePrefix = {arXiv},
 @ARTICLE{Greene:2020:ARA&A,
        author = {{Greene}, Jenny E. and {Strader}, Jay and {Ho}, Luis C.},
         title = "{Intermediate-Mass Black Holes}",
+        note  = "2021 review on IMBH",
       journal = {\araa},
      keywords = {Astrophysics - Astrophysics of Galaxies},
          year = 2020,
@@ -820,29 +890,6 @@ archivePrefix = {arXiv},
 	abstract = {'Blip glitches' are a type of short duration transient noise in LIGO data. The cause for the majority of these is currently unknown. Short duration transient noise creates challenges for searches of the highest mass binary black hole systems, as standard methods of applying signal consistency, which look for consistency in the accumulated signal-to-noise of the candidate event, are unable to distinguish many blip glitches from short duration gravitational-wave signals due to similarities in their time and frequency evolution. We demonstrate a straightforward method, employed during Advanced LIGO's second observing run, including the period of joint observation with the Virgo observatory, to separate the majority of this transient noise from potential gravitational-wave sources. This yields a  ~$20\%$  improvement in the detection rate of high mass binary black hole mergers (>$ 60 M_{\odot}$ ) for the PyCBC analysis.},
 	adsnote = {Provided by the SAO/NASA Astrophysics Data System},
 	adsurl = {https://ui.adsabs.harvard.edu/abs/2018CQGra..35c5016N},
-	annote = {
-		Searches for gravitational waves make use of matched filtering, which uses a waveform model to extract signals from data.
-
-		WHICH WAVEFORM MODELS ARE USED IN BANK?
-
-		HOW BANK IS MADE A discrete set of waveform templates is chosen and stored in a template bank such that any potential signal will have high overlap with one of the templates in the bank. This decreases the parameter search space which is continuouis over a wide set of parameters.
-
-		---> benifit of BCR is continuous
-
-		NON GAUSSIAN NOISE If the detector noise were Gaussian, matched filtering alone would be nearly sufficient to find signals within LIGO data, however, the data contains non-Gaussian noise transients which produce large signal-to-noise ratios
-
-		PYCBC SERACH AND RANKING STAT matched filtering + signal consistency (as described by findchirp) + phase-amplitude-time difference consistency
-
-		Candidates compared to background
-
-		Part of the construction of the full ranking statistic, is the signal consistency re-weighted signal-to-noise (loudness of a signal in a single detector)
-
-		introduce a new signal consistency test, which targets a type of noise transient that is not well suppressed by existing methods, known as 'blips' [19]. The mechanism for most instances of this non-Gaussian noise source is not yet well understood. Many instances, however, contain excess power at higher frequencies than expected for the waveform templates that these glitches are mistaken for. We also modify the single detector loudness measure and demonstrate that we are able to achieve  ~$ 20\%$  improvement in the detection rate of binary black holes with masses greater than $60{\rm{-}}100 M_{\odot}$ .
-
-		Match-filter SNR is optimal for extracting signals from gaussian noise: (Maggiore M 2007 Gravitational Waves. Vol. 1: Theory and Experiments (Oxford Master Series in Physics) (Oxford: Oxford University Press)
-
-		Creighton J D E and Anderson W G 2011 Gravitational-Wave Physics and Astronomy: an Introduction to Theory, Experiment and Data Analysis)
-	},
 	archiveprefix = {arXiv},
 	date-modified = {2020-08-21 08:59:33 +1000},
 	eid = {035016},
@@ -1291,6 +1338,56 @@ archivePrefix = {arXiv},
 	version = {v1.16.4},
 	bdsk-url-1 = {https://doi.org/10.5281/zenodo.3904502},
 }
+@article{cwb,
+  title = {Method for detection and reconstruction of gravitational wave transients with networks of advanced detectors},
+  author = {Klimenko, S. and Vedovato, G. and Drago, M. and Salemi, F. and Tiwari, V. and Prodi, G. A. and Lazzaro, C. and Ackley, K. and Tiwari, S. and Da Silva, C. F. and Mitselmakher, G.},
+  journal = {Phys. Rev. D},
+  volume = {93},
+  issue = {4},
+  pages = {042004},
+  numpages = {10},
+  year = {2016},
+  month = {Feb},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevD.93.042004},
+  url = {https://link.aps.org/doi/10.1103/PhysRevD.93.042004}
+}
+@article{MBTA,
+	doi = {10.1088/0264-9381/33/17/175012},
+	url = {https://doi.org/10.1088/0264-9381/33/17/175012},
+	year = 2016,
+	month = {aug},
+	publisher = {{IOP} Publishing},
+	volume = {33},
+	number = {17},
+	pages = {175012},
+	author = {T Adams and D Buskulic and V Germain and G M Guidi and F Marion and M Montani and B Mours and F Piergiovanni and G Wang},
+	title = {Low-latency analysis pipeline for compact binary coalescences in the advanced gravitational wave detector era},
+	journal = {Classical and Quantum Gravity},
+	abstract = {The multi-band template analysis (MBTA) pipeline is a low-latency coincident analysis pipeline for the detection of gravitational waves (GWs) from compact binary coalescences. MBTA runs with a low computational cost, and can identify candidate GW events online with a sub-minute latency. The low computational running cost of MBTA also makes it useful for data quality studies. Events detected by MBTA online can be used to alert astronomical partners for electromagnetic follow-up. We outline the current status of MBTA and give details of recent pipeline upgrades and validation tests that were performed in preparation for the first advanced detector observing period. The MBTA pipeline is ready for the outset of the advanced detector era and the exciting prospects it will bring.}
+}
+
+
+@ARTICLE{spiir,
+       author = {{Chu}, Qi and {Kovalam}, Manoj and {Wen}, Linqing and {Slaven-Blair}, Teresa and et al.},
+        title = "{The SPIIR online coherent pipeline to search for gravitational waves from compact binary coalescences}",
+      journal = {arXiv e-prints},
+     keywords = {General Relativity and Quantum Cosmology},
+         year = 2020,
+        month = nov,
+          eid = {arXiv:2011.06787},
+        pages = {arXiv:2011.06787},
+archivePrefix = {arXiv},
+       eprint = {2011.06787},
+ primaryClass = {gr-qc},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2020arXiv201106787C},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+
+
+
+
 @article{imbhFromCollidingGlobularCluster,
 	title = {{Intermediate-mass black holes in colliding clusters: implications for lower frequency gravitational-wave astronomy}},
 	author = {Amaro-Seoane, Pau and Freitag, Marc},
@@ -1607,6 +1704,15 @@ archivePrefix = {arXiv},
 	keywords = {IMBH},
 	bdsk-url-1 = {https://arxiv.org/abs/1801.01095},
 }
+
+@misc{greenhouse,
+	title = {{Carbon Fund}},
+	author = {Carbonfund.org},
+	year = 2020,
+	publisher = {Carbonfund.org},
+    url={https://carbonfund.org/calculation-methods/}
+}
+
 @article{SMBHformationDirectCollapse,
 	title = {{Supermassive black hole formation during the assembly of pre-galactic discs}},
 	author = {Lodato, Giuseppe and Natarajan, Priyamvada},
@@ -1861,4 +1967,902 @@ archivePrefix = {arXiv},
        adsurl = {https://ui.adsabs.harvard.edu/abs/2020ApJ...897..169N},
       adsnote = {Provided by the SAO/NASA Astrophysics Data System}
 }
+
+
+%%% AGN BBH
+
+@ARTICLE{Tagawa:2021:ApJ,
+       author = {{Tagawa}, Hiromichi and {Kocsis}, Bence and {Haiman}, Zolt{\'a}n and {Bartos}, Imre and {Omukai}, Kazuyuki and {Samsing}, Johan},
+        title = "{Mass-gap Mergers in Active Galactic Nuclei}",
+      journal = {\apj},
+     keywords = {Gravitational wave astronomy, Black holes, Close binary stars, N-body simulations, Active galactic nuclei, Neutron stars, Gravitational wave sources, 675, 162, 254, 1083, 16, 1108, 677, Astrophysics - High Energy Astrophysical Phenomena, Astrophysics - Astrophysics of Galaxies},
+         year = 2021,
+        month = feb,
+       volume = {908},
+       number = {2},
+          eid = {194},
+        pages = {194},
+          doi = {10.3847/1538-4357/abd555},
+archivePrefix = {arXiv},
+       eprint = {2012.00011},
+ primaryClass = {astro-ph.HE},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2021ApJ...908..194T},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Li:2021:arXiv,
+       author = {{Li}, Ya-Ping and {Dempsey}, Adam M. and {Li}, Shengtai and {Li}, Hui and {Li}, Jiaru},
+        title = "{Orbital evolution of binary black holes in active galactic nucleus disks: a disk channel for binary black hole mergers?}",
+      journal = {arXiv e-prints},
+     keywords = {Astrophysics - High Energy Astrophysical Phenomena},
+         year = 2021,
+        month = jan,
+          eid = {arXiv:2101.09406},
+        pages = {arXiv:2101.09406},
+archivePrefix = {arXiv},
+       eprint = {2101.09406},
+ primaryClass = {astro-ph.HE},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2021arXiv210109406L},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Samsing:2020:arXiv,
+       author = {{Samsing}, J. and {Bartos}, I. and {D'Orazio}, D.~J. and {Haiman}, Z. and {Kocsis}, B. and {Leigh}, N.~W.~C. and {Liu}, B. and {Pessah}, M.~E. and {Tagawa}, H.},
+        title = "{Active Galactic Nuclei as Factories for Eccentric Black Hole Mergers}",
+      journal = {arXiv e-prints},
+     keywords = {Astrophysics - High Energy Astrophysical Phenomena, Astrophysics - Astrophysics of Galaxies},
+         year = 2020,
+        month = oct,
+          eid = {arXiv:2010.09765},
+        pages = {arXiv:2010.09765},
+archivePrefix = {arXiv},
+       eprint = {2010.09765},
+ primaryClass = {astro-ph.HE},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2020arXiv201009765S},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Tagawa:2020:ApJ,
+       author = {{Tagawa}, Hiromichi and {Haiman}, Zolt{\'a}n and {Kocsis}, Bence},
+        title = "{Formation and Evolution of Compact-object Binaries in AGN Disks}",
+      journal = {\apj},
+     keywords = {Gravitational wave sources, Active galactic nuclei, Black holes, Low-mass x-ray binary stars, Close binary stars, N-body simulations, 677, 16, 162, 939, 254, 1083, Astrophysics - Astrophysics of Galaxies, Astrophysics - High Energy Astrophysical Phenomena},
+         year = 2020,
+        month = jul,
+       volume = {898},
+       number = {1},
+          eid = {25},
+        pages = {25},
+          doi = {10.3847/1538-4357/ab9b8c},
+archivePrefix = {arXiv},
+       eprint = {1912.08218},
+ primaryClass = {astro-ph.GA},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2020ApJ...898...25T},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Ishibashi:2020:A&A,
+       author = {{Ishibashi}, W. and {Gr{\"o}bner}, M.},
+        title = "{Evolution of binary black holes in AGN accretion discs: Disc-binary interaction and gravitational wave emission}",
+      journal = {\aap},
+     keywords = {black hole physics, gravitational waves, methods: analytical, galaxies: active, accretion, accretion disks, Astrophysics - Astrophysics of Galaxies, Astrophysics - High Energy Astrophysical Phenomena},
+         year = 2020,
+        month = jul,
+       volume = {639},
+          eid = {A108},
+        pages = {A108},
+          doi = {10.1051/0004-6361/202037799},
+archivePrefix = {arXiv},
+       eprint = {2006.07407},
+ primaryClass = {astro-ph.GA},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2020A&A...639A.108I},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Grobner:2020:A&A,
+       author = {{Gr{\"o}bner}, M. and {Ishibashi}, W. and {Tiwari}, S. and {Haney}, M. and {Jetzer}, P.},
+        title = "{Binary black hole mergers in AGN accretion discs: gravitational wave rate density estimates}",
+      journal = {\aap},
+     keywords = {gravitational waves, black hole physics, accretion, accretion disks, methods: analytical, Astrophysics - Astrophysics of Galaxies, Astrophysics - High Energy Astrophysical Phenomena},
+         year = 2020,
+        month = jun,
+       volume = {638},
+          eid = {A119},
+        pages = {A119},
+          doi = {10.1051/0004-6361/202037681},
+archivePrefix = {arXiv},
+       eprint = {2005.03571},
+ primaryClass = {astro-ph.GA},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2020A&A...638A.119G},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Yang:2019:PhRvL,
+       author = {{Yang}, Y. and {Bartos}, I. and {Gayathri}, V. and {Ford}, K.~E.~S. and et al.},
+        title = "{Hierarchical Black Hole Mergers in Active Galactic Nuclei}",
+      journal = {\prl},
+     keywords = {Astrophysics - High Energy Astrophysical Phenomena},
+         year = 2019,
+        month = nov,
+       volume = {123},
+       number = {18},
+          eid = {181101},
+        pages = {181101},
+          doi = {10.1103/PhysRevLett.123.181101},
+archivePrefix = {arXiv},
+       eprint = {1906.09281},
+ primaryClass = {astro-ph.HE},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2019PhRvL.123r1101Y},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{McKernan:2019:ApJL,
+       author = {{McKernan}, B. and {Ford}, K.~E.~S. and {Bartos}, I. and {Graham}, M.~J. and {Lyra}, W. and {Marka}, S. and {Marka}, Z. and {Ross}, N.~P. and {Stern}, D. and {Yang}, Y.},
+        title = "{Ram-pressure Stripping of a Kicked Hill Sphere: Prompt Electromagnetic Emission from the Merger of Stellar Mass Black Holes in an AGN Accretion Disk}",
+      journal = {\apjl},
+     keywords = {Black holes, Active galactic nuclei, Gravitational waves, Gravitational wave astronomy, 162, 16, 678, 675, Astrophysics - High Energy Astrophysical Phenomena, Astrophysics - Astrophysics of Galaxies},
+         year = 2019,
+        month = oct,
+       volume = {884},
+       number = {2},
+          eid = {L50},
+        pages = {L50},
+          doi = {10.3847/2041-8213/ab4886},
+archivePrefix = {arXiv},
+       eprint = {1907.03746},
+ primaryClass = {astro-ph.HE},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2019ApJ...884L..50M},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Yang:2019:ApJ,
+       author = {{Yang}, Y. and {Bartos}, I. and {Haiman}, Z. and {Kocsis}, B. and {M{\'a}rka}, Z. and {Stone}, N.~C. and {M{\'a}rka}, S.},
+        title = "{AGN Disks Harden the Mass Distribution of Stellar-mass Binary Black Hole Mergers}",
+      journal = {\apj},
+     keywords = {galaxies: active, gravitational waves, stars: black holes, Astrophysics - High Energy Astrophysical Phenomena},
+         year = 2019,
+        month = may,
+       volume = {876},
+       number = {2},
+          eid = {122},
+        pages = {122},
+          doi = {10.3847/1538-4357/ab16e3},
+archivePrefix = {arXiv},
+       eprint = {1903.01405},
+ primaryClass = {astro-ph.HE},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2019ApJ...876..122Y},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{McKernan:2018:ApJ,
+       author = {{McKernan}, Barry and {Ford}, K.~E. Saavik and {Bellovary}, J. and {Leigh}, N.~W.~C. and et al.},
+        title = "{Constraining Stellar-mass Black Hole Mergers in AGN Disks Detectable with LIGO}",
+      journal = {\apj},
+     keywords = {accretion, accretion disks, binaries: close, black hole physics, galaxies: active, gravitational waves, Astrophysics - High Energy Astrophysical Phenomena, Astrophysics - Astrophysics of Galaxies, General Relativity and Quantum Cosmology},
+         year = 2018,
+        month = oct,
+       volume = {866},
+       number = {1},
+          eid = {66},
+        pages = {66},
+          doi = {10.3847/1538-4357/aadae5},
+archivePrefix = {arXiv},
+       eprint = {1702.07818},
+ primaryClass = {astro-ph.HE},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2018ApJ...866...66M},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Bellovary:2016:ApJL,
+       author = {{Bellovary}, Jillian M. and {Mac Low}, Mordecai-Mark and {McKernan}, Barry and {Ford}, K.~E. Saavik},
+        title = "{Migration Traps in Disks around Supermassive Black Holes}",
+      journal = {\apjl},
+     keywords = {accretion, accretion disks, black hole physics, galaxies: nuclei, Astrophysics - Astrophysics of Galaxies, Astrophysics - Cosmology and Nongalactic Astrophysics, Astrophysics - High Energy Astrophysical Phenomena},
+         year = 2016,
+        month = mar,
+       volume = {819},
+       number = {2},
+          eid = {L17},
+        pages = {L17},
+          doi = {10.3847/2041-8205/819/2/L17},
+archivePrefix = {arXiv},
+       eprint = {1511.00005},
+ primaryClass = {astro-ph.GA},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2016ApJ...819L..17B},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{McKernan:2014:MNRAS,
+       author = {{McKernan}, B. and {Ford}, K.~E.~S. and {Kocsis}, B. and {Lyra}, W. and {Winter}, L.~M.},
+        title = "{Intermediate-mass black holes in AGN discs - II. Model predictions and observational constraints}",
+      journal = {\mnras},
+     keywords = {accretion accretion discs, planets and satellites: formation, planet-disc interactions, protoplanetary discs, galaxies: active, galaxies: Seyfert, Astrophysics - Astrophysics of Galaxies, Astrophysics - High Energy Astrophysical Phenomena},
+         year = 2014,
+        month = jun,
+       volume = {441},
+       number = {1},
+        pages = {900-909},
+          doi = {10.1093/mnras/stu553},
+archivePrefix = {arXiv},
+       eprint = {1403.6433},
+ primaryClass = {astro-ph.GA},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2014MNRAS.441..900M},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{McKernan:2012:MNRAS,
+       author = {{McKernan}, B. and {Ford}, K.~E.~S. and {Lyra}, W. and {Perets}, H.~B.},
+        title = "{Intermediate mass black holes in AGN discs - I. Production and growth}",
+      journal = {\mnras},
+     keywords = {accretion-discs, planets-disc interactions, protoplanetary discs, binaries:close, galaxies: active, galaxies:nuclei, Astrophysics - Astrophysics of Galaxies, Astrophysics - Earth and Planetary Astrophysics},
+         year = 2012,
+        month = sep,
+       volume = {425},
+       number = {1},
+        pages = {460-469},
+          doi = {10.1111/j.1365-2966.2012.21486.x},
+archivePrefix = {arXiv},
+       eprint = {1206.2309},
+ primaryClass = {astro-ph.GA},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2012MNRAS.425..460M},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+%%%% AGN BBH Complete
+
+%%%% Cluster BBH
+
+@ARTICLE{Banerjee:2021:MNRASa,
+       author = {{Banerjee}, Sambaran},
+        title = "{Stellar-mass black holes in young massive and open stellar clusters - V. comparisons with LIGO-Virgo merger rate densities}",
+      journal = {\mnras},
+     keywords = {gravitational waves, methods: numerical, black hole mergers, stars: kinematics and dynamics, globular clusters: general, open clusters and associations: general, Astrophysics - High Energy Astrophysical Phenomena, Astrophysics - Astrophysics of Galaxies},
+         year = 2021,
+        month = may,
+       volume = {503},
+       number = {3},
+        pages = {3371-3385},
+          doi = {10.1093/mnras/stab591},
+archivePrefix = {arXiv},
+       eprint = {2011.07000},
+ primaryClass = {astro-ph.HE},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2021MNRAS.503.3371B},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Zevin:2021:ApJ,
+       author = {{Zevin}, Michael and {Bavera}, Simone S. and {Berry}, Christopher P.~L. and {Kalogera}, Vicky and {Fragos}, Tassos and {Marchant}, Pablo and {Rodriguez}, Carl L. and {Antonini}, Fabio and {Holz}, Daniel E. and {Pankow}, Chris},
+        title = "{One Channel to Rule Them All? Constraining the Origins of Binary Black Holes Using Multiple Formation Pathways}",
+      journal = {\apj},
+     keywords = {Gravitational wave sources, Gravitational wave astronomy, Stellar mass black holes, LIGO, Stellar evolution, Compact objects, Bayesian statistics, 677, 675, 1611, 920, 1599, 288, 1900, Astrophysics - High Energy Astrophysical Phenomena, Astrophysics - Solar and Stellar Astrophysics, General Relativity and Quantum Cosmology},
+         year = 2021,
+        month = apr,
+       volume = {910},
+       number = {2},
+          eid = {152},
+        pages = {152},
+          doi = {10.3847/1538-4357/abe40e},
+archivePrefix = {arXiv},
+       eprint = {2011.10057},
+ primaryClass = {astro-ph.HE},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2021ApJ...910..152Z},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Mapelli:2021:arXiv,
+       author = {{Mapelli}, Michela and {Dall'Amico}, Marco and {Bouffanais}, Yann and {Giacobbo}, Nicola and et al.},
+        title = "{Hierarchical black hole mergers in young, globular and nuclear star clusters: the effect of metallicity, spin and cluster properties}",
+      journal = {arXiv e-prints},
+     keywords = {Astrophysics - High Energy Astrophysical Phenomena, Astrophysics - Astrophysics of Galaxies, Astrophysics - Solar and Stellar Astrophysics},
+         year = 2021,
+        month = mar,
+          eid = {arXiv:2103.05016},
+        pages = {arXiv:2103.05016},
+archivePrefix = {arXiv},
+       eprint = {2103.05016},
+ primaryClass = {astro-ph.HE},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2021arXiv210305016M},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Weatherford:2021:ApJL,
+       author = {{Weatherford}, Newlin C. and {Fragione}, Giacomo and {Kremer}, Kyle and {Chatterjee}, Sourav and {Ye}, Claire S. and {Rodriguez}, Carl L. and {Rasio}, Frederic A.},
+        title = "{Black Hole Mergers from Star Clusters with Top-heavy Initial Mass Functions}",
+      journal = {\apjl},
+     keywords = {Initial mass function, Stellar mass black holes, Globular star clusters, Stellar dynamics, N-body simulations, Gravitational wave sources, 796, 1611, 656, 1596, 1083, 677, Astrophysics - Astrophysics of Galaxies, Astrophysics - High Energy Astrophysical Phenomena},
+         year = 2021,
+        month = feb,
+       volume = {907},
+       number = {2},
+          eid = {L25},
+        pages = {L25},
+          doi = {10.3847/2041-8213/abd79c},
+archivePrefix = {arXiv},
+       eprint = {2101.02217},
+ primaryClass = {astro-ph.GA},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2021ApJ...907L..25W},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Bouffanais:2021:arXiv,
+       author = {{Bouffanais}, Yann and {Mapelli}, Michela and {Santoliquido}, Filippo and {Giacobbo}, Nicola and {Di Carlo}, Ugo N. and {Rastello}, Sara and {Artale}, M. Celeste and {Iorio}, Giuliano},
+        title = "{New insights on binary black hole formation channels after GWTC-2: young star clusters versus isolated binaries}",
+      journal = {arXiv e-prints},
+     keywords = {Astrophysics - High Energy Astrophysical Phenomena},
+         year = 2021,
+        month = feb,
+          eid = {arXiv:2102.12495},
+        pages = {arXiv:2102.12495},
+archivePrefix = {arXiv},
+       eprint = {2102.12495},
+ primaryClass = {astro-ph.HE},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2021arXiv210212495B},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Ballone:2021:MNRAS,
+       author = {{Ballone}, Alessandro and {Torniamenti}, Stefano and {Mapelli}, Michela and {Di Carlo}, Ugo N. and {Spera}, Mario and {Rastello}, Sara and {Gaspari}, Nicola and {Iorio}, Giuliano},
+        title = "{From hydrodynamics to N-body simulations of star clusters: mergers and rotation}",
+      journal = {\mnras},
+     keywords = {methods: numerical, stars: kinematics and dynamics, open clusters and associations: general, galaxies: star clusters: general, Astrophysics - Astrophysics of Galaxies, Astrophysics - Solar and Stellar Astrophysics},
+         year = 2021,
+        month = feb,
+       volume = {501},
+       number = {2},
+        pages = {2920-2933},
+          doi = {10.1093/mnras/staa3763},
+archivePrefix = {arXiv},
+       eprint = {2012.00767},
+ primaryClass = {astro-ph.GA},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2021MNRAS.501.2920B},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Kumamoto:2021:arXiv,
+       author = {{Kumamoto}, Jun and {Fujii}, Michiko S. and {Trani}, Alessandro A. and {Tanikawa}, Ataru},
+        title = "{Spin distribution of binary black holes formed in open clusters}",
+      journal = {arXiv e-prints},
+     keywords = {Astrophysics - High Energy Astrophysical Phenomena},
+         year = 2021,
+        month = feb,
+          eid = {arXiv:2102.09323},
+        pages = {arXiv:2102.09323},
+archivePrefix = {arXiv},
+       eprint = {2102.09323},
+ primaryClass = {astro-ph.HE},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2021arXiv210209323K},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Banerjee:2021:MNRASb,
+       author = {{Banerjee}, Sambaran},
+        title = "{Stellar-mass black holes in young massive and open stellar clusters - IV. Updated stellar-evolutionary and black hole spin models and comparisons with the LIGO-Virgo O1/O2 merger-event data}",
+      journal = {\mnras},
+     keywords = {gravitational waves, methods: numerical, stars: black holes, stars: kinematics and dynamics, globular clusters: general, open clusters and associations: general, Astrophysics - High Energy Astrophysical Phenomena, Astrophysics - Astrophysics of Galaxies},
+         year = 2021,
+        month = jan,
+       volume = {500},
+       number = {3},
+        pages = {3002-3026},
+          doi = {10.1093/mnras/staa2392},
+archivePrefix = {arXiv},
+       eprint = {2004.07382},
+ primaryClass = {astro-ph.HE},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2021MNRAS.500.3002B},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Martinez:2020:ApJ,
+       author = {{Martinez}, Miguel A.~S. and {Fragione}, Giacomo and {Kremer}, Kyle and {Chatterjee}, Sourav and et al.},
+        title = "{Black Hole Mergers from Hierarchical Triples in Dense Star Clusters}",
+      journal = {\apj},
+     keywords = {Astrophysical black holes, Black holes, Stellar mass black holes, Gravitational wave astronomy, Gravitational wave detectors, Gravitational wave sources, Gravitational waves, Globular star clusters, Star clusters, Trinary stars, 98, 162, 1611, 675, 676, 677, 678, 656, 1567, 1714, Astrophysics - Astrophysics of Galaxies},
+         year = 2020,
+        month = nov,
+       volume = {903},
+       number = {1},
+          eid = {67},
+        pages = {67},
+          doi = {10.3847/1538-4357/abba25},
+archivePrefix = {arXiv},
+       eprint = {2009.08468},
+ primaryClass = {astro-ph.GA},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2020ApJ...903...67M},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Romero-Shaw:2020:ApJL,
+       author = {{Romero-Shaw}, Isobel and {Lasky}, Paul D. and {Thrane}, Eric and {Calder{\'o}n Bustillo}, Juan},
+        title = "{GW190521: Orbital Eccentricity and Signatures of Dynamical Formation in a Binary Black Hole Merger Signal}",
+      journal = {\apjl},
+     keywords = {Black holes, Compact objects, High energy astrophysics, Dynamical evolution, Eccentricity, Gravitational wave astronomy, Gravitational waves, Gravitational wave sources, 162, 288, 739, 421, 441, 675, 678, 677, Astrophysics - High Energy Astrophysical Phenomena},
+         year = 2020,
+        month = nov,
+       volume = {903},
+       number = {1},
+          eid = {L5},
+        pages = {L5},
+          doi = {10.3847/2041-8213/abbe26},
+archivePrefix = {arXiv},
+       eprint = {2009.04771},
+ primaryClass = {astro-ph.HE},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2020ApJ...903L...5R},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Anagnostou:2020:PASA,
+       author = {{Anagnostou}, O. and {Trenti}, M. and {Melatos}, A.},
+        title = "{Dynamically formed black hole binaries: In-cluster versus ejected mergers}",
+      journal = {\pasa},
+     keywords = {black hole merger, globular cluster, gravitational wave, LIGO, Astrophysics - High Energy Astrophysical Phenomena},
+         year = 2020,
+        month = oct,
+       volume = {37},
+          eid = {e044},
+        pages = {e044},
+          doi = {10.1017/pasa.2020.35},
+archivePrefix = {arXiv},
+       eprint = {2009.00178},
+ primaryClass = {astro-ph.HE},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2020PASA...37...44A},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+%%%% BBH FROM POP3
+
+@ARTICLE{Toubiana:2021:PhRvL,
+       author = {{Toubiana}, Alexandre and {Sberna}, Laura and {Caputo}, Andrea and {Cusin}, Giulia and et al.},
+        title = "{Detectable Environmental Effects in GW190521-like Black-Hole Binaries with LISA}",
+      journal = {\prl},
+     keywords = {Astrophysics - High Energy Astrophysical Phenomena, General Relativity and Quantum Cosmology},
+         year = 2021,
+        month = mar,
+       volume = {126},
+       number = {10},
+          eid = {101105},
+        pages = {101105},
+          doi = {10.1103/PhysRevLett.126.101105},
+archivePrefix = {arXiv},
+       eprint = {2010.06056},
+ primaryClass = {astro-ph.HE},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2021PhRvL.126j1105T},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Farrell:2021:MNRAS,
+       author = {{Farrell}, Eoin and {Groh}, Jose H. and {Hirschi}, Raphael and {Murphy}, Laura and {Kaiser}, Etienne and {Ekstr{\"o}m}, Sylvia and {Georgy}, Cyril and {Meynet}, Georges},
+        title = "{Is GW190521 the merger of black holes from the first stellar generations?}",
+      journal = {\mnras},
+     keywords = {stars: evolution, stars: massive, stars: mass-loss, stars: black holes, Astrophysics - Solar and Stellar Astrophysics, Astrophysics - Cosmology and Nongalactic Astrophysics, Astrophysics - High Energy Astrophysical Phenomena},
+         year = 2021,
+        month = mar,
+       volume = {502},
+       number = {1},
+        pages = {L40-L44},
+          doi = {10.1093/mnrasl/slaa196},
+archivePrefix = {arXiv},
+       eprint = {2009.06585},
+ primaryClass = {astro-ph.SR},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2021MNRAS.502L..40F},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Safarzadeh:2020:ApJL,
+       author = {{Safarzadeh}, Mohammadtaher and {Haiman}, Zolt{\'a}n},
+        title = "{Formation of GW190521 via Gas Accretion onto Population III Stellar Black Hole Remnants Born in High-redshift Minihalos}",
+      journal = {\apjl},
+     keywords = {Gravitational waves, Black holes, LIGO, Bondi accretion, Population III stars, 678, 162, 920, 174, 1285, Astrophysics - High Energy Astrophysical Phenomena, General Relativity and Quantum Cosmology},
+         year = 2020,
+        month = nov,
+       volume = {903},
+       number = {1},
+          eid = {L21},
+        pages = {L21},
+          doi = {10.3847/2041-8213/abc253},
+archivePrefix = {arXiv},
+       eprint = {2009.09320},
+ primaryClass = {astro-ph.HE},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2020ApJ...903L..21S},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Liu:2020:MNRAS,
+       author = {{Liu}, Boyuan and {Bromm}, Volker},
+        title = "{Gravitational waves from Population III binary black holes formed by dynamical capture}",
+      journal = {\mnras},
+     keywords = {gravitational waves, dark ages, reionization, first stars, early Universe, Astrophysics - Cosmology and Nongalactic Astrophysics},
+         year = 2020,
+        month = jun,
+       volume = {495},
+       number = {2},
+        pages = {2475-2495},
+          doi = {10.1093/mnras/staa1362},
+archivePrefix = {arXiv},
+       eprint = {2003.00065},
+ primaryClass = {astro-ph.CO},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2020MNRAS.495.2475L},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Inayoshi:2017:MNRAS,
+       author = {{Inayoshi}, Kohei and {Hirai}, Ryosuke and {Kinugawa}, Tomoya and {Hotokezaka}, Kenta},
+        title = "{Formation pathway of Population III coalescing binary black holes through stable mass transfer}",
+      journal = {\mnras},
+     keywords = {black hole physics, gravitational waves, stars: Population III, Astrophysics - High Energy Astrophysical Phenomena, Astrophysics - Cosmology and Nongalactic Astrophysics},
+         year = 2017,
+        month = jul,
+       volume = {468},
+       number = {4},
+        pages = {5020-5032},
+          doi = {10.1093/mnras/stx757},
+archivePrefix = {arXiv},
+       eprint = {1701.04823},
+ primaryClass = {astro-ph.HE},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2017MNRAS.468.5020I},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+%%% SMBH FROM IMBH
+
+@ARTICLE{Askar:2021:MNRAS,
+       author = {{Askar}, Abbas and {Davies}, Melvyn B. and {Church}, Ross P.},
+        title = "{Formation of supermassive black holes in galactic nuclei - I. Delivering seed intermediate-mass black holes in massive stellar clusters}",
+      journal = {\mnras},
+     keywords = {gravitational waves, methods: numerical, quasars: supermassive black holes, galaxies: star clusters: general, Astrophysics - Astrophysics of Galaxies},
+         year = 2021,
+        month = apr,
+       volume = {502},
+       number = {2},
+        pages = {2682-2700},
+          doi = {10.1093/mnras/stab113},
+archivePrefix = {arXiv},
+       eprint = {2006.04922},
+ primaryClass = {astro-ph.GA},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2021MNRAS.502.2682A},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{ArcaSedda:2019:arXiv,
+       author = {{Arca Sedda}, Manuel and {Mastrobuono-Battisti}, Alessandra},
+        title = "{Mergers of globular clusters in the Galactic disc: intermediate mass black hole coalescence and implications for gravitational waves detection}",
+      journal = {arXiv e-prints},
+     keywords = {Astrophysics - Astrophysics of Galaxies, General Relativity and Quantum Cosmology},
+         year = 2019,
+        month = jun,
+          eid = {arXiv:1906.05864},
+        pages = {arXiv:1906.05864},
+archivePrefix = {arXiv},
+       eprint = {1906.05864},
+ primaryClass = {astro-ph.GA},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2019arXiv190605864A},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Amaro-Seoane:2007:CQGra,
+       author = {{Amaro-Seoane}, Pau and {Gair}, Jonathan R. and {Freitag}, Marc and {Miller}, M. Coleman and {Mandel}, Ilya and {Cutler}, Curt J. and {Babak}, Stanislav},
+        title = "{TOPICAL REVIEW: Intermediate and extreme mass-ratio inspirals{\textemdash}astrophysics, science applications and detection using LISA}",
+      journal = {Classical and Quantum Gravity},
+     keywords = {Astrophysics, General Relativity and Quantum Cosmology},
+         year = 2007,
+        month = sep,
+       volume = {24},
+       number = {17},
+        pages = {R113-R169},
+          doi = {10.1088/0264-9381/24/17/R01},
+archivePrefix = {arXiv},
+       eprint = {astro-ph/0703495},
+ primaryClass = {astro-ph},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2007CQGra..24R.113A},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Gurkan:2006:ApJL,
+       author = {{G{\"u}rkan}, M. Atakan and {Fregeau}, John M. and {Rasio}, Frederic A.},
+        title = "{Massive Black Hole Binaries from Collisional Runaways}",
+      journal = {\apjl},
+     keywords = {Black Hole Physics, Galaxy: Globular Clusters: General, Gravitational Waves, Methods: n-Body Simulations, Stellar Dynamics, Astrophysics},
+         year = 2006,
+        month = mar,
+       volume = {640},
+       number = {1},
+        pages = {L39-L42},
+          doi = {10.1086/503295},
+archivePrefix = {arXiv},
+       eprint = {astro-ph/0512642},
+ primaryClass = {astro-ph},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2006ApJ...640L..39G},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+
+%%%% Observational methods
+@ARTICLE{Peterson:2014:SSRv,
+       author = {{Peterson}, Bradley M.},
+        title = "{Measuring the Masses of Supermassive Black Holes}",
+      journal = {\ssr},
+     keywords = {Active galactic nuclei, Black hole, Reverberation mapping},
+         year = 2014,
+        month = sep,
+       volume = {183},
+       number = {1-4},
+        pages = {253-275},
+          doi = {10.1007/s11214-013-9987-4},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2014SSRv..183..253P},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Freire:2017:MNRAS,
+       author = {{Freire}, P.~C.~C. and {Ridolfi}, A. and {Kramer}, M. and {Jordan}, C. and et al.},
+        title = "{Long-term observations of the pulsars in 47 Tucanae - II. Proper motions, accelerations and jerks}",
+      journal = {\mnras},
+     keywords = {binaries: general, pulsars: individual: PSR J0024-7203C to J0024-7204ab, globular clusters: individual: 47 Tucanae, Astrophysics - High Energy Astrophysical Phenomena, Astrophysics - Solar and Stellar Astrophysics},
+         year = 2017,
+        month = oct,
+       volume = {471},
+       number = {1},
+        pages = {857-876},
+          doi = {10.1093/mnras/stx1533},
+archivePrefix = {arXiv},
+       eprint = {1706.04908},
+ primaryClass = {astro-ph.HE},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2017MNRAS.471..857F},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Kiziltan:2017:Natur,
+       author = {{K{\i}z{\i}ltan}, B{\"u}lent and {Baumgardt}, Holger and {Loeb}, Abraham},
+        title = "{An intermediate-mass black hole in the centre of the globular cluster 47 Tucanae}",
+      journal = {\nat},
+     keywords = {Astrophysics - Astrophysics of Galaxies, Astrophysics - Instrumentation and Methods for Astrophysics, Astrophysics - Solar and Stellar Astrophysics, Statistics - Applications},
+         year = 2017,
+        month = feb,
+       volume = {542},
+       number = {7640},
+        pages = {203-205},
+          doi = {10.1038/nature21361},
+archivePrefix = {arXiv},
+       eprint = {1702.02149},
+ primaryClass = {astro-ph.GA},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2017Natur.542..203K},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Ridolfi:2016:MNRAS,
+       author = {{Ridolfi}, A. and {Freire}, P.~C.~C. and {Torne}, P. and {Heinke}, C.~O. and et al.},
+        title = "{Long-term observations of the pulsars in 47 Tucanae - I. A study of four elusive binary systems}",
+      journal = {\mnras},
+     keywords = {binaries: general, pulsars: individual: PSR J0024-7204P, pulsars: individual: PSR J0024-7204V, pulsars: individual: PSR J0024-7204W, pulsars: individual: PSR J0024-7201X, globular clusters: individual: 47 Tucanae, Astrophysics - High Energy Astrophysical Phenomena},
+         year = 2016,
+        month = nov,
+       volume = {462},
+       number = {3},
+        pages = {2918-2933},
+          doi = {10.1093/mnras/stw1850},
+archivePrefix = {arXiv},
+       eprint = {1607.07248},
+ primaryClass = {astro-ph.HE},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2016MNRAS.462.2918R},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Schodel:2002:Natur,
+       author = {{Sch{\"o}del}, R. and {Ott}, T. and {Genzel}, R. and {Hofmann}, R. and et al.},
+        title = "{A star in a 15.2-year orbit around the supermassive black hole at the centre of the Milky Way}",
+      journal = {\nat},
+     keywords = {Astrophysics},
+         year = 2002,
+        month = oct,
+       volume = {419},
+       number = {6908},
+        pages = {694-696},
+          doi = {10.1038/nature01121},
+archivePrefix = {arXiv},
+       eprint = {astro-ph/0210426},
+ primaryClass = {astro-ph},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2002Natur.419..694S},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Kaaret:2017:ARA&A,
+       author = {{Kaaret}, Philip and {Feng}, Hua and {Roberts}, Timothy P.},
+        title = "{Ultraluminous X-Ray Sources}",
+      journal = {\araa},
+     keywords = {Astrophysics - High Energy Astrophysical Phenomena},
+         year = 2017,
+        month = aug,
+       volume = {55},
+       number = {1},
+        pages = {303-341},
+          doi = {10.1146/annurev-astro-091916-055259},
+archivePrefix = {arXiv},
+       eprint = {1703.10728},
+ primaryClass = {astro-ph.HE},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2017ARA&A..55..303K},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+
+@ARTICLE{Israel:2017:MNRAS,
+       author = {{Israel}, G.~L. and {Papitto}, A. and {Esposito}, P. and {Stella}, L. and et al.},
+        title = "{Discovery of a 0.42-s pulsar in the ultraluminous X-ray source NGC 7793 P13}",
+      journal = {\mnras},
+     keywords = {galaxies: individual: NGC 7793, X-rays: binaries, X-rays: individual: CXOU J235750.9, 323726 (XMMU J235751.1-323725, NGC 7793 P13), Astrophysics - High Energy Astrophysical Phenomena},
+         year = 2017,
+        month = mar,
+       volume = {466},
+       number = {1},
+        pages = {L48-L52},
+          doi = {10.1093/mnrasl/slw218},
+archivePrefix = {arXiv},
+       eprint = {1609.06538},
+ primaryClass = {astro-ph.HE},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2017MNRAS.466L..48I},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{RodriguezCastillo:2020:ApJ,
+       author = {{Rodr{\'\i}guez Castillo}, G.~A. and {Israel}, G.~L. and {Belfiore}, A. and {Bernardini}, F. and et al.},
+        title = "{Discovery of a 2.8 s Pulsar in a 2 Day Orbit High-mass X-Ray Binary Powering the Ultraluminous X-Ray Source ULX-7 in M51}",
+      journal = {\apj},
+     keywords = {Neutron stars, Stellar accretion, X-ray sources, Stellar magnetic fields, X-ray binary stars, Pulsars, 1108, 1578, 1822, 1610, 1811, 1306, Astrophysics - High Energy Astrophysical Phenomena},
+         year = 2020,
+        month = may,
+       volume = {895},
+       number = {1},
+          eid = {60},
+        pages = {60},
+          doi = {10.3847/1538-4357/ab8a44},
+archivePrefix = {arXiv},
+       eprint = {1906.04791},
+ primaryClass = {astro-ph.HE},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2020ApJ...895...60R},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Wevers:2017:MNRAS,
+       author = {{Wevers}, Thomas and {van Velzen}, Sjoert and {Jonker}, Peter G. and {Stone}, Nicholas C. and {Hung}, Tiara and {Onori}, Francesca and {Gezari}, Suvi and {Blagorodnova}, Nadejda},
+        title = "{Black hole masses of tidal disruption event host galaxies}",
+      journal = {\mnras},
+     keywords = {accretion, accretion discs, galaxies: bulges, galaxies: fundamental parameters, galaxies: kinematics and dynamics, galaxies: nuclei, Astrophysics - Astrophysics of Galaxies, Astrophysics - High Energy Astrophysical Phenomena},
+         year = 2017,
+        month = oct,
+       volume = {471},
+       number = {2},
+        pages = {1694-1708},
+          doi = {10.1093/mnras/stx1703},
+archivePrefix = {arXiv},
+       eprint = {1706.08965},
+ primaryClass = {astro-ph.GA},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2017MNRAS.471.1694W},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+
+
+%%% Sensitivity
+
+@ARTICLE{Whitcomb:2008:CQGra,
+       author = {{Whitcomb}, Stanley E.},
+        title = "{Ground-based gravitational-wave detection: now and future}",
+      journal = {Classical and Quantum Gravity},
+         year = 2008,
+        month = jun,
+       volume = {25},
+       number = {11},
+          eid = {114013},
+        pages = {114013},
+          doi = {10.1088/0264-9381/25/11/114013},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2008CQGra..25k4013W},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+
+@ARTICLE{Martynov:2016:PhRvD,
+       author = {{Martynov}, D.~V. and {Hall}, E.~D. and {Abbott}, B.~P. and {Abbott}, R. and et al.},
+        title = "{Sensitivity of the Advanced LIGO detectors at the beginning of gravitational wave astronomy}",
+      journal = {\prd},
+     keywords = {Astrophysics - Instrumentation and Methods for Astrophysics, Physics - Instrumentation and Detectors},
+         year = 2016,
+        month = jun,
+       volume = {93},
+       number = {11},
+          eid = {112004},
+        pages = {112004},
+          doi = {10.1103/PhysRevD.93.112004},
+archivePrefix = {arXiv},
+       eprint = {1604.00439},
+ primaryClass = {astro-ph.IM},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2016PhRvD..93k2004M},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{LIGOScientificCollaboration:2015:CQGra,
+       author = {{LIGO Scientific Collaboration} and {Aasi}, J. and {Abbott}, B.~P. and {Abbott}, R. and et al.},
+        title = "{Advanced LIGO}",
+      journal = {Classical and Quantum Gravity},
+     keywords = {General Relativity and Quantum Cosmology, Astrophysics - Instrumentation and Methods for Astrophysics, Physics - Instrumentation and Detectors},
+         year = 2015,
+        month = apr,
+       volume = {32},
+       number = {7},
+          eid = {074001},
+        pages = {074001},
+          doi = {10.1088/0264-9381/32/7/074001},
+archivePrefix = {arXiv},
+       eprint = {1411.4547},
+ primaryClass = {gr-qc},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2015CQGra..32g4001L},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+
+@article{Moore_2014,
+	doi = {10.1088/0264-9381/32/1/015014},
+	url = {https://doi.org/10.1088/0264-9381/32/1/015014},
+	year = 2014,
+	month = {dec},
+	publisher = {{IOP} Publishing},
+	volume = {32},
+	number = {1},
+	pages = {015014},
+	author = {C J Moore and R H Cole and C P L Berry},
+	title = {Gravitational-wave sensitivity curves},
+	journal = {Classical and Quantum Gravity},
+	abstract = {There are several common conventions in use by the gravitational-wave community to describe the amplitude of sources and the sensitivity of detectors. These are frequently confused. We outline the merits of and differences between the various quantities used for parameterizing noise curves and characterizing gravitational-wave amplitudes. We conclude by producing plots that consistently compare different detectors. Similar figures can be generated on-line for general use at http://rhcole.com/apps/GWplotter.}
+}
+
+@ARTICLE{Lu:2019:PhRvD,
+       author = {{Lu}, Xiao-Yu and {Tan}, Yu-Jie and {Shao}, Cheng-Gang},
+        title = "{Sensitivity functions for space-borne gravitational wave detectors}",
+      journal = {\prd},
+     keywords = {General Relativity and Quantum Cosmology},
+         year = 2019,
+        month = aug,
+       volume = {100},
+       number = {4},
+          eid = {044042},
+        pages = {044042},
+          doi = {10.1103/PhysRevD.100.044042},
+archivePrefix = {arXiv},
+       eprint = {2007.03400},
+ primaryClass = {gr-qc},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2019PhRvD.100d4042L},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+%%% PPISN 
+@ARTICLE{Heger:2002:ApJ,
+       author = {{Heger}, A. and {Woosley}, S.~E.},
+        title = "{The Nucleosynthetic Signature of Population III}",
+      journal = {\apj},
+     keywords = {Nuclear Reactions, Nucleosynthesis, Abundances, Stars: Early-Type, Stars: Supernovae: General, Astrophysics},
+         year = 2002,
+        month = mar,
+       volume = {567},
+       number = {1},
+        pages = {532-543},
+          doi = {10.1086/338487},
+archivePrefix = {arXiv},
+       eprint = {astro-ph/0107037},
+ primaryClass = {astro-ph},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2002ApJ...567..532H},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Woosley:2021:arXiv,
+       author = {{Woosley}, S.~E. and {Heger}, Alexander},
+        title = "{The Pair-Instability Mass Gap for Black Holes}",
+      journal = {arXiv e-prints},
+     keywords = {Astrophysics - Solar and Stellar Astrophysics, Astrophysics - High Energy Astrophysical Phenomena, General Relativity and Quantum Cosmology, Nuclear Theory},
+         year = 2021,
+        month = mar,
+          eid = {arXiv:2103.07933},
+        pages = {arXiv:2103.07933},
+archivePrefix = {arXiv},
+       eprint = {2103.07933},
+ primaryClass = {astro-ph.SR},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2021arXiv210307933W},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
 
