@@ -28,3 +28,5 @@
 !/data/candidates.csv
 data/candidates.csv
 images/known_events.png
+*.json
+*__pycache__
