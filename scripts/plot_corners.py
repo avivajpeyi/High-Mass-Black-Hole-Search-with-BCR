@@ -33,9 +33,14 @@ PARAMS = dict(
 
 
 def plot_result_corner(r, parameters, fname, prior=None):
+
+    plt_range = [PARAMS[p]["range"] for p in parameters]
+    if prior:
+        plt_range = [(prior[p].minimum, prior[p].maximum) for p in parameters]
+
     fig = r.plot_corner(
         parameters=parameters, priors=prior,
-        range=[PARAMS[p]["range"] for p in parameters],
+        range=plt_range,
         labels=[PARAMS[p]["latex_label"] for p in parameters],
         color="tab:orange", label_kwargs=dict(fontsize=35, labelpad=12), labelpad=0.05,
         title_kwargs=dict(fontsize=25, pad=12), save=False
