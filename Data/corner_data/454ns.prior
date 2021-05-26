@@ -1,0 +1,20 @@
+# prior for templates with a duration of less than 0.454s
+
+chirp_mass = Uniform(name='chirp_mass', minimum=7, maximum=180, unit='$M_{\odot}$', boundary='reflective')
+mass_ratio = Uniform(name='mass_ratio', minimum=0.01, maximum=1, boundary='reflective')
+total_mass = Constraint(name='total_mass', minimum=50, maximum=500)
+# this sets m1(25.4, 492.3) and m2(1.1, 204.6)
+
+# aligned spin
+chi_1 = bilby.gw.prior.AlignedSpin(a_prior=Uniform(minimum=0, maximum=1.0), z_prior=Uniform(minimum=-1, maximum=1), boundary='reflective', name='chi_1')
+chi_2 = bilby.gw.prior.AlignedSpin(a_prior=Uniform(minimum=0, maximum=1.0), z_prior=Uniform(minimum=-1, maximum=1), boundary='reflective', name='chi_2')
+
+luminosity_distance = bilby.gw.prior.UniformComovingVolume(name='luminosity_distance', minimum=1e2, maximum=5e3, unit='Mpc', boundary='reflective')
+dec = Cosine(name='dec', boundary='reflective')
+ra = Uniform(name='ra', minimum=0, maximum=2 * np.pi, boundary='periodic')
+theta_jn = Sine(name='theta_jn', boundary='reflective')
+psi = Uniform(name='psi', minimum=0, maximum=np.pi, boundary='periodic')
+phase = Uniform(name='phase', minimum=0, maximum=2 * np.pi, boundary='periodic')
+
+
+# NOTE: these are LAB FRAME priorsa
