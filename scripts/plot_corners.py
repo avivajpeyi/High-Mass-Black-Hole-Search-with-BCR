@@ -14,6 +14,7 @@ set_matplotlib_style_settings()
 PARAMS = dict(
     chi_eff=dict(latex_label=r"$\mathbf{\chi_{eff}}$", range=(-0.8, 0.8)),
     chi_p=dict(latex_label=r"$\mathbf{\chi_{p}}$", range=(0, 1)),
+    a_1=dict(latex_label=r"$\mathbf{a_1}$", range=(0, 1)),
     chi_1=dict(latex_label=r"$\mathbf{\chi_1}$", range=(-1, 1)),
     cos_tilt_1=dict(latex_label=r"$\mathbf{\cos(t1)}$", range=(-1, 1)),
     cos_tilt_2=dict(latex_label=r"$\mathbf{\cos(t2)}$", range=(-1, 1)),
@@ -61,7 +62,7 @@ def main():
     )
     plot_result_corner(
         r,
-        parameters=["chirp_mass", "mass_ratio", "chi_1", "luminosity_distance"],
+        parameters=["chirp_mass", "mass_ratio", "a_1", "luminosity_distance"],
         fname="images/170222_prior_posterior.png",
         prior=prior
 
