@@ -5,29 +5,54 @@ Script to plot "170222_prior_posterior.png" and "170222_source_posterior.png"
 import bilby
 import numpy as np
 from settings import set_matplotlib_style_settings
+import matplotlib
+import matplotlib.pyplot as plt
+
+plt.rc('text', usetex=True)
+plt.rc('text.latex', preamble=r'\usepackage{amsmath}')
+
 
 RES_PATH = "data/corner_data/170222_result.json"
 PRIOR = "data/corner_data/454ns.prior"
 
 set_matplotlib_style_settings()
 
+# PARAMS = dict(
+#     chi_eff=dict(latex_label=r"$\pmb{\chi_{eff}}$", range=(-0.8, 0.8)),
+#     chi_p=dict(latex_label=r"$\pmb{\chi_{p}}$", range=(0, 1)),
+#     a_1=dict(latex_label=r"$\pmb{a_1}$", range=(0, 1)),
+#     chi_1=dict(latex_label=r"$\pmb{\chi_1}$", range=(-1, 1)),
+#     cos_tilt_1=dict(latex_label=r"$\pmb{\cos(t1)}$", range=(-1, 1)),
+#     cos_tilt_2=dict(latex_label=r"$\pmb{\cos(t2)}$", range=(-1, 1)),
+#     cos_theta_12=dict(latex_label=r"$\pmb{\cos \theta_{12}}$", range=(-1, 1)),
+#     tilt_1=dict(latex_label=r"$tilt_{1}$", range=(0, np.pi)),
+#     remnant_kick_mag=dict(latex_label=r"$|\vec{v}_k|\ $km/s", range=(0, 3000)),
+#     chirp_mass=dict(latex_label=r"$\pmb{M_{c}}$", range=(20, 80)),
+#     mass_1_source=dict(latex_label=r"$\pmb{m_1^{}\ [M_\odot]}$", range=(25, 80)),
+#     mass_2_source=dict(latex_label=r"$\pmb{m_2^{}\ [M_\odot]}$", range=(15, 60)),
+#     luminosity_distance=dict(latex_label="$\pmb{d_L}\ \\bm{[Mpc]}$", range=(50, 4000)),
+#     log_snr=dict(latex_label="$\\rm{log}_{10}\ \\rho$)", range=(-1, 3)),
+#     redshift=dict(latex_label=r"$\pmb{z}$", range=(0, 1)),
+#     mass_ratio=dict(latex_label=r"$\pmb{q}$", range=(0, 1)),
+# )
+
 PARAMS = dict(
-    chi_eff=dict(latex_label=r"$\mathbf{\chi_{eff}}$", range=(-0.8, 0.8)),
-    chi_p=dict(latex_label=r"$\mathbf{\chi_{p}}$", range=(0, 1)),
-    a_1=dict(latex_label=r"$\mathbf{a_1}$", range=(0, 1)),
-    chi_1=dict(latex_label=r"$\mathbf{\chi_1}$", range=(-1, 1)),
-    cos_tilt_1=dict(latex_label=r"$\mathbf{\cos(t1)}$", range=(-1, 1)),
-    cos_tilt_2=dict(latex_label=r"$\mathbf{\cos(t2)}$", range=(-1, 1)),
-    cos_theta_12=dict(latex_label=r"$\mathbf{\cos \theta_{12}}$", range=(-1, 1)),
+    chi_eff=dict(latex_label=r"${\chi_{eff}}$", range=(-0.8, 0.8)),
+    chi_p=dict(latex_label=r"${\chi_{p}}$", range=(0, 1)),
+    a_1=dict(latex_label=r"${a_1}$", range=(0, 1)),
+    chi_1=dict(latex_label=r"${\chi_1}$", range=(-1, 1)),
+    cos_tilt_1=dict(latex_label=r"${\cos(t1)}$", range=(-1, 1)),
+    cos_tilt_2=dict(latex_label=r"${\cos(t2)}$", range=(-1, 1)),
+    cos_theta_12=dict(latex_label=r"${\cos \theta_{12}}$", range=(-1, 1)),
     tilt_1=dict(latex_label=r"$tilt_{1}$", range=(0, np.pi)),
     remnant_kick_mag=dict(latex_label=r"$|\vec{v}_k|\ $km/s", range=(0, 3000)),
-    chirp_mass=dict(latex_label=r"$\mathbf{M_{c}}$", range=(20, 80)),
-    mass_1_source=dict(latex_label=r"$\mathbf{m_1^{source}}$", range=(25, 80)),
-    mass_2_source=dict(latex_label=r"$\mathbf{m_2^{source}}$", range=(15, 60)),
-    luminosity_distance=dict(latex_label="$\mathbf{d_L}$", range=(50, 4000)),
+    chirp_mass=dict(latex_label=r"${M_{c}}$", range=(20, 80)),
+    mass_1_source=dict(latex_label=r"${m_1^{}\ [M_\odot]}$", range=(25, 80)),
+    mass_2_source=dict(latex_label=r"${m_2^{}\ [M_\odot]}$", range=(15, 60)),
+    luminosity_distance=dict(latex_label="${d_L}\ {[Mpc]}$", range=(50, 4000)),
     log_snr=dict(latex_label="$\\rm{log}_{10}\ \\rho$)", range=(-1, 3)),
-    redshift=dict(latex_label=r"$\mathbf{z}$", range=(0, 1)),
-    mass_ratio=dict(latex_label=r"$\mathbf{q}$", range=(0, 1)),
+    redshift=dict(latex_label=r"${z}$", range=(0, 1)),
+    mass_ratio=dict(latex_label=r"${q}$", range=(0, 1)),
 )
 
 
