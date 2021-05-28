@@ -21,7 +21,7 @@ PARAMS = dict(
     cos_theta_12=dict(latex_label=r"$\mathbf{\cos \theta_{12}}$", range=(-1, 1)),
     tilt_1=dict(latex_label=r"$tilt_{1}$", range=(0, np.pi)),
     remnant_kick_mag=dict(latex_label=r"$|\vec{v}_k|\ $km/s", range=(0, 3000)),
-    chirp_mass=dict(latex_label=r"$\mathbf{M_{c}}$", range=(5, 100)),
+    chirp_mass=dict(latex_label=r"$\mathbf{M_{c}}$", range=(20, 80)),
     mass_1_source=dict(latex_label=r"$\mathbf{m_1^{source}}$", range=(25, 80)),
     mass_2_source=dict(latex_label=r"$\mathbf{m_2^{source}}$", range=(15, 60)),
     luminosity_distance=dict(latex_label="$\mathbf{d_L}$", range=(50, 4000)),
@@ -31,10 +31,7 @@ PARAMS = dict(
 )
 
 
-
-
 def plot_result_corner(r, parameters, fname, prior=None):
-
     plt_range = [PARAMS[p]["range"] for p in parameters]
     if prior:
         plt_range = [(prior[p].minimum, prior[p].maximum) for p in parameters]
@@ -64,7 +61,7 @@ def main():
         r,
         parameters=["chirp_mass", "mass_ratio", "a_1", "luminosity_distance"],
         fname="images/170222_prior_posterior.png",
-        prior=prior
+        prior=None
 
     )
 

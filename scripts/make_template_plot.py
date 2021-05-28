@@ -98,7 +98,7 @@ def plot_template_bank():
         dict(
             data=template_bank,
             plot_kwargs=dict(
-                color="pink", s=0.2, marker=".", alpha=0.2, label="Template Bank"
+                color="pink", s=0.2, marker=".", alpha=0.2, label="Templates"
             ),
         ),
         dict(
@@ -164,7 +164,7 @@ def plot_template_bank():
         )
 
     bank_patch = ax_m1m2.scatter(
-        [], [], label="Template Bank", marker=".", color="pink"
+        [], [], label="Templates", marker=".", color="pink"
     )
     (prior_patch,) = ax_m1m2.plot([], [], label="Prior", linestyle="--", color="k")
     fg_patch = ax_m1m2.scatter(
