@@ -1,0 +1,41 @@
+
+\subsection{Formalism}
+
+Bayes' theorem states that the posterior probability distribution $p(\parameters|d,\mathcal{H})$ for data $d$ and a vector of parameters \parameters that describe a model which quantifies a hypothesis $\mathcal{H}$, is given by
+\begin{equation}
+p(\parameters|d,\mathcal{H}) = \frac{\mathcal{L}(d|\parameters, \mathcal{H}) \ \pi(\parameters | \mathcal{H})}{\mathcal{Z}(d|\mathcal{H})}\ , 
+\end{equation}
+where $\mathcal{L}(d|\parameters, \mathcal{H})$ is the likelihood of the data given the parameters \parameters and the hypothesis, $\pi(\parameters | \mathcal{H})$ is the prior probability of the parameters, and finally,
+\begin{equation}
+    \mathcal{Z}(d|\mathcal{H}) = \int\limits_{\parameters} \ \mathcal{L}(d|\parameters,\mathcal{H}) \ \pi(\parameters | \mathcal{H}) \ d\parameters\ ,
+\end{equation} is the likelihood after marginalizing over the parameters \parameters.  To compare two hypotheses $\mathcal{H}_A$ and $\mathcal{H}_B$ through Bayes' theorem one can calculate an odds-ratio
+\begin{equation}
+    \mathcal{O}^A_B = \frac{\mathcal{Z}^A\ \pi^A}{\mathcal{Z}^B\ \pi^B}\ ,
+\end{equation}
+where  $\{\pi^A, \pi^B\}$ are the prior-odds for each hypothesis and $\{\mathcal{Z}^A, \mathcal{Z}^B\}$ are shorthand for the evidences $\{\mathcal{Z}(d|\mathcal{H}_A), \mathcal{Z}(d|\mathcal{H}_B)\}$. The odds-ratio can quantify which of the two hypotheses is more likely. For example, if $\mathcal{O}^A_B >> 1$, then the odds are in favor of the $\mathcal{H}_A$ hypotheses. 
+
+The \bcrodds quantity is a Bayesian odds-ratio like the above, of a coherent signal hypotheses $\mathcal{H}_S$ and an incoherent instrumental feature hypothesis $\mathcal{H}_I$ (the null-hypotheses) for a network of $D$ detectors. $\mathcal{H_I}$ states that each detector $i$ has either pure stationary Gaussian noise $\mathcal{H}_N$ or Gaussian noise and an incoherent noise transient (glitch) $\mathcal{H}_G$. Taking $Z^S$, $Z^G_i$ and $Z^N_i$ as the Bayesian evidences (defined in Appendix~\ref{sec:bayesianEvidEval}) for $\mathcal{H}_S$, $\mathcal{H}_N$, and $\mathcal{H}_G$, \bcrodds is given by
+\begin{equation}
+\label{eq:origbcr}
+\bcrodds = \frac{\pi^S Z^S}{\prod\limits^D_{i=1} \ [\pi^G Z^G_i + (1-\pi^G)Z^N_i]}\ ,
+\end{equation}
+
+where $\pi^S$ and $\pi^G$ are the prior-odds of obtaining a signal or a glitch from a stretch of data. The prior-odds can be defined more explicitly as 
+\begin{itemize}
+    \item $\pi^S=\pi(\mathcal{H}_S)/\pi(\mathcal{H}_I)$, the prior-odds for obtaining a coherent signal versus an incoherent instrumental feature.
+    \item $\pi^G=\pi(\mathcal{H}_G| \mathcal{H}_I)$, the probability of obtaining a glitch assuming there is an incoherent instrumental feature.
+\end{itemize}
+
+
+
+When $\mathcal{H}_S$ and $\mathcal{H}_I$ are precisely described and the prior-odds represent our true beliefs, the \bcrodds is a Bayesian odds-ratio. As an odds-ratio, the \bcrodds is the optimal discriminator between coherent signals and incoherent instrumental features. However, as the priors-odds are unknown, we \textit{tune} values for prior-odds, $\hat{\pi}^S$ and $\hat{\pi}^G$, to estimate \bcrodds with a ranking statistic, \bcr, given by
+\et{I would remove everything in this subsection before this point. Save it for your dissertation if you want, but I don't think we need to review Bayesian basics here. Instead, just begin by saying that we implement the BCR, which is given by Eq.~\ref{eq:bcr} with suitable references to the previous BCR papers. The motivation for the BCR can be summarised in a single sentence.}
+\begin{equation}
+\label{eq:bcr}
+\bcr = \frac{\hat{\pi}^S Z^S}{\prod\limits^D_{i=1} \ [\hat{\pi}^G Z^G_i + (1-\hat{\pi}^G)Z^N_i]}\ .
+\end{equation}
+\et{Rewrite the remaining paragraphs to explain that how the BCR relates to the odds with just a few sentences, avoiding equations.}
+In the limit where the estimated prior-odds equal the true prior-odds, $\bcr\to\bcrodds$. However, as we are uncertain what the true prior-odds are, it is invalid to use the \bcr as an odds-ratio to make an informed decision about whether a candidate is from an astrophysical or terrestrial source. Instead of interpreting the \bcr as a Bayesian odds-ratio, it can be used as a ranking statistic. Using the \bcr as a ranking statistic we can obtain a frequentist significance of a candidate \bcr-value measured against a background \bcr distribution. 
+
+When using the \bcr as a detection statistic, the prior-odds are empirically tuned to maximize the separation between the \bcr distribution of the background (expected to favor the $\mathcal{H}_I$ hypothesis) and the \bcr distribution of artificially manufactured simulated signals (expected to favor the $\mathcal{H}_S$ hypothesis). Increasing the separation between the two distributions can improve ability of the \bcr to discriminate candidate events as coherent signals or incoherent instrumental features. The tuning process is further described in Appendix~\ref{apdx:tuning-prior-odds}. 
+

@@ -79,6 +79,9 @@
 \newcommand{\fancytext}[1]{{\relax\ifmmode#1\else $#1$\fi}\xspace}
 \newcommand{\mathcmd}[1]{{\sc \relax\ifmmode#1\else $#1$\fi}\xspace}
 \newcommand{\bcr}{\mathcmd{\rho_\text{BCR}}}
+\newcommand{\bgrdbcr}{\mathcmd{\rho_\text{BCR}^\textit{b}}}
+\newcommand{\candbcr}{\mathcmd{\rho_\text{BCR}^\textit{c}}}
+
 \newcommand{\bcrodds}{\mathcmd{\mathcal{O}_{\mathrm{BCR}}}}
 \newcommand{\pycbcstat}{\mathcmd{\rho_\text{PC}}}
 \newcommand{\snr}{\mathcmd{\rho}}
@@ -88,11 +91,11 @@
 \newcommand{\parameters}{\mathcmd{\vec{\theta}}}
 \newcommand{\prior}{\mathcmd{\pi(\parameters)}}
 \newcommand{\template}{\mathcmd{\mu(\parameters)}}
-\newcommand{\fap}{\mathcmd{\text{FAP}}}
+\newcommand{\fap}{\mathcmd{p_N}}
 
 \newcommand{\pastro}{\fancytext{p_\text{astro}}}
-\newcommand{\pastrobcr}{\fancytext{p_\text{astro}^{\text{BCR}}}}
-\newcommand{\untunedpastrobcr}{\fancytext{p_\text{astro}^{\text{BCR}\prime}}}
+\newcommand{\pastrobcr}{\fancytext{p_\text{S}}}
+\newcommand{\untunedpastrobcr}{\fancytext{p_\text{S}^{\prime}}}
 \newcommand{\pastroext}{\fancytext{p_\text{astro}^{\text{ext}}}}
 \newcommand{\pval}{\fancytext{\text{p-value}}}
 % Table settings
@@ -132,7 +135,7 @@
 \begin{document}
 
 
-\title{A search for intermediate mass black holes mergers in the \\second LIGO--Virgo observing run with the Bayes Coherence Ratio}
+\title{A search for intermediate-mass black holes mergers in the \\second LIGO--Virgo observing run with the Bayes Coherence Ratio}
 
 \input{authors}
 
@@ -144,114 +147,59 @@
 The detection of an intermediate-mass black hole population ($10^2-10^6$~\msun) will provide clues to their formation environments (e.g., disks of active galactic nuclei, globular clusters) and illuminate a potential pathway to produce supermassive black holes. Ground-based gravitational-wave detectors are in principle sensitive to such mergers and have been used to detect one $142^{+28}_{-16}\ \msun$ intermediate-mass black hole formation event. Ground-based detector data contain numerous short-duration noise transients that can mimic the gravitational-wave signals from merging intermediate-mass black holes, limiting the sensitivity of searches. Here we demonstrate a Bayesian-inspired ranking statistic to detect binary black hole mergers with a total mass $\gtrsim55$~\msun. We use this statistic to identify candidate events with total masses $>55$~\msun using data from LIGO's second observing run. Our analysis does not yield evidence for new intermediate-mass black holes. However, we find support for some stellar-mass binary black holes not reported in the first LIGO--Virgo gravitational-wave transient catalog, GWTC-1.
 \end{abstract}
 
-% \avi{Say why it improves on prev techniques}
 
 
 \maketitle
 
 %%%%%%---SECTIONS---%%%%%%%%%%%%
 \section{Introduction}
-Since the 1970s, there has been a steady accumulation of evidence for stellar mass ($M_\text{BH} < 10^{2} \ \msun$) and supermassive black holes ($M_\text{BH} > 10^{6} \ \msun$)~\cite{Webster:1972:Natur, Balick:1974:ApJ, Ghez:1998:ApJ, Genzel:2010:RvMP, Abbott:2019:PhRvX, EventHorizonTelescopeCollaboration:2019:ApJL, Abbott:2020:arXiv}.  However, there is a deficiency of observational evidence for black holes in the intermediate-mass range $10^{2} - 10^{6}\ \msun$. The discovery of an intermediate-mass black hole population will bridge this observational gap, probe intermediate-mass formation environments (e.g. accretion disks of active galactic nuclei~\cite{Tagawa:2021:ApJ, Li:2021:arXiv, Samsing:2020:arXiv, Tagawa:2020:ApJ, Ishibashi:2020:A&A, Grobner:2020:A&A, Yang:2019:PhRvL, McKernan:2019:ApJL, Yang:2019:ApJ, McKernan:2018:ApJ, Bellovary:2016:ApJL, McKernan:2014:MNRAS, McKernan:2012:MNRAS}, the centers of dense stellar clusters~\cite{Banerjee:2021:MNRASa, Zevin:2021:ApJ,Mapelli:2021:arXiv,Weatherford:2021:ApJL, Bouffanais:2021:arXiv, Ballone:2021:MNRAS, Kumamoto:2021:arXiv, Banerjee:2021:MNRASb, Martinez:2020:ApJ, Romero-Shaw:2020:ApJL, Anagnostou:2020:PASA}, Population-III stars~\cite{Toubiana:2021:PhRvL, Farrell:2021:MNRAS, Safarzadeh:2020:ApJL, Liu:2020:MNRAS, Inayoshi:2017:MNRAS}), and illuminate our understanding of supermassive black hole formation~\cite{Askar:2021:MNRAS, ArcaSedda:2019:arXiv, Amaro-Seoane:2007:CQGra, Gurkan:2006:ApJL}. 
 
-A variety of techniques have been employed to search for $10^{4} - 10^{6}\ \msun$ intermediate mass candidates including reverberation mapping~\cite{Peterson:2014:SSRv}, direct kinematic measurements~\cite{Schodel:2002:Natur, Kiziltan:2017:Natur}, applying macroscopic galaxy to black hole mass scaling relations ($M_{BH}$-$\sigma$ and $M_{BH}$-L relations)~\cite{Graham:2013:ApJ, Wevers:2017:MNRAS}, studying  X-ray luminosity and spectra~\cite{Greene:2004:ApJ, Lin:2020:ApJL}, gravitational lensing of gamma-ray burst light curves~\cite{paynter_evidence_2021}, and others~\cite{Greene:2020:ARA&A, Koliopanos:2017:mbhe, Mezcua:2017:IJMPD}). However, these observational techniques are challenging to use for intermediate mass black holes due to their small sphere of influence compared to super-massive black holes~\cite{Mezcua:2017:IJMPD}. Additionally, some IMBH candidates can be attributed to sources other than intermediate-mass black holes (e.g., clusters of stellar-mass black holes~\cite{Ridolfi:2016:MNRAS, Freire:2017:MNRAS}, anisotropic emission from neutron stars~\cite{Israel:2017:MNRAS, RodriguezCastillo:2020:ApJ}), while others have high uncertainties intrinsic to the observational techniques~\cite{Greene:2020:ARA&A}. 
-\et{Consider replacing previous sentence that says none of the current IMBH candidates are widely accepted within the astronomical community as unambiguous.}
+A variety of techniques have been employed to search for $10^{4} - 10^{6}\ \msun$ intermediate-mass candidates including reverberation mapping~\cite{Peterson:2014:SSRv}, direct kinematic measurements~\cite{Schodel:2002:Natur, Kiziltan:2017:Natur}, applying macroscopic galaxy to black hole mass scaling relations ($M_{BH}$-$\sigma$ and $M_{BH}$-L relations)~\cite{Graham:2013:ApJ, Wevers:2017:MNRAS}, studying  X-ray luminosity and spectra~\cite{Greene:2004:ApJ, Lin:2020:ApJL}, gravitational lensing of gamma-ray burst light curves~\cite{paynter_evidence_2021}, and others~\cite{Greene:2020:ARA&A, Koliopanos:2017:mbhe, Mezcua:2017:IJMPD}). However, because intermediate-mass black holes have smaller gravitational spheres of influence than those of supermassive black holes, it is much more challenging to observe them with these observational techniques~\cite{Mezcua:2017:IJMPD}. Additionally, the numerous intermediate-mass black hole candidates discovered using these techniques are ambiguous as other sources can describe observations from the candidates (e.g., light sources orbiting clusters of stellar-mass black holes~\cite{Ridolfi:2016:MNRAS, Freire:2017:MNRAS}, anisotropic emission from neutron stars~\cite{Israel:2017:MNRAS, RodriguezCastillo:2020:ApJ}).
 
-Compact binary coalescences (CBCs) can provide unambiguous gravitational-wave signals for intermediate-mass candidates (e.g., the $142^{+28}_{-16}\ \msun$ remnant observed from the gravitational wave event GW190521~\cite{Abbott:2020:PhRvL}). As a binary's total mass $\text{M}_{T}$ is associated with its gravitational-wave merger frequency, $f\sim \text{M}_{T}^{-1}$,  ground-based gravitational-wave detectors ($f\sim 10^1 - 10^3\ \text{Hz}$) are sensitive to the last milliseconds of merging systems with $100 \msun < \text{M}_{T} < 400 \msun$~\cite{LIGOScientificCollaboration:2015:CQGra, Martynov:2016:PhRvD, Moore_2014}, while space-based detectors ($f \sim 10^{-2} - 10^1\ \text{Hz}$) can study the full signals of merging systems with $10^4 \msun < \text{M}_{T} < 10^7 \msun$~\cite{ Moore_2014, Lu:2019:PhRvD}. Because of the short-duration of intermediate-mass gravitational-wave signals in ground-based detectors, data quality is critical for their detection. Gravitational-wave data is characterized by numerous non-stationary terrestrial artifacts called \textit{glitches}~\cite{ pycbc_short_duration_transients, pe_with_glitch, blip_glitches}. Like signals from intermediate mass mergers, most glitches last for a fraction of a second, making them difficult to distinguish from astrophysical signals. These glitches can decrease the sensitivity of searches for binary black hole mergers with total masses $>55$~\msun ~\cite{pycbc_short_duration_transients}.
+Stellar mass ($M_\text{BH} < 10^{2} \ \msun$) and supermassive black holes ($M_\text{BH} > 10^{6} \ \msun$) have been observed and well studied since the 1970s~\cite{Webster:1972:Natur, Balick:1974:ApJ, Ghez:1998:ApJ, Genzel:2010:RvMP, Abbott:2019:PhRvX, EventHorizonTelescopeCollaboration:2019:ApJL, Abbott:2020:arXiv}. However, there is a deficiency of observational evidence for black holes in the intermediate-mass range $10^{2} - 10^{6}\ \msun$. The discovery of an intermediate-mass black hole population will bridge this observational gap, probe intermediate-mass formation environments (e.g. accretion disks of active galactic nuclei~\cite{Tagawa:2021:ApJ, Li:2021:arXiv, Samsing:2020:arXiv, Tagawa:2020:ApJ, Ishibashi:2020:A&A, Grobner:2020:A&A, Yang:2019:PhRvL, McKernan:2019:ApJL, Yang:2019:ApJ, McKernan:2018:ApJ, Bellovary:2016:ApJL, McKernan:2014:MNRAS, McKernan:2012:MNRAS}, the centers of dense stellar clusters~\cite{Banerjee:2021:MNRASa, Zevin:2021:ApJ,Mapelli:2021:arXiv,Weatherford:2021:ApJL, Bouffanais:2021:arXiv, Ballone:2021:MNRAS, Kumamoto:2021:arXiv, Banerjee:2021:MNRASb, Martinez:2020:ApJ, Romero-Shaw:2020:ApJL, Anagnostou:2020:PASA}, Population-III stars~\cite{Toubiana:2021:PhRvL, Farrell:2021:MNRAS, Safarzadeh:2020:ApJL, Liu:2020:MNRAS, Inayoshi:2017:MNRAS}), and illuminate our understanding of supermassive black hole formation~\cite{Askar:2021:MNRAS, ArcaSedda:2019:arXiv, Amaro-Seoane:2007:CQGra, Gurkan:2006:ApJL}. 
 
-Although a significant fraction of the glitches can be identified by testing them for coherence amongst two or more detectors and performing matched-filtering, these methods are insufficient to identify all glitches~\cite{ pycbc_short_duration_transients, pe_with_glitch, blip_glitches}. One method to discriminate more glitches while searching for CBC is the Bayesian odds~\cite{bci, kanner2016leveraging, BCR1, BCR2, bcr_gw151216, bayesian_odds}. \et{Need sentence here saying we are inspired by the Bayesian odds to develop a ranking statistic that incorporates some of the ideas used in the odds.} In this paper, we rank O2's candidate gravitational-wave signals from $55-500\ \msun$ (\et{lab frame}) total mass systems using a ranking statistic called the Bayesian Coherence Ratio \bcr~\cite{BCR1}. \et{I deleted some text here going into detail about the BCR; save for method section.} For each candidate, we calculate the probability of astrophysical origin, \pastrobcr and compare to candidate events reported by other authors including the LIGO-Virgo-KAGRA (LVK) collaboration in \GWTC~\cite{GWTC1}, the \pycbc-team~\cite{pycbc_code, pycbc_og0, pycbc_og1, pycbc_og2, pycbc_og3, pycbc_og4, pycbc_og5, pycbc_og6, pycbc_single_det, pycbc_ogc_2}, by the Institute of Advanced study's team (\IAS)~\cite{IAS0, IAS1, IAS2}, or by \citet{bayesian_odds}. \et{Deleted several sentences here about innovations that I think are in the weeds.}
+Compact binary coalescences (CBCs) can provide unambiguous gravitational-wave signals for intermediate-mass candidates e.g., the $142^{+28}_{-16}\ \msun$ remnant observed from the gravitational-wave event GW190521~\cite{Abbott:2020:PhRvL} and other candidates~\cite{ligo_imbh_search, ligo_imbh_o3, pycbc_imbh}. As a binary's total mass $\text{M}_{T}$ is associated with its gravitational-wave merger frequency, $f\sim \text{M}_{T}^{-1}$,  ground-based gravitational-wave detectors ($f\sim 10^1 - 10^3\ \text{Hz}$) are sensitive to the last milliseconds of merging systems with $100 \msun < \text{M}_{T} < 400 \msun$~\cite{LIGOScientificCollaboration:2015:CQGra, Martynov:2016:PhRvD, Moore_2014}, while space-based detectors ($f \sim 10^{-2} - 10^1\ \text{Hz}$) can study the full signals of merging systems with $10^4 \msun < \text{M}_{T} < 10^7 \msun$~\cite{ Moore_2014, Lu:2019:PhRvD}. Because of the short-duration of intermediate-mass gravitational-wave signals in ground-based detectors, data quality is critical for their detection. Gravitational-wave data is characterized by numerous non-stationary terrestrial artifacts called \textit{glitches}~\cite{ pycbc_short_duration_transients, pe_with_glitch, blip_glitches}. Like signals from intermediate mass mergers, most glitches last for a fraction of a second, making them difficult to distinguish from astrophysical signals. These glitches can decrease the sensitivity of searches for binary black hole mergers with total masses $>55$~\msun ~\cite{pycbc_short_duration_transients}.
 
-We find that (a) high-mass events reported in the \GWTC, including GW170729 (the heaviest event in \GWTC) are very statistically significant $\pastrobcr>0.9$; (b) three out of the eight \IAS events and candidates have $\pastrobcr>0.5$, corroborating \IAS's detection claims for GW170304, GW170727, and GW170817A; and that (c) our ranking statistic does not identify any new intermediate-mass black holes, but does identify an unreported marginal stellar-mass binary black hole candidate, 170222 with $\pastrobcr\sim0.5$. %\avi{Need to doublecheck that this wasnt in the PyCBC sub-threshold paper}. 
+Although a significant fraction of the glitches can be identified by testing them for coherence amongst two or more detectors and performing matched-filtering, these methods are insufficient to identify all glitches~\cite{ pycbc_short_duration_transients, pe_with_glitch, blip_glitches}. One method to discriminate more glitches while searching for CBC is the Bayesian odds~\cite{bci, kanner2016leveraging, BCR1, BCR2, bcr_gw151216, bayesian_odds}. The Bayesian Coherence Ratio \bcr~\cite{BCR1,BCR2} is a Bayesian odds comparing the probability that the data contains coherent signals vs. incoherent glitches. In this paper, we the \bcr to rank O2's candidate gravitational-wave signals from $55-500\ \msun$ (detector-frame) total mass systems. For each candidate, we calculate the probability of astrophysical origin, \pastrobcr and compare to candidate events reported by other authors including the LIGO-Virgo-KAGRA (LVK) collaboration in \GWTC~\cite{GWTC1}, the \pycbc-team~\cite{pycbc_code, pycbc_og0, pycbc_og1, pycbc_og2, pycbc_og3, pycbc_og4, pycbc_og5, pycbc_og6, pycbc_single_det, pycbc_ogc_2}, by the Institute of Advanced study's team (\IAS)~\cite{IAS0, IAS1, IAS2}, or by \citet{bayesian_odds}. 
 
-The remainder of this paper is structured as follows. We outline our methods, including details of our ranking statistic and the retrieval of our candidates in Section~\ref{sec:method}. We present details on the implementation of our analysis in Section~\ref{sec:Analysis}. Finally, we present our results in Section~\ref{sec:Results}, and discuss these results in the context of the significance of gravitational-wave candidates in Section~\ref{sec:Conclusion}.
+We find that (a) high-mass events reported in the \GWTC, including GW170729 (the heaviest event in \GWTC) are very statistically significant $\pastrobcr>0.9$; (b) three out of the eight \IAS events and candidates have $\pastrobcr>0.5$, corroborating \IAS's detection claims for GW170304, GW170727, and GW170817A; and that (c) our ranking statistic does not identify any new intermediate-mass black holes, but does identify an unreported marginal stellar-mass binary black hole candidate, 170222 with $\pastrobcr\sim0.5$. %\avi{Need to doublecheck that this wasn't in the PyCBC sub-threshold paper}. 
+
+The remainder of this paper is structured as follows. We outline our methods, including details of our ranking statistic and the retrieval of our candidates in Section~\ref{sec:method}. We present details on the implementation of our analysis in Section~\ref{sec:Analysis}. Finally, we present our results in Section~\ref{sec:Results} and discuss these results in the context of the significance of gravitational-wave candidates in Section~\ref{sec:Conclusion}.
 
 \section{Method\label{sec:method}}
-
+\subsection{A Bayesian Ranking Statistic}
 The standard framework to identify CBC gravitational-wave signals in data is to quantify the significance of candidates with null-hypothesis significance testing~\cite{GWTC1, GWTC2}. In this framework, the candidates' ranking statistic is compared against a background distribution. The independent matched-filter searches, e.g., \pycbc~\cite{pycbc_og4}, \spiir~\cite{spiir} and \gstlal~\cite{sachdev2019gstlal}, and Coherent WaveBurst~\cite{cwb} used by LVK to search for signals in gravitational-wave data all use ranking statistics in such a manner~\cite{GWTC1}. Both \pycbc and \gstlal's ranking statistic incorporate information about the relative likelihood that the data contains a coherent signal versus noise. In contrast, \cwb's ranking statistic uses the information of coherent energy present in the network of detectors~\cite{GWTC1}. 
 
-Bayesian inference offers an alternative means to rank the significance of candidate events by computing the odds that the data contain a transient gravitational-wave signal versus instrumental glitches~\cite{BCR1}. This method relies on accurate models for the signal and glitch morphologies~\cite{BCR1}. In principle, Bayesian odds is the optimal method for hypothesis testing~\cite{BCR2}. Much of its power comes from the Bayesian evidence, the likelihood of the data given a hypothesis. However, the evidence is not used in current matched filter searches. Here, we explore a hybrid frequentist/Bayesian ranking statistic that makes use of the Bayesian evidence. We compute the Bayesian evidence under the assumption that they either contain a coherent gravitational-wave signal, noise, or a glitch. However, instead of computing true Bayesian odds, we use the evidences as a ranking statistic.
-We form a bootstrapped distribution of the evidence for simulated foreground and background events in order to form a frequentist ranking statistic.
+Bayesian inference offers an alternative means to rank the significance of candidate events by computing the odds that the data contain a transient gravitational-wave signal versus instrumental glitches~\cite{BCR1}. This method relies on accurate models for the signal and glitch morphologies~\cite{BCR1}. In principle, Bayesian odds is the optimal method for hypothesis testing~\cite{BCR2}. Much of its power comes from the Bayesian evidence, the likelihood of the data given a hypothesis. However, the evidence is not used in current matched filter searches. Here, we explore a hybrid frequentist/Bayesian ranking statistic that makes use of the Bayesian evidence. We compute the Bayesian evidence under the assumption that they either contain a coherent gravitational-wave signal, noise, or a glitch ($Z^S, Z^N, Z^G$, defined in Appendix~\ref{sec:bayesianEvidEval}). However, instead of computing true Bayesian odds, we use the evidences as a ranking statistic. We form a bootstrapped distribution of the evidence for simulated foreground and background events in order to form a frequentist ranking statistic.
 
 \subsection{Formalism}
 
-Bayes' theorem states that the posterior probability distribution $p(\parameters|d,\mathcal{H})$ for data $d$ and a vector of parameters \parameters that describe a model which quantifies a hypothesis $\mathcal{H}$, is given by
-\begin{equation}
-p(\parameters|d,\mathcal{H}) = \frac{\mathcal{L}(d|\parameters, \mathcal{H}) \ \pi(\parameters | \mathcal{H})}{\mathcal{Z}(d|\mathcal{H})}\ , 
-\end{equation}
-where $\mathcal{L}(d|\parameters, \mathcal{H})$ is the likelihood of the data given the parameters \parameters and the hypothesis, $\pi(\parameters | \mathcal{H})$ is the prior probability of the parameters, and finally,
-\begin{equation}
-    \mathcal{Z}(d|\mathcal{H}) = \int\limits_{\parameters} \ \mathcal{L}(d|\parameters,\mathcal{H}) \ \pi(\parameters | \mathcal{H}) \ d\parameters\ ,
-\end{equation} is the likelihood after marginalizing over the parameters \parameters.  To compare two hypotheses $\mathcal{H}_A$ and $\mathcal{H}_B$ through Bayes' theorem one can calculate an odds-ratio
-\begin{equation}
-    \mathcal{O}^A_B = \frac{\mathcal{Z}^A\ \pi^A}{\mathcal{Z}^B\ \pi^B}\ ,
-\end{equation}
-where  $\{\pi^A, \pi^B\}$ are the prior-odds for each hypothesis and $\{\mathcal{Z}^A, \mathcal{Z}^B\}$ are shorthand for the evidences $\{\mathcal{Z}(d|\mathcal{H}_A), \mathcal{Z}(d|\mathcal{H}_B)\}$. The odds-ratio can quantify which of the two hypotheses is more likely. For example, if $\mathcal{O}^A_B >> 1$, then the odds are in favor of the $\mathcal{H}_A$ hypotheses. 
-
-The \bcrodds quantity is a Bayesian odds-ratio like the above, of a coherent signal hypotheses $\mathcal{H}_S$ and an incoherent instrumental feature hypothesis $\mathcal{H}_I$ (the null-hypotheses) for a network of $D$ detectors. $\mathcal{H_I}$ states that each detector $i$ has either pure stationary Gaussian noise $\mathcal{H}_N$ or Gaussian noise and an incoherent noise transient (glitch) $\mathcal{H}_G$. Taking $Z^S$, $Z^G_i$ and $Z^N_i$ as the Bayesian evidences (defined in Appendix~\ref{sec:bayesianEvidEval}) for $\mathcal{H}_S$, $\mathcal{H}_N$, and $\mathcal{H}_G$, \bcrodds is given by
+Introduced by \citet{BCR1}, the Bayesian Coherence Ratio for a candidate signal in a network of $D$ detectors is given by
 \begin{equation}
 \label{eq:bcr}
-\bcrodds = \frac{\pi^S Z^S}{\prod\limits^D_{i=1} \ [\pi^G Z^G_i + (1-\pi^G)Z^N_i]}\ ,
+\bcr = \frac{\hat{\pi}^S Z^S}{\prod\limits^D_{i=1} \ [\hat{\pi}^G Z^G_i + \hat{\pi}^N Z^N_i]}\  ,
 \end{equation}
+where $\{\hat{\pi}^S, \hat{\pi}^N, \hat{\pi}^G\}$ are estimates of the astrophysical prior-odds of obtaining a signal, noise or a glitch from a stretch of data. In the limit where the estimated prior-odds equal the astrophysical prior-odds, the \bcr becomes the optimal Bayesian odds described by \citet{BCR2}.  However, as the astrophysical prior-odds are unknown, it is invalid to use the \bcr as an odds-ratio to discriminate signals from glitches. Instead, we use the \bcr as a ranking statistic to obtain a frequentist significance of a candidate \bcr-value, \candbcr, measured against a background \bcr distribution, \bgrdbcr. 
 
-where $\pi^S$ and $\pi^G$ are the prior-odds of obtaining a signal or a glitch from a stretch of data. The prior-odds can be defined more explicitly as 
-\begin{itemize}
-    \item $\pi^S=\pi(\mathcal{H}_S)/\pi(\mathcal{H}_I)$, the prior-odds for obtaining a coherent signal versus an incoherent instrumental feature.
-    \item $\pi^G=\pi(\mathcal{H}_G| \mathcal{H}_I)$, the probability of obtaining a glitch assuming there is an incoherent instrumental feature.
-\end{itemize}
-
-
-
-When $\mathcal{H}_S$ and $\mathcal{H}_I$ are precisely described and the prior-odds represent our true beliefs, the \bcrodds is a Bayesian odds-ratio. As an odds-ratio, the \bcrodds is the optimal discriminator between coherent signals and incoherent instrumental features. However, as the priors-odds are unknown, we \textit{tune} values for prior-odds, $\hat{\pi}^S$ and $\hat{\pi}^G$, to estimate \bcrodds with a ranking statistic, \bcr, given by
-\et{I would remove everything in this subsection before this point. Save it for your dissertation if you want, but I don't think we need to review Bayesian basics here. Instead, just begin by saying that we implement the BCR, which is given by Eq.~\ref{eq:rho_bcr} with suitable references to the previous BCR papers. The motivation for the BCR can be summarised in a single sentence.}
+Since it is impossible to shield ground-based gravitational-wave detectors from gravitational-wave signals, the LVK empirically estimates the background by repeatedly time-shifting strain data by amounts larger than the light-travel time between the two LIGO detectors~\cite{GWTC1}. We use time-shifted data to generate \bgrdbcr. Following this, each candidate's single-event false alarm probability $p_1$ of being miss-classified as a glitch is given by
 \begin{equation}
-\label{eq:rho_bcr}
-\bcr = \frac{\hat{\pi}^S Z^S}{\prod\limits^D_{i=1} \ [\hat{\pi}^G Z^G_i + (1-\hat{\pi}^G)Z^N_i]}\ .
+    p_1 = \frac{\text{Count of } \bgrdbcr \leq \candbcr}{\text{Count of } \bgrdbcr} \ .
 \end{equation}
-\et{Rewrite the remaining paragraphs to explain that how the BCR relates to the odds with just a few sentences, avoiding equations.}
-In the limit where the estimated prior-odds equal the true prior-odds, $\bcr\to\bcrodds$. However, as we are uncertain what the true prior-odds are, it is invalid to use the \bcr as an odds-ratio to make an informed decision about whether a candidate is from an astrophysical or terrestrial source. Instead of interpreting the \bcr as a Bayesian odds-ratio, it can be used as a ranking statistic. Using the \bcr as a ranking statistic we can obtain a frequentist significance of a candidate \bcr-value measured against a background \bcr distribution. 
-
-When using the \bcr as a detection statistic, the prior-odds are empirically tuned to maximize the separation between the \bcr distribution of the background (expected to favor the $\mathcal{H}_I$ hypothesis) and the \bcr distribution of artificially manufactured simulated signals (expected to favor the $\mathcal{H}_S$ hypothesis). Increasing the separation between the two distributions can improve ability of the \bcr to discriminate candidate events as coherent signals or incoherent instrumental features. The tuning process is further described in Appendix~\ref{apdx:tuning-prior-odds}. 
-
-\subsection{Estimation of astrophysical signal probability}
-\et{Above, I propose to cut the previous subsection way back. I think this subsection can be cut way back too and combined with the previous subsection. Once we have finished talking about $\rho_\text{BCR}$, we can just state that we use time-shifted data to generate distributions of $\rho_\text{BCR}$ for noise, which we use to calculate a single-event false alarm probability = the fraction of triggers with a $\rho_\text{BCR}$ at least that big. (The thing we are currently calling $f$ is a single-event false alarm probability, so we should call it that and give it a better variable name like $p_1$.) Then comment that we consider $N$ triggers so we also calculate a false-alarm probability with trial factors, which is given by the current Eq.~6. (I suggest you call the false alarm probability with trial factors $p_N$ to avoid confusion.) The text should say how $N$ is determined. I agree that $p_\text{astro} = 1-p_N$ is too sloppy to do in a paper. (The reason we are using FAP is because there was not appetite to calculate the distribution of $\rho_\text{BCR}$ for a plausible signal distribution, which is necessary to get an actual $p_\text{astro}$.) At this late stage, I think the best thing to do is just say that we are going to report $1-p_N$ alongside $p_\text{astro}$ values even though they are apples and oranges. While it's sloppy to compare them directly, they \textit{are} both indicators of significance. Moreover, different groups make different assumptions about the signal distribution, and so the different $p_\text{astro}$ values are sort of already different fruit; see Shanika's paper. We can explain all this and say we're going to put everything into one table anyway. However, the least bad thing to do is to report $p_N$ without calling it $p_\text{astro}$. I think most referees can live with that.}
-Candidate \bcr-values are either statistically insignificant compared to the background \bcr distribution, implying the candidate is more probable to be an incoherent instrumental feature (the $\mathcal{H}_I$ null-hypothesis), or statistically significant relative to the background distribution, indicating the possible presence of an astrophysical signal (the $\mathcal{H}_S$ hypothesis). A false alarm probability with trial factors, \fap, for the candidate \bcr-value can quantify the significance. The \fap for a \bcr-value is the probability that a candidate originating from a non-astrophysical source can be falsely identified as a signal once in $N$ trials, and is given by 
+Moreover, as we have several candidates ($N$ candidates), each with their \candbcr, we account for them by calculating a false-alarm probability with trial factors $p_N$ given by
 \begin{equation}
-    \fap = 1 - (1-f)^N \ ,
+    \fap = 1 - (1-p_1)^N \ .
 \end{equation}
-where $f$ is the probability of observing a background $\bcr'$ greater than or equal to the candidate \bcr,
+Finally, we can calculate the probability of the candidate signal event occurring from  a gravitational-wave, \pastrobcr with 
 \begin{equation}
-    f = \frac{\text{Count of } \bcr' \leq \bcr}{\text{Count of } \bcr'} \ .
+\pastrobcr = 1 - \fap \ . 
 \end{equation}
 
-Finally, the \fap can be used to construct a \pastro, the probability that a signal is of astrophysical origin~\cite{pastro_1,pastro_2,pastro_3}
-\begin{equation}
-    \pastro = 1 -  \fap \ .
-\end{equation}
-
-\avi{Eric, can you take a look at this section about the FAP p-astro?}
-\avi{
-The pastro calculation may need some more discussion. Taking pastro = 1-FAP as identifying a real signal can be hugely problematic: \url{https://en.wikipedia.org/wiki/Misuse_of_p-values}, even though its ok in this case. Maybe the following papers have something that can help motivate this ~\cite{Farr:2015:PhRvD, Gaebel:2019:MNRAS,Galaudage:2020:PhRvD}
-}
-
-
-\subsection{Background estimation}
-
-To rank candidate event \bcr values we compute a background \bcr distribution. We use time-shifted background data from \pycbc~\cite{pycbc_og4}. \et{Add sentence here explaining what time-shifting is and why it is used.} The output of \pycbc's search is a list of times and their corresponding \pycbc ranking statistic \pycbcstat values. Whenever a local maximum of $\pycbcstat > \snr_\text{T}$, where $\snr_\text{T}$ is some predetermined threshold value, the \pycbc search pipeline produces a single-detector \textit{trigger} associated with the detector and time $t_c$ where the apparent signal in the data has its merger~\cite{pycbc_og6}.
-For each \pycbc background trigger, we calculate \bcr.
-% \avi{Should I mention that we need \pycbc  as a pre-selection step to computing? }
-\et{I think this section can be cut way back too. (I've deleted a bunch of stuff w track changes.) I don't think we need to get into the three types of triggers; just focus on background triggers. I would move this discussion into a single subsection along with IIA and IIB. I would cover this stuff \textit{before}getting into FAP calculation. That way, we already have introduced the distribution of $\rho_\text{BCR}$; it will be more clear what we are talking about.}
 
 \section{Analysis}\label{sec:Analysis}
 
-\subsection{Acquisition of triggers}
-Advanced LIGO's second observing run O2 lasted $38$ weeks~\cite{GWOSC}. The software package, \pycbc~\cite{pycbc_code}, was used by LVK to process the O2 data in 22 time-frames (approximately 2 weeks per frame) and found several gravitational-wave events and numerous gravitational-wave candidates~\cite{pycbc_og0, pycbc_og1, pycbc_og2, pycbc_og3, pycbc_og4, pycbc_og5, pycbc_og6}. Some candidate events were vetoed to be glitches, while others were rejected due to their low significance. The data are divided into these time-frames because the detector's sensitivity does not stay constant throughout the eight-month-long observing period.
-
-In addition to finding candidate events, \pycbc also identified several million background triggers for each time-frame, by searching background data manufactured by time-sliding data within that time-frame. The background triggers help quantify the candidate events' significance for the respective time-frames. Finally, to test the search's sensitivity, \pycbc produced and searched for thousands of simulated signals. 
-% \avi{Do i need to contextualize this choice more, ie talk about what would happen if I chose a narrower range?}
-
-For our study, we filter the \pycbc background, simulated and candidate triggers to include only triggers in the ranges of the parameters presented in Table~\ref{tab:parameters}. Filtering triggers to this region focuses our analysis to binary black hole mergers with total masses above $> 55 \msun$. This corresponds to binary systems with signal durations $<454 \ \text{ms}$, signals which may be mistaken for short-duration glitches. A plot of the \pycbc triggers from one time-frame, during April 23 - May 8, 2017, is presented in Fig.~\ref{fig:templateBank}. This figure also depicts the gravitational-wave templates used by \pycbc's search through this time-frame of data. 
+We acquire O2 candidate signal triggers (times when the detector's data has a signal-to-noise ratio above a predetermined threshold) for \bcr analysis from \pycbc~\cite{pycbc_code, pycbc_og0, pycbc_og1, pycbc_og2, pycbc_og3, pycbc_og4, pycbc_og5, pycbc_og6}.  Some of the triggers are associated with gravitational-wave events and candidates, while others are glitches. We also acquire background and simulated triggers from \pycbc to calculate \bgrdbcr and estimate values for $\{\hat{\pi}^S,\hat{\pi}^G\}$ (see Appendix~\ref{apdx:tuning-prior-odds} for details on the estimation process). Note that the triggers are divided into two week time-frames because the detector's sensitivity does not stay constant throughout the eight-month-long observing period~\cite{pycbc_og4}.
 
 \begin{table}[t]
-
 \caption[BBH parameters correspond to duration $<454\ \text{ms}$]{\label{tab:parameters}Trigger-selection parameter space (parameters correspond to signals with durations $<454 \ \text{ms}$). }
 \centering
 \begin{tabular}{lrr}
@@ -266,27 +214,25 @@ Mass Ratio & 0.01 & 0.98\\
 \end{tabular}
 \end{table}
 
-
+For our study, we filter triggers to include those in the parameter ranges presented in Table~\ref{tab:parameters}. This region focuses our analysis on binary black hole mergers with total masses above $> 55 \msun$, corresponding to binary systems with signal durations $<454 \ \text{ms}$. The filtering process leaves us with $60,996$ background, $5,146$ simulated, and $25$ candidate signal triggers. We also include events and candidate events reported by \GWTC and the \IAS group in our list of candidate signal triggers.  A plot of the \pycbc triggers from April 23 - May 8, 2017, is presented in Fig.~\ref{fig:templateBank}. This figure also depicts the gravitational-wave templates used by \pycbc's search. 
 
 \begin{figure*}[!ht]
-
 {\centering \includegraphics[width=0.75\linewidth]{images/template_bank.png}
-
 }
 % time for chunk 14
 % 1176955218, Apr 23, 2017, 4:00 UTC
 % 1178294418, May 08, 2017, 16:00 UTC
-\caption[ BCR search space.]{The templates (pink) used by \pycbc to search a section of O2 data from $\text{April 23 - May 8, 2017}$. Our search is constrained to the parameter space enclosed by the dashed line. The candidate, background and simulated triggers detected in this region of the parameter space during this period are plotted in orange, gray and blue respectively.}\label{fig:templateBank}
+\caption[ BCR search space.]{The templates (pink) used by \pycbc to search a section of O2 data from $\text{April 23 - May 8, 2017}$. Our search is constrained to the parameter space enclosed by the dashed line. The candidate, background, and simulated triggers detected in this region of the parameter space during this period are plotted in orange, gray, and blue, respectively.}\label{fig:templateBank}
 \end{figure*}
 
 
-\subsection{Calculating the BCR for triggers}
-To evaluate $Z^S$, $Z^G_i$ and $Z^N_i$ and calculate the \bcr Eq.~\ref{eq:bcr} for triggers, we carry out Bayesian inference with \bilby~\cite{bilby, bilby_pipe}, employing \dynesty~\cite{dynesty} as our nested sampler. Nested sampling, an algorithm introduced by~\citet{skilling2004, skilling2006}, provides an estimate of the Bayesian evidence and is often utilized for parameter estimation within the LIGO collaboration~\cite{bilby, bilby_paper, pbilby_paper}.
 
-The most computationally intensive step during Bayesian inference is evaluating the likelihood $\mathcal{L}(d_i|\template)$. To accelerate our analysis, we use a likelihood that explicitly marginalizes over coalescence time, phase at coalescence, and luminosity distance (Eq.~80 from~\citet{intro_to_gw_bayes}).
-\et{I think that IIIa and IIb should probably be shrunken and merged so that Section III does not have any subsections (IIC can be deleted; see below). The way to cut these sections down is to stick to just \textit{describing what was done} rather than trying to add a lot of explanation. (Explaining what PyCBC does and why is particularly excessive, IMO.) Just cut out anything that is not part of a recipe to reproduce the analysis.}
 
-We set the priors $\pi(\parameters|\mathcal{H}_S)$ and $\pi(\parameters|\mathcal{H}_G)$ to be identical which reflects our ignorance of the distribution of the population properties of signals and signal-like glitches. These priors restrict signals with mass parameters in the ranges presented in Table~\ref{tab:parameters}. The spins are aligned over a uniform range for the dimensionless spin magnitude from $\left[0,1\right]$. The luminosity distance prior assigns probability uniformly in comoving volume, with an upper cutoff of $5\ \text{Gpc}$. The full list of the priors, along with their shapes, limits and boundary conditions are documented in Table~\ref{tab:priors}. 
+
+To evaluate $\{Z^S, Z^G_i, Z^N_i\}$ and calculate the \bcr Eq.~\ref{eq:bcr} for triggers, we carry out Bayesian inference with \bilby~\cite{bilby, bilby_pipe}, employing \dynesty~\cite{dynesty} as our nested sampler. Nested sampling, an algorithm introduced by~\citet{skilling2004, skilling2006}, provides an estimate of the Bayesian evidence and is often utilized for parameter estimation within the LIGO collaboration~\cite{bilby, bilby_paper, pbilby_paper}.
+
+We use a likelihood that marginalizes over coalescence time, the phase at coalescence, and luminosity distance (Eq.~80 from~\citet{intro_to_gw_bayes}). We use identical parameter estimation priors for the glitch and signal models, reflecting our ignorance of the distribution of the population properties of signals and signal-like glitches. The complete list of the priors is in Table~\ref{tab:priors}. 
+
 
 \begin{table}
     \centering
@@ -313,52 +259,37 @@ We set the priors $\pi(\parameters|\mathcal{H}_S)$ and $\pi(\parameters|\mathcal
 
 The waveform template we utilize is \imrphenomp, a phenomenological waveform template constructed in the frequency domain that models the in-spiral, merger, and ring-down (IMR) of a compact binary coalescence~\citep{khan2016frequency}. Although there exist gravitational-wave templates such as \imrxhm~\cite{imrphenompxhm}, \nrsur~\cite{nrsur7dq4} and \seob~\cite{seobnrv4phm} which incorporate more physics, such as information on higher-order modes, we use \imrphenomp as it is computationally inexpensive compared to others.
 
-To generate the PSD, we take 31 neighboring off-source non-overlapping  4-second  segments of time-series data before the analysis data segment $d_i$. To suppress spectral leakage, a Tukey window with a 0.2-second roll-off is applied to each data segment . After this the segments are fast-Fourier transformed and median-averaged to create a PSD~\cite{ligo_psd}. Like other PSD estimation methods, this method adds statistical uncertainties to the PSD~\cite{psd_student_t, chatziioannou2019noise, Biscoveanu:2020:PhRvD}. To marginalize over the statistical uncertainty, we use the median-likelihood presented by~\citet{psd_student_t} as a post-processing step. We find that this post-processing step improves the search efficiency by $49.26\%$ the details of this calculation are presented in the Appendix~\ref{sec:psd-marginalization}.
+To generate the PSD, we take 31 neighboring off-source non-overlapping  4-second  segments of time-series data before the analysis data segment $d_i$. A Tukey window with a 0.2-second roll-off is applied to each data segment to suppress spectral leakage. After this, we fast-Fourier transform and median-average the segments to create a PSD~\cite{ligo_psd}. Like other PSD estimation methods, this method adds statistical uncertainties to the PSD~\cite{psd_student_t, chatziioannou2019noise, Biscoveanu:2020:PhRvD}. To marginalize over the statistical uncertainty, we use the median-likelihood presented by~\citet{psd_student_t} as a post-processing step. We find that this post-processing step improves the search efficiency by $49.26\%$ the details of this calculation are in the Appendix~\ref{sec:psd-marginalization}.
 
-Finally, we acquire the foreground, background and data in which we inject simulated signals into, from from the gravitational-wave Open Science Center~\cite{GWOSC}. The data we use are the publicly accessible O2 strain data from the Hanford and Livingston detectors, recorded while the detectors are in ``Science Mode''. We obtain the data using \gwpy~\cite{gwpy}. 
+The data we use are the publicly accessible O2 strain data from the Hanford and Livingston detectors, recorded while the detectors are in ``Science Mode''. We obtain the data from the gravitational-wave Open Science Center~\cite{GWOSC} using \gwpy~\cite{gwpy}. 
 
-\subsection{Assigning \pastro to candidate events}
-After calculating the \bcr for the entire set of background and simulated triggers, we calculate the background and simulated \bcr probability distributions for each 2-week time-frame of O2 data. These distributions are used to `tune' prior-odd $\hat{\pi}^S$ and $\hat{\pi}^G$ values as described in Appendix~\ref{apdx:tuning-prior-odds}.
-\et{This subsection discusses formalism (how the analysis works) and so it feels out of place in Section III, which is about the details of the implementation. I would delete this subsection entirely and just add a sentence or two to the formalism section explaining that the $\pi$'s are tuned emprically; see Appendix~\ref{apdx:tuning-prior-odds}.}
-
-Using the tuned prior-odds the \bcr for the candidate events can be calculated. Fig.~\ref{fig:bcrCdf} shows the \bcr distributions for the background triggers, simulated triggers and candidate events. The bulk of the background and simulated trigger distributions are separate but slightly overlap due to some of the simulated signal's being very faint. The separation suggests that the \bcr can successfully distinguish signals from noise or glitches. The vertical lines in Fig.~\ref{fig:bcrCdf} displays the \bcr for gravitational-wave candidate events. On comparing the candidate event \bcr values with the background distribution, we can estimate \pastro values for the candidate events. 
-
-\begin{figure}[!ht]
-{\centering \includegraphics[width=0.85\linewidth]{images/reweighted_bcr_cdf_smaller_legend.png} }
-\caption[BCR distribution example]{Histograms represent the survival function (1-CDF) from our selection of background triggers (gray) and simulated signals (blue) triggers obtained from \pycbc's search of data from $\text{August 13 - 21, 2017}$. Vertical lines mark the $\text{ln}\ \bcr$ of \IAS's GW170817A and \GWTC's GW170814.}\label{fig:bcrCdf}
-\end{figure}
-
+Finally, with the \candbcr and \bgrdbcr, we calculate the candidate signal's \pastrobcr. We present the \pastrobcr with \pastro of other pipelines for comparison in Table~\ref{tab:results}. 
 
 \section{\label{sec:Results}Results}
 
-\input{Data/results_table}
-We analyze the $60,996$ background, $5,146$ simulated, and $25$ candidate triggers reported by \pycbc's search on the data from LIGO's second observing run, restricting our analysis to the triggers that fall within our mass-space as described in Section~\ref{sec:method}. We also analyze events and candidate events reported by \GWTC and the \IAS group (note: some of these were identified as candidates by the \pycbc search). Table~\ref{tab:results} summaries the \pastrobcr, along with the \pastro of other pipelines for comparison. 
-\et{The previous text about what we analysed should go in Section III. This section is just for reporting the results.}
+Various pipeline \pastro are not mathematically equivalent~\cite{Galaudage:2020:PhRvD}. However, by comparing pipeline \pastro values for a given candidate along with \pastrobcr in Table~\ref{tab:results}, we can compare how significant each pipeline deems various candidates. Note that the $\hat{\pi}^S$ and $\hat{\pi}^G$ values utilized for each time-frame are reported in Appendix~\ref{apdx:alphabeta}.
 
-\et{Rewrite the following text w better explanation of FAP vs p-value.}
-Although the various pipeline \pastro are not mathematically equivalent, by comparing pipeline \pastro values for a given candidate, we can compare how significant each pipeline deems various candidates. The $\hat{\pi}^S$ and $\hat{\pi}^G$ values utilized for each time-frame are reported in Appendix~\ref{apdx:alphabeta}.
+\input{Data/results_table}
 
 \subsection{GWTC-1 Events}
-All the confirmed gravitational-wave events from binary black hole mergers reported in \GWTC and within our prior space, (specifically GW170104, GW170608, GW170729, GW170809 and GW170814), have $\pastrobcr>0.9$, indicating a high probability of an astrophysical signal. 
+All the confirmed gravitational-wave events from binary black hole mergers reported in \GWTC and within our prior space (specifically GW170104, GW170608, GW170729, GW170809, and GW170814) have $\pastrobcr>0.9$, indicating a high probability of an astrophysical signal. 
 
-In addition to the above confirmed gravitational-wave events from \GWTC, we have also analyzed several candidate events from \GWTC, most of which have low \pastrobcr. For example, consider the candidate event 170412, assigned a $\pastro$ of $0.06$ by \gstlal and has a $\pastrobcr$ of $0.01$. This candidate was reported to be excess power caused due noise appearing non-stationary between 60-200 Hz~\cite{GWTC1}. This candidate acts as an example of how $\pastrobcr$ may be utilized to eliminate candidates originating from terrestrial noise sources. 
+In addition to the above confirmed gravitational-wave events from \GWTC, we have also analyzed several candidate events from \GWTC, most of which have low \pastrobcr. For example, consider the candidate event 170412, assigned a $\pastro$ of $0.06$ by \gstlal and has a $\pastrobcr$ of $0.01$. This candidate was reported to be excess power caused due to noise appearing non-stationary between 60-200 Hz~\cite{GWTC1}. This candidate acts as an example of how $\pastrobcr$ may be utilized to eliminate candidates originating from terrestrial noise sources. 
 
 \subsection{IAS Events}
-Our analysis of the IAS events and candidates with $M_T>55\ \msun$ in O2 has resulted in three events with disfavored $\pastrobcr<0.5$ (GWC170402, GW170403, GW170425), and four events and one candidate with $\pastrobcr\geq0.5$ (GW170121, 170302, GW170304, GW170727, GW170817A). While GW170727 and GW170817A's \pastrobcr are similar to the \pastro reported from IAS (the differences between the \pastro from \bcr and IAS is $|\Delta \pastro|<0.1$), the remaining candidates have opposing \pastro values (with $|\Delta \pastro| > 0.15$).
+Our analysis of the IAS events and candidates with $M_T>55\ \msun$ in O2 has resulted in three events with disfavored $\pastrobcr<0.5$ (GWC170402, GW170403, GW170425), and four events and one candidate with $\pastrobcr\geq0.5$ (GW170121, 170302, GW170304, GW170727, GW170817A). While GW170727 and GW170817A's \pastrobcr are similar to the \pastro reported from IAS (the differences between \pastrobcr and the IAS \pastro is $|\Delta p |<0.1$), the remaining candidates have contradicting \pastrobcr and  \pastro values (with $|\Delta p| > 0.15$).
 
-GWC170402, detected by \citet{IAS2}, is reported to originate from a binary with non-zero eccentricity~\cite{IAS2}. Hence, we might have computed a low \pastrobcr due to our usage of \imrphenomp, a waveform that does not account for eccentricity. Additionally, the search conducted by \citet{IAS2} was a single-detector search. Our ranking statistic relies on the signal to appear coherent, even if just faintly coherent, amongst the various detectors to have a high \pastrobcr. The lack of coherence and the non-eccentric waveform may be the leading factors for a low \pastro. GW170403 and GW170425 which have $\pastrobcr<0.35$ also have low  \pastro reported by \citet{pycbc_ogc_2},  suggesting that these events may have been false alarms.
+GWC170402, detected by \citet{IAS2}, is reported to originate from a binary with non-zero eccentricity~\cite{IAS2}. Hence, we might have computed a low \pastrobcr due to our usage of \imrphenomp, a waveform that does not account for eccentricity. Additionally, the search conducted by \citet{IAS2} was a single-detector search. Our ranking statistic relies on the signal to appear coherent, even if just faintly coherent, amongst the various detectors to have a high \pastrobcr. The lack of coherence and the non-eccentric waveform may be the leading factors for a low \pastrobcr. GW170403 and GW170425 which have $\pastrobcr<0.35$ also have low  \pastro reported by \citet{pycbc_ogc_2},  suggesting that these events may have been false alarms.
 
 From the candidates with $\pastrobcr>0.5$, GW170727 and 170302 are of particular interest, with \pastrobcr of $0.92$ and $0.63$. GW170727 was emitted from a black hole binary system with a source frame total mass $\approx 70\ \msun$. In addition to the high \pastrobcr reported by our study, \citet{IAS1} and \citet{pycbc_ogc_2} have also reported high \pastro values of 0.98 and 0.99, making it a viable gravitational-wave event candidate. Similarly, the sub-marginal-candidate 170302 reported by \cite{IAS1} with a \pastro of 0.45 appears to have a higher significance from our analysis, resulting in a \pastrobcr of $0.63$.  
 
 
 \subsection{New Candidate Events}
-Although no clear detections are made with the \bcr, a marginal-candidate 170222 has been discovered with a $\pastrobcr\sim0.5$. This candidate has an SNR$\sim7.7$, low spin magnitudes and source-frame component masses of $({47.16}_{-5.77}^{+8.00}, {35.50}_{-6.35}^{+5.79}) \msun$, making it one of the heavier black-hole mergers from O2 and \GWTC. This candidate may be of interest as one component black hole may lie in the pair-instability mass gap ($55^{+10}_{-10}-148^{+13}_{-12}\msun$)~\cite{Woosley:2021:arXiv, Heger:2002:ApJ}. More details on the candidate are presented in Appendix~\ref{apdx:170222}. The remaining coherent trigger candidates all have $\pastrobcr\ll0.5$ making them unlikely to originate from astrophysical sources. 
-
-
+Although no clear detections are made with the \bcr, a marginal-candidate 170222 has been discovered with a $\pastrobcr\sim0.5$. This candidate has a SNR$\sim7.7$, low spin magnitudes, and source-frame component masses of $({47.16}_{-5.77}^{+8.00}, {35.50}_{-6.35}^{+5.79}) \msun$, making it one of the heavier black-hole mergers from O2 and \GWTC. This candidate may be of interest as one component black hole may lie in the pair-instability mass gap ($55^{+10}_{-10}-148^{+13}_{-12}\msun$)~\cite{Woosley:2021:arXiv, Heger:2002:ApJ}. More details on the candidate are presented in Appendix~\ref{apdx:170222}. The remaining coherent trigger candidates all have $\pastrobcr\ll0.5$, making them unlikely to originate from astrophysical sources. 
 
 \section{\label{sec:Conclusion}Conclusion}
 
-In this paper, we demonstrate that the Bayesian Coherence Odds-Ratio \bcr~\cite{BCR1} can be used as a ranking statistic to provide a measure of significance for gravitational wave signals originating from CBCs with total masses between $55\msun$ and $400\msun$, a range that includes intermediate-mass black holes. To compute the \bcr for candidates, we utilize Bayesian inference to explicitly calculate the probability of data under various hypotheses (the hypotheses that the data contains a coherent signal, just noise, or an incoherent glitch). This Bayesian ranking method takes a step towards building a unified Bayesian framework that provides a search-pipeline agnostic measure of significance for candidates and estimates their parameters, utilizing the same level of physical information incorporated during detected parameter estimation studies. 
+In this paper, we demonstrate that the Bayesian Coherence Odds-Ratio \bcr~\cite{BCR1} can be used as a ranking statistic to provide a measure of significance for gravitational-wave signals originating from CBCs with total masses between $55\msun$ and $400\msun$, a range that includes intermediate-mass black holes. To compute the \bcr for candidates, we utilize Bayesian inference to explicitly calculate the probability of data under various hypotheses (the hypotheses that the data contains a coherent signal, just noise, or an incoherent glitch). This Bayesian ranking method takes a step towards building a unified Bayesian framework that provides a search-pipeline agnostic measure of significance for candidates and estimates their parameters, utilizing the same level of physical information incorporated during detected parameter estimation studies. 
 
 In our study, we analyze O2 binary-black hole events and candidates with $M_T > 55 \msun$ reported by the \pycbc search~\cite{pycbc_ogc_2}, the \IAS-team~\cite{IAS1, IAS2} and those reported in \GWTC~\cite{GWTC1}. Using \pastrobcr, we find that the \GWTC events have high probabilities of originating from an astrophysical source. We also find that some of the \GWTC marginal triggers that have corroborated terrestrial sources (for example, candidate 170412) have low \pastrobcr, indicating this method's ability to discriminate between terrestrial artifacts and astrophysical signals. Our analysis of the \IAS events demonstrates that GW170121, GW170727, and GW170817A are likely to originate from astrophysical sources, while GWC170402, GW170402, and GW170425  are not. Finally, we do not identify any new gravitational-wave events, but we find a new marginal binary-black hole merger candidate, 170222. 
 
@@ -367,7 +298,7 @@ Although our analysis targets triggers with $M_T > 55 \msun$, this method can be
 
 % \greg{can we better constraint their population properties? Do we know how much (if at all) this method outperforms current searches?}
 
-% \avi{Unlike for stellar-mass BBH, there are still alot of uncertainties for IMBH formation scenarios. Hence, upper limits would be challenging to calculate. Additionally, we would require to do more robust simulation studies to see what would fall in/outside our detection threshold, to put constraints on population properties and study the search's sensitivity
+% \avi{Unlike for stellar-mass BBH, there are still a lot of uncertainties for IMBH formation scenarios. Hence, upper limits would be challenging to calculate. Additionally, we would require to do more robust simulation studies to see what would fall in/outside our detection threshold, to put constraints on population properties, and study the search's sensitivity.
 % }
 
 %%%%%%---SECTIONS-END---%%%%%%%%%%%%
@@ -375,12 +306,11 @@ Although our analysis targets triggers with $M_T > 55 \msun$, this method can be
 %%%%%%---ACKNOWLEDGMENTS---%%%%%%%%%%%%
 \begin{acknowledgments}
 This work is supported by the Australian Research Council (ARC) Centre of Excellence CE170100004.
-The author gratefully thank the \pycbc team for providing the gravitational-wave foreground, background and simulated triggers from \pycbc's search of O2's data. We also warmly thank Ian Harry and Thomas Dent for answering questions about the \pycbc search's data products.  
+The authors gratefully thank the \pycbc team for providing the gravitational-wave foreground, background, and simulated triggers from \pycbc's search of O2's data. We also warmly thank Ian Harry and Thomas Dent for answering questions about the \pycbc search's data products.  
 
-We thank Stuart Anderson for assistance with accommodating this analysis which was performed on the California Institute of Technology computing cluster. All analyses (inclusive of test and failed analyses) performed for this study used $~1.3\mathrm{M}$ core-hours, amounting to a carbon footprint of $~167\ \mathrm{t}$ of CO$^2$ (using the US average electricity source emissions of $0.429\ \text{kg/kWh}$~\cite{greenhouse} and $0.3\ \text{kWh}$ for each CPU).
+We thank Stuart Anderson for accommodating this analysis performed on the California Institute of Technology computing cluster. All analyses (inclusive of test and failed analyses) performed for this study used $~1.3\mathrm{M}$ core-hours, amounting to a carbon footprint of $~167\ \mathrm{t}$ of CO$^2$ (using the U.S. average electricity source emissions of $0.429\ \text{kg/kWh}$~\cite{greenhouse} and $0.3\ \text{kWh}$ for each CPU).
 
-This research has made use of data, software and/or web tools obtained from the Gravitational Wave Open Science Center (https://www.gw-openscience.org), a service of LIGO Laboratory, the LIGO Scientific Collaboration and the Virgo Collaboration. LIGO is funded by the U.S. National Science Foundation. Virgo is funded by the French Centre National de Recherche Scientifique (CNRS), the Italian Istituto Nazionale della Fisica Nucleare (INFN) and the Dutch Nikhef, with contributions by Polish and Hungarian institutes.
-
+This research has used data, software, and web tools obtained from the Gravitational Wave Open Science Center (https://www.gw-openscience.org), a service of LIGO Laboratory, the LIGO Scientific Collaboration, and the Virgo Collaboration. LIGO is funded by the U.S. National Science Foundation. Virgo is funded by the French Centre National de Recherche Scientifique (CNRS), the Italian Istituto Nazionale della Fisica Nucleare (INFN), and the Dutch Nikhef, with contributions by Polish and Hungarian institutes.
 
 \end{acknowledgments}
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -390,6 +320,7 @@ This research has made use of data, software and/or web tools obtained from the 
 
 
 \section{Bayesian Evidence Evaluation}\label{sec:bayesianEvidEval}
+
 \subsection{Noise Model}
 We assume that each detector's noise is Gaussian and stationary over the period being analyzed~\cite{ligo_psd}. In practice, we assume that the noise has a mean of zero that the noise variance $\sigma^2$ is proportional to the noise power spectral density (PSD) \psd of the data. Using the \psd, for each frequency-domain data segment $d_i$ in each of the $i$ detectors in a network of $D$ detectors, we can write 
 \begin{equation}
@@ -399,20 +330,20 @@ Z^N_i = \mathcal{N}(d_i|\mu=0,\sigma^2=\psd),
 where $\mathcal{N}$ is a normal distribution. 
 
 \subsection{Coherent Signal Model}
-We model coherent signals using a binary black hole waveform template \template, where the vector \parameters contains a point in the 12 dimensional space describing aligned-spin binary-black hole mergers. For the signal to be coherent, \parameters must be consistent in each 4-second data segment $d_i$ for a network of $D$ detectors. Hence, the coherent signal evidence is calculated as
+We model coherent signals using a binary black hole waveform template \template, where the vector \parameters contains a point in the 12-dimensional space describing aligned-spin binary-black hole mergers. For the signal to be coherent, \parameters must be consistent in each 4-second data segment $d_i$ for a network of $D$ detectors. Hence, the coherent signal evidence is calculated as
 \begin{equation}
 \label{eq:zs}
 Z^S = \int\limits_{\parameters} \prod\limits^{D}_{i=1} \left[ \mathcal{L}(d_i|\template)\right] \pi(\parameters | \mathcal{H}_S)\  \text{d}\parameters \ ,
 \end{equation}
-where $\pi(\parameters| \mathcal{H}_S)$ is the prior for the parameters in the coherent signal hypothesis, and $\mathcal{L}(d_i|\template)$ is the likelihood for the coherent signal hypothesis that depends on the gravitational-wave template \template and its parameters \parameters. 
+where $\pi(\parameters| \mathcal{H}_S)$ is the prior for the parameters in the coherent signal hypothesis $\mathcal{H}_S$, and $\mathcal{L}(d_i|\template)$ is the likelihood for the coherent signal hypothesis that depends on the gravitational-wave template \template and its parameters \parameters. 
 
 \subsection{Incoherent Glitch Model}
-Finally, as glitches are challenging to model and poorly understood, we follow \citet{bci} and utilize a surrogate model for glitches: the glitches are modeled using gravitational-wave templates  \template with uncorrelated  parameters amongst the different detectors such that  $\parameters_i \neq \parameters_j$ for two detectors $i$ and $j$~\cite{bci}.  Modeling glitches with \template captures the worst case scenario: when glitches are identical to gravitational-wave signals (excluding coherent signals). Thus, we can write $Z^G_i$ as 
+Finally, as glitches are challenging to model and poorly understood, we follow \citet{bci} and utilize a surrogate model for glitches. The glitches are modeled using gravitational-wave templates  \template with uncorrelated parameters amongst the different detectors such that  $\parameters_i \neq \parameters_j$ for two detectors $i$ and $j$~\cite{bci}.  Modeling glitches with \template captures the worst-case scenario: when glitches are identical to gravitational-wave signals (excluding coherent signals). Thus, we can write $Z^G_i$ as 
 \begin{equation}
 \label{eq:zg}
 Z^G_i = \int\limits_{\parameters} \mathcal{L}(d_i|\template)\ \pi(\parameters| \mathcal{H}_G)\  \text{d}\parameters  \ ,
 \end{equation}
-where $\pi(\theta| \mathcal{H}_G)$ is the prior for the parameters in the incoherent glitch hypothesis. 
+where $\pi(\theta| \mathcal{H}_G)$ is the prior for the parameters in the incoherent glitch hypothesis $\mathcal{H}_G$. 
 
 
 
@@ -424,24 +355,39 @@ To calculate the separation between $p_b(\bcr)$ and $p_s(\bcr)$, we use the Kull
 \begin{equation}
     D_{KL}(p_b | p_s) = \sum\limits_{x\in \bcr} p_b(x) \log \left( \frac{p_b(x)}{p_a(x)} \right)  \ .
 \end{equation}
-The $D_{KL}=0$ when the distributions are identical and increases as the asymmetry between the distributions increases. 
+The $D_{K.L.}=0$ when the distributions are identical and increases as the asymmetry between the distributions increases. 
 
 We limit our search for the maximum KL-divergence in the $\hat{\pi}^S$ and $\hat{\pi}^G$ ranges of $[10^{-10}, 10^0]$. We set our values for $\hat{\pi}^S$ and $\hat{\pi}^G$ to those which provide the highest KL-divergence and calculate the \bcr for candidate events present in this data chunk. Note that we conduct the analysis in data chunks of a few days rather than an entire data set of a few months as the background may be different at different points of the entire data set.
 
 \section{Marginalizing over PSD statistical uncertainties}\label{sec:psd-marginalization}
-To generate the results in Fig.~\ref{fig:bcrCdf}, we applied a post-processing step to marginalize the uncertainty in the PSD. In Fig.~\ref{fig:bcrCdfUnmarginalized}, we show the results if this post-processing step is not applied. Clearly, marginalizing over uncertainty in the PSD yields an improvement in the separation of the noise and signal distributions. Quantitatively, at a threshold $\bcr^T=0$ the post-processing step results in a reduction in the number of background $\bcr > \bcr^T$ from $60.7\%$ to $25.28\%$ in the August 13 - 21, 2017 time-frame of data. For the entirety of O2 PSD marginalization resulted in a $49.26\%$ improvement in search efficiency. 
+To generate the results presented in Table~\ref{tab:results}, we applied a post-processing step to marginalize the uncertainty in the PSD. In Fig.~\ref{fig:bcrCdf}, we demonstrate the impact of the post-processing step. Marginalizing over uncertainty in the PSD yields an improvement in the separation of the noise and signal distributions (left plot). Quantitatively, at a threshold $\bcr^T=0$ the post-processing step results in a reduction in the number of background $\bcr > \bcr^T$ from $60.7\%$ to $25.28\%$ in the August 13 - 21, 2017 time-frame of data. For the entirety of O2, PSD marginalization resulted in a $49.26\%$ improvement in search efficiency. 
 
-\begin{figure}[!ht]
-{\centering \includegraphics[width=0.85\linewidth]{images/orig_bcr_cdf_smaller_legend.png} }
-\caption[BCR distribution example]{This plot is analogous to Fig.~\ref{fig:bcrCdf}, but without using the post-processing step to marginalize over PSD statistical uncertainties. Without the post-processing step, there is a greater overlap between the background (gray) and foreground (blue) survival functions. For more details about this plot, refer to the caption of Fig.~\ref{fig:bcrCdf}.}\label{fig:bcrCdfUnmarginalized}
-\end{figure}
+
+\begin{figure*}
+    \centering
+    \begin{subfigure}
+        \centering
+        \includegraphics[width=0.45\linewidth]{reweighted_bcr_cdf_smaller_legend.png}
+    \end{subfigure}
+    ~ 
+    \begin{subfigure}
+        \centering
+        \includegraphics[width=0.45\linewidth]{orig_bcr_cdf_smaller_legend.png}
+    \end{subfigure}
+    \caption{
+    Histograms represent the survival function (1-CDF) from our selection of background triggers (gray) and simulated signals (blue) triggers obtained from \pycbc's search of data from $\text{August 13 - 21, 2017}$. Vertical lines mark the $\text{ln}\ \bcr$ of \IAS's GW170817A and \GWTC's GW170814.
+    Left: Survival functions with using the post-processing step to marginalize over PSD statistical uncertainties. Right: Survival functions without the post-processing step. Without the post-processing step, there is a greater overlap between the background (gray) and foreground (blue) survival functions
+    \label{fig:bcrCdf}}
+\end{figure*}
+
+
 
 
 
 
 \section{Tuned prior odds}\label{apdx:alphabeta}
 
-O2 lasted several months over which the detector's sensitivity varied. Hence, a part of our analysis entailed tuning the prior odds for obtaining a signal and a glitch, $\hat{\pi}^S$ and $\hat{\pi}^G$, as described in Section~\ref{sec:method}. Table~\ref{tab:priorodds} presents the signal and glitch prior odds utilized for each time-frame of O2 data. 
+O2 lasted several months, over which the detector's sensitivity varied. Hence, a part of our analysis entailed tuning the prior odds for obtaining a signal and a glitch, $\hat{\pi}^S$ and $\hat{\pi}^G$, as described in Section~\ref{sec:method}. Table~\ref{tab:priorodds} presents the signal and glitch prior odds utilized for each time-frame of O2 data. 
 \input{Data/alpha_beta_table}
 
 Tuning the prior odds can dramatically affect the \pastrobcr. For example, consider Table~\ref{tab:tuningresults}, which reports tuned \pastrobcr and un-tuned \untunedpastrobcr (where $\hat{\pi}^S=1$ and $\hat{\pi}^G=1$) for various events and candidates. By tuning the prior odds, the \pastrobcr for some IAS events (for example, GW170403 and GW170817A) can change by more than 0.5, resulting in the promotion/demotion of a candidate's significance.
@@ -472,19 +418,6 @@ PyCBC found the candidate 170222 with $\mathcal{M}_c=49.46$ and $q=0.68$, values
 
 
 
-% \section{EXTRA INTRO MATERIAL}
-
-% Given the existence of supermassive black holes detected in the early universe, it is likely for intermediate-mass black holes to have also existed~\cite{Banados:2018:Natur, Askar et al  2020,}. However, we only have a handful of promising candidates~\cite{Greene:2004:ApJ, Graham:2013:ApJ, Mezcua:2017:IJMPD, Koliopanos:2017:mbhe, Lin:2020:ApJL, Greene:2020:ARA&A}, and two confirmed intermediate-mass black holes, (i) the $142^{+28}_{-16}\ \msun$ remnant observed from the gravitational wave event GW190521~\cite{Abbott:2020:PhRvL}, and the $5.5^{+1.7}_{-0.9}\times10^{4}\ \msun$ black hole identified from gravitational lensing in the light curve of GRB950830~\cite{paynter_evidence_2021}. The concrete discovery of more intermediate-mass black holes will bridge the observational gap and illuminate our understanding of galaxy and supermassive black hole formation. Additionally, a catalog of observed intermediate-mass black holes can act as probes to their formation environments, such as in the accretion disks of active galactic nuclei~\cite{}, the centers of dense stellar clusters~\cite{}, and even Population-III stars~\cite{}. 
-
-% However, measuring the mass of black holes can be challenging. Several observational techniques to identify intermediate mass black holes
-
-% It is possible to measure the mass of nearby supermassive black holes by directly observing the dynamic motion of stars nearby the supermassive black hole (such as Sgr A$^*$~). However, this dynamic measurement method is challenging to utilize for  intermediate-mass black holes as their sphere of influence is too small to resolve motions~\cite{}. Additionally, dynamic-measurements that have alluded to  intermediate-mass candidates, e.g. the candidate at the center of the globular cluster 47 Tucanae~\cite{kiziltan2017}, can also be attributed to simpler models without a central intermediate-mass black hole~\cite{freire 2017}. }}
-
-% \rs{\sout{In a similar vein, although the M-$\sigma$ and M-L relations (relations between the spheroidal bulge of a galaxy's velocity dispersion $\sigma$,  luminosity L, and its central black hole's mass M) can estimate the mass of supermassive black holes~\cite{Ferrarese & Merritt 2000 and Gebhardt et al. 2000}, they cannot accurately estimate the intermediate-masses. The M-$\sigma$ and M-L relations are not calibrated for low-mass galaxies that might host an central intermediate-mass black hole~\cite{J. E. Greene and L. C. Ho The Mass Function of Active Black Holes in the Local Universe, E. C. Moran, K. Shahinyan, H. R. Sugarman, D. O. Vélez and M. Eracleous Black Holes At the Centers of Nearby Dwarf Galaxies}. Table 2 of~\citet{mercuza} displays a list of intermediate-mass candidates found with these relations. }}
-
-% \rs{\sout{Another method to estimate large black hole masses is with reverberation mapping, which estimates black hole virial masses by studying their nearby gasses' velocities~\cite{reverberation mapping}. Reverberation mapping has shown to estimate both supermassive black hole and intermediate-mass black hole virial masses successfully. However, this method fails to measure the systematic uncertainties on the lower-end of the intermediate-mass spectrum~\cite{}. Additionally, cloud-variability and the possibility of anisotropic emission deride the credibility of intermediate-mass candidates found with reverberation mapping~\cite{}. }}
-
-% The most promising intermediate-mass candidates found with electromagnetic-spectra are Ultra-Luminous X-ray sources with luminosities $> 10^{39} \text{erg s}^{-1}$ (e.g. HLX-X1)~\cite{}. \rs{\sout{While stellar mass black holes are too small to generate such luminosities with Eddington accretion, intermediate mass black holes can accrete at rates large enough to account for the high luminosities~\cite{}. However, some argue that some stellar mass black holes may exceed the Eddington limit~\cite{}, and others argue that the X-ray emission might be from a collimated jet leading to an inaccurate mass calculation~\cite{}.}}
 
 
 \bibliography{high_mass_bib}% Produces the bibliography via BibTeX.
