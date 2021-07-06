@@ -42,14 +42,14 @@ DATA = dict(
 )
 
 
-def plot(data_type, add_legend=False):
+def plot(data_type, add_legend=False, alpha=1.0e-6, beta=1.0e-4, fname_label=""):
     plot_data = pack_plotting_data(
         foreground_csv=DATA[data_type][FOREGROUND],
         background_csv=DATA[data_type][BACKGROUND],
         injection_csv=DATA[data_type][INJECTION],
         rank="lnBCR",
-        alpha=1.0e-6,
-        beta=1.0e-4,
+        alpha=alpha,
+        beta=beta,
     )
     xrange = dict(min=-15, max=30)
     fig, ax_cdf = plt.subplots(nrows=1, ncols=1, figsize=(7, 5))
@@ -80,7 +80,7 @@ def plot(data_type, add_legend=False):
             fontsize="small",
             loc="lower right",
             facecolor="white",
-            framealpha=0.2,
+            framealpha=0.5,
             handlelength=0.75,
             handletextpad=0.3,
             labelspacing=0.2,
@@ -97,10 +97,10 @@ def plot(data_type, add_legend=False):
             **lg_kwargs,
         )
         frame = l.get_frame()
-        frame.set_linewidth(0)
+        frame.set_linewidth(0.2)
         bbox_extra_artists.append(l)
 
-    fname = f"images/{data_type}_bcr_cdf_smaller_legend.png"
+    fname = f"images/{data_type}_bcr_cdf_smaller_legend{fname_label}.png"
 
     ax_cdf.yaxis.set_major_formatter(FormatStrFormatter("% 1.1f"))
     fig.savefig(
@@ -113,8 +113,10 @@ def plot(data_type, add_legend=False):
 
 def main():
     print("Plotting CDFs")
+    # plot("orig", add_legend=False)
     plot("orig")
     plot("reweighted")
+    plot("reweighted", alpha=1, beta=1, fname_label="_untuned")
 
 
 if __name__ == "__main__":

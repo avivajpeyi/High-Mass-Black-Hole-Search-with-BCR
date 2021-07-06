@@ -1,37 +1,44 @@
 \begin{table*}
 \centering
-\caption{The \pastro of gravitational wave events from various detection pipelines, 
-    along with the event candidates with $\pastrobcr > 0.3$. Only the 
-    candidates and events within our prior space are displayed. The various pipeline \pastro represented in this table, 
-    \pastroext, are from the following pipelines: 
-    GstLAL ${}^{\varheart}$~\cite{GWTC1}, 
-    PyCBC ${}^{\spadesuit}$~\cite{GWTC1}, 
-    PyCBC OGC-2 ${}^{\clubsuit}$~\cite{pycbc_ogc_2}, 
-    PyCBC `single-search' ${}^{\blacklozenge}$~\cite{pycbc_single_det}, 
-    IAS ${}^{\bigstar}$~\cite{IAS1, IAS2}, and 
-    \citet{bayesian_odds}'s significances ${}^{\blacktriangle}$.
-    The catalogs labelled IAS-1 and IAS-2 correspond to the candidates published in \citet{IAS1} and \citet{IAS2}.}
+\caption{$\pastrobcr$ table for gravitational wave events and candidates in our search space with $\pastrobcr>0.2$.   
+Displayed for comparison are significances of events taken from: 
+GstLAL \pastroGwtcGstlal~\cite{GWTC1}, 
+PyCBC \pastroGwtcPycbc~\cite{GWTC1}, 
+IAS \pastroIas~\cite{IAS1, IAS2},  
+\pastroPrat~\cite{bayesian_odds}, 
+PyCBC `single-search' \pastroSing~\cite{pycbc_single_det}, 
+PyCBC OGC-2 \pastroOgcTwo~\cite{pycbc_ogc_2} and
+PyCBC OGC-3 \pastroOgcThree~\cite{pycbc_ogc_2}.
+The $\tc$ column contains the `GPS' coalescence-times of the gravitational wave events. 
+The catalog column reports the first catalog in which the event has been reported (the catalogs labelled IAS-1 and IAS-2 correspond to the candidates published in \citet{IAS1} and \citet{IAS2}).}
 \label{tab:results}
+
 \def\arraystretch{1.5} 
- \setlength{\tabcolsep}{0.5em}
-\begin{tabular}{ll|c|c|c}
+\setlength{\tabcolsep}{0.5em}
+\begin{NiceTabular}{@{}ll!{\quad}|c|cc!{\quad}c!{\quad}c!{\quad}ccc!{\quad}|c@{}}
+\CodeBefore
+\rowcolors{2}{white}{gray!10}
+\Body
 
-     Event &  Catalog & \pastrobcr &                             \pastroext &           $t_c$ \\
+
+     Event & Catalog & \pastrobcr & \pastroGwtcPycbc & \pastroGwtcGstlal & \pastroIas & \pastroPrat & \pastroSing & \pastroOgcTwo & \pastroOgcThree &          \tc \\
 \hline
-  GW170104 &   GWTC-1 &        0.94 &    $1.00^{\varheart};1.00^{\spadesuit};1.0^{\blacktriangle}$ & 1167559934.60 \\
-  GW170121 &    IAS-1 &        0.76 &  $1.00^{\clubsuit};1.00^{\bigstar};0.53^{\blacktriangle}$ & 1169069152.57 \\
-    170222 &  - &        0.49 &                                       - & 1171814476.97 \\
-    170302 &    IAS-1 &        0.64 &                 $0.45^{\bigstar};0.0^{\blacktriangle}$ & 1172487815.48 \\
-  GW170304 &    IAS-1 &        0.83 &  $0.70^{\clubsuit};0.99^{\bigstar};0.03^{\blacktriangle}$ & 1172680689.36 \\
- GWC170402 &    IAS-2 &        0.38 &        $0.68^{\bigstar};0.03^{\blacklozenge};0.0^{\blacktriangle}$ & 1175205126.57 \\
-  GW170403 &    IAS-1 &        0.33 &  $0.03^{\clubsuit};0.56^{\bigstar};0.27^{\blacktriangle}$ & 1175295987.22 \\
-  GW170425 &    IAS-1 &        0.10 &  $0.21^{\clubsuit};0.77^{\bigstar};0.74^{\blacktriangle}$ & 1177134830.18 \\
-  GW170608 &   GWTC-1 &        0.95 &    $0.92^{\varheart};1.00^{\spadesuit};1.0^{\blacktriangle}$ & 1180922492.50 \\
-  GW170727 &    IAS-1 &        0.92 &  $0.99^{\clubsuit};0.98^{\bigstar};0.66^{\blacktriangle}$ & 1185152686.02 \\
-  GW170729 &   GWTC-1 &        0.96 &    $0.98^{\varheart};0.52^{\spadesuit};1.0^{\blacktriangle}$ & 1185389805.30 \\
-  GW170809 &   GWTC-1 &        0.98 &    $0.99^{\varheart};1.00^{\spadesuit};1.0^{\blacktriangle}$ & 1186302517.75 \\
-  GW170814 &   GWTC-1 &        1.00 &    $1.00^{\varheart};1.00^{\spadesuit};1.0^{\blacktriangle}$ & 1186741859.53 \\
- GW170817A &    IAS-2 &        0.83 &       $0.86^{\bigstar};0.36^{\blacklozenge};0.02^{\blacktriangle}$ & 1186974182.72 \\
+  GW170104 &  GWTC-1 &        0.97 &              1.00 &               1.00 &             &         1.00 &              &           1.00 &                  & 1167559936.60 \\
+  GW170121 &   IAS-1 &        0.83 &                   &                    &        1.00 &         0.53 &              &           1.00 &             1.00 & 1169069154.57 \\
+    170209 &       - &        0.32 &                   &                    &             &              &              &                &                  & 1170659643.47 \\
+    170222 &       - &        0.58 &                   &                    &             &              &              &                &                  & 1171814476.97 \\
+    170302 &   IAS-1 &        0.78 &                   &                    &        0.45 &              &              &                &                  & 1172487817.48 \\
+  GW170304 &   IAS-1 &        0.94 &                   &                    &        0.99 &         0.03 &              &           0.70 &             0.70 & 1172680691.36 \\
+ GWC170402 &   IAS-2 &        0.60 &                   &                    &        0.68 &         0.00 &              &                &                  & 1175205128.57 \\
+  GW170403 &   IAS-1 &        0.54 &                   &                    &        0.56 &         0.27 &              &           0.03 &             0.71 & 1175295989.22 \\
+    170421 &       - &        0.27 &                   &                    &             &              &              &                &                  & 1176789158.14 \\
+  GW170425 &   IAS-1 &        0.22 &                   &                    &        0.77 &         0.74 &              &           0.21 &             0.41 & 1177134832.18 \\
+  GW170608 &  GWTC-1 &        0.99 &              1.00 &               0.92 &             &         1.00 &              &                &                  & 1180922494.50 \\
+  GW170727 &   IAS-1 &        0.98 &                   &                    &        0.98 &         0.66 &              &           0.99 &             1.00 & 1185152688.02 \\
+  GW170729 &  GWTC-1 &        0.98 &              0.52 &               0.98 &             &         1.00 &              &           1.00 &             0.99 & 1185389807.30 \\
+  GW170809 &  GWTC-1 &        0.99 &              1.00 &               0.99 &             &         1.00 &              &           1.00 &             1.00 & 1186302519.75 \\
+  GW170814 &  GWTC-1 &        1.00 &              1.00 &               1.00 &             &         1.00 &              &           1.00 &             1.00 & 1186741861.53 \\
+ GW170817A &   IAS-2 &        0.92 &                   &                    &        0.86 &         0.02 &              &                &                  & 1186974184.72 \\
 
-\end{tabular}
+\end{NiceTabular}
 \end{table*}
