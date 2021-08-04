@@ -283,8 +283,6 @@ In our study, we analyze O2 binary-black hole events and candidates with ${\totM
 With the rapid rate of development in gravitational-wave Bayesian inference, we anticipate the ability to analyze longer-duration signals, utilize more advanced signal and glitch models, and incorporate data from the entire detector network. In a similar vein, with the accumulation of more gravitational wave events, future \bcr work may utilize astrophysically informed priors during Bayesian inference and more accurate prior odds for each detector.
 
 
-
-%%%%%%---ACKNOWLEDGMENTS---%%%%%%%%%%%%
 \begin{acknowledgments}
 The authors gratefully thank the \pycbc team for providing the gravitational-wave foreground, background, and simulated triggers from \pycbc's search of O2's data. We also warmly thank Ian Harry and Thomas Dent for answering questions about the \pycbc search's data products.  
 
@@ -292,12 +290,21 @@ We gratefully acknowledge the computational resources provided by the LIGO Labor
 
 All analyses (inclusive of test and failed analyses) performed for this study used ${1.3\mathrm{M}}$ core-hours, amounting to a carbon footprint of ${\sim167\ \mathrm{t}}$ of ${\text{CO}_2}$ (using the U.S. average electricity source emissions of ${0.429\ \text{kg/kWh}}$~\cite{greenhouse} and ${0.3\ \text{kWh}}$ for each CPU).
 
-This work is supported by the Australian Research Council (ARC) Centre of Excellence CE170100004. This material is based upon work supported by NSF’s LIGO Laboratory, a major facility fully funded by the National Science Foundation. This research has used data, software, and web tools obtained from the Gravitational Wave Open Science Center (\href{https://www.gw-openscience.org}{https://www.gw-openscience.org}), a service of LIGO Laboratory, the LIGO Scientific Collaboration, and the Virgo Collaboration. The U.S. National Science Foundation funds LIGO. Virgo is funded by the French Centre National de Recherche Scientifique (CNRS), the Italian Istituto Nazionale della Fisica Nucleare (INFN), and the Dutch Nikhef, with contributions by Polish and Hungarian institutes.\\
+This work is supported by the Australian Research Council (ARC) Centre of Excellence CE170100004. This material is based upon work supported by NSF’s LIGO Laboratory, a major facility fully funded by the National Science Foundation. This research has used data, software, and web tools obtained from the Gravitational Wave Open Science Center (\href{https://www.gw-openscience.org}{https://www.gw-openscience.org}), a service of LIGO Laboratory, the LIGO Scientific Collaboration and the Virgo Collaboration. LIGO Laboratory and Advanced LIGO are funded by the United States National Science Foundation (NSF) as well as the Science and Technology Facilities Council (STFC) of the United Kingdom, the Max-Planck-Society (MPS), and the State of Niedersachsen/Germany for support of the construction of Advanced LIGO and construction and operation of the GEO600 detector. Additional support for Advanced LIGO was provided by the Australian Research Council. Virgo is funded, through the European Gravitational Observatory (EGO), by the French Centre National de Recherche Scientifique (CNRS), the Italian Istituto Nazionale di Fisica Nucleare (INFN) and the Dutch Nikhef, with contributions by institutions from Belgium, Germany, Greece, Hungary, Ireland, Japan, Monaco, Poland, Portugal, Spain.\\
 
 
-\textit{Software:} \href{https://lscsoft.docs.ligo.org/bilby/}{\bilby} (version 1.0.0)~\cite{bilby}, \href{https://lscsoft.docs.ligo.org/bilby_pipe/master/index.html}{\bilbypipe} (version 1.0.0)~\cite{bilby_pipe}, \href{https://dynesty.readthedocs.io/}{\dynesty}~\cite{dynesty, skilling2004, skilling2006}, \href{https://gwpy.github.io/docs/stable/index.html}{\gwpy}~\cite{gwpy}, \href{https://lscsoft.docs.ligo.org/lalsuite/lalsimulation/index.html}{\code{LALSimulation}}~\cite{lalsuite}, \code{matplotlib}~\cite{matplotlib}, \code{NumPy}~\cite{NumPy}, \code{SciPy}~\cite{SciPy}, \code{pandas}~\cite{pandas}, \code{python}~\cite{pythonForScientificComputing,pythonForScientists}. 
 
 \end{acknowledgments}
+
+
+\section*{Data Availability Statement}
+{
+We analyze publicly-available gravitational wave strain data from the LIGO-Virgo-KAGRA collaboration~\cite{O2data}. The trigger times for analysis were provided by the \pycbc team. The derived data generated in this research will be shared on reasonable request to the corresponding author.
+
+\textit{Software:} \href{https://lscsoft.docs.ligo.org/bilby/}{\bilby} (version 1.0.0)~\cite{bilby}, \href{https://lscsoft.docs.ligo.org/bilby_pipe/master/index.html}{\bilbypipe} (version 1.0.0)~\cite{bilby_pipe}, \href{https://dynesty.readthedocs.io/}{\dynesty}~\cite{dynesty, skilling2004, skilling2006}, \href{https://gwpy.github.io/docs/stable/index.html}{\gwpy}~\cite{gwpy}, \href{https://lscsoft.docs.ligo.org/lalsuite/lalsimulation/index.html}{\code{LALSimulation}}~\cite{lalsuite}, \code{matplotlib}~\cite{matplotlib}, \code{NumPy}~\cite{NumPy}, \code{SciPy}~\cite{SciPy}, \code{pandas}~\cite{pandas}, \code{python}~\cite{pythonForScientificComputing,pythonForScientists}. 
+}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%
 
 \appendix
