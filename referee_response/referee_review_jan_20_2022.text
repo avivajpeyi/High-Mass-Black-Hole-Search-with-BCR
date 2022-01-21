@@ -1,0 +1,55 @@
+Review for MN-21-1316, Vajpeyi et al, A search for intermediate mass black holes mergers in the second LIGO-Virgo observing run with the Bayes Coherence Ratio
+
+This paper describes the analysis of binary black hole coalescence candidates with the bayesian coherence ratio. The title claims it is a search but I think this is overstated as the paper describes what I would call a follow-up of triggers from previous all-sky, all-data searches using matched filter pipelines. This should be made clear in the abstract, which gives the impression that the entire O2 run was searched. At best it could be called the second stage of a hierarchical search pipeline.
+
+The paper itself skips quite a bit of detail, and in places it could use a bit more proof reading. I have highlighted a few examples I noted while reading through but I suggest the authors take another careful read through before any resubmission.
+
+There are also some inconsistencies and even apparent contradictions noted below, which really must be addressed before the paper can be published.
+
+
+Detailed comments:
+
+Title: black holes mergers -> black hole mergers
+
+Abstract: 2nd sentence "such mergers": what mergers? they haven't been mentioned yet "Bayesian-inspired": this is a bit sneaky, if you aren't doing a full bayesian analysis then don't insinuate that you are.
+
+"We find support for some stellar-mass binary black holes not reported in the first LIGO-Virgo gravitational wave transient catalog GWTC-1": This includes events previously reported by the IAS group. Be specific here: you find support for three previously unreported candidates.
+
+Introduction:
+
+Abrupt start: There is no motivation given for the searches for IMBHs, you jump right in to previous searches. Why should we expect to find IMBHs? Can you provide some more justification here. Maybe rearrange with the next paragraph.
+
+"smaller gravitational spheres of influence" -> too informal. Gravitation has an infinite range so all "spheres of influence" are commensurate. You mean "smaller masses", "smaller Einstein radii", "smaller lensing cross-section" or similar?
+
+"other sources can describe observations" the sources do not describe the observations. 
+
+p2, left column:
+
+line 9 "unambiguous": I wouldn't say this - there have been other models proposed to explain GW190521.
+line 16: f ~ M^{-1}: what does ~ mean here? Shouldn't this be \propto?
+
+lines 42: "We present the candidates' p_S, the probability that the candidate originates from a coherent gravitational-wave source". I have several problems with this statement. Firstly, you don't say what the probability is conditioned on, i.e. P(what | what assumptions)? secondly, P_S isn't actually a probability of the candidate, it's more like a P-value, as defined in eqns 2 and 3. The statement is misleading, a P_S=0.9 does not mean that a particular source has a probability of 0.9 of being a coherent source.
+
+p2, right column:
+
+End of sec 2.1. You should justify why you go for a frequentist ranking statistic rather than a bayesian odds ratio.
+
+2.2: Text is misleading: The pi terms in eqn 1 are not astrophysical (or intrumental) prior odds. They are adjusted to maximise search sensitivity to an injection dataset on a chunk-by-chunk basis. You also say that \pi^G is equal for all signals but this contradicts table D1.
+
+p3, left column
+
+I think the discussion before and around eqn 2 is wrong. p_1, as defined in eqn 2, is not the probability of a particular event being mis-classified as a glitch, as the text states. It is the p- value using the BCR as a ranking statistic. This is related to the comment above about the description of P_S. The p-value would be something like the probability of getting a BCR value greater than or equal to the candidate's value given purely noise. However, I'm not even sure if this is true, because the text doesn't say how the background time-slides are chosen: are they from the time-slide triggers from the matched filter search or chosen at random over the entire O2 data?
+The definition of p_S in eqn 4 is also not what is described in the text, as you are manipulating p- values not probabilities. This paragraph needs to be rewritten and checked for accuracy.
+line 53: the numbers are badly formatted after the commas
+
+right column:
+line 42: IMRPhenomPv2 may be relatively cheap but IMRPhenomX is even cheaper. However I don't suggest you re-run the entire analysis - but bear this in mind in future.
+
+line 54: post-processing improves the search efficiency: the search efficiency has not been defined yet. Reading on, it appears to be the sensitivity to the injection dataset, i.e. the number of detected signals above a given false alarm probability.
+
+Appendix B: "as stretch" -> "a stretch"
+"a few days" is this the two weeks mentioned in section 3?
+
+Appendix C: Normally I would expect to see search performance presented as an ROQ curve. Can you provide this? Does it depend on which matched filter pipeline provides the upstream triggers?
+
+Appendix D: The P_S varies enormously, so it is not a surprise that it has a large effect on the results. It should be made much clearer in the main text that these prior odds are tuned from the data, so they are not the astrophysical prior odds as stated below eqn 1.
