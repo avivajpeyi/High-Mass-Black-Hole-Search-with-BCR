@@ -1,0 +1,362 @@
+% ADAPTED FROM https://github.com/hollina/template-referee-response
+
+\documentclass[11pt,leqno]{article}
+
+%------------------------------------------%
+%                Packages
+%------------------------------------------%
+ 
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\usepackage{microtype,xparse,tcolorbox}
+\usepackage{graphicx}
+\usepackage{natbib}	%Bibliography package. It handles citations and can easily change formats. This is done at the end of the document
+\usepackage[utf8]{inputenx}% For proper input encoding
+\usepackage{adjustbox} %Handles resizing of tables, figures, etc. Based off of page and/or line width/height 
+% Packages for tables
+\usepackage{booktabs}% For Pretty tables
+\usepackage{threeparttable}% For Notes below table
+\usepackage{rotating}% To Rotate Table
+\usepackage{amsmath, amssymb,mathrsfs} %For using math
+\usepackage{bm}
+\usepackage{caption} 
+\usepackage[list=true]{subcaption} %For having multiple figures within the same one. Figure 1, with part (a) and (b)
+%\setcounter{lofdepth}{2}
+\usepackage{setspace} %Single, Double Space, etc 
+\usepackage[paperwidth=8.5in, paperheight=11in,margin=1in]{geometry} %For controlling the dimensions. Very useful for Posters, etc 
+\usepackage{chngpage} 
+\usepackage{everypage}%For page numbers on rotated pages
+\usepackage[capposition=top]{floatrow}
+\usepackage{accents}
+\usepackage{float}
+\usepackage{comment}
+\usepackage{morefloats}
+\usepackage{placeins}% To Create Float Barriers so the tables will stay in their sections
+\usepackage{pdflscape}
+
+\usepackage{siunitx} %This aligns tables by their decimal and handles processing of the numbers within the tables
+  \sisetup{
+    detect-mode,
+    group-digits      = false,
+    input-symbols     = {( ) [ ] - +},
+    table-align-text-post = false,
+    input-signs             = ,
+    %parse-numbers=false,
+    %scientific-notation = true,
+        %round-mode              = places,
+        %round-precision         = 2,
+        %input-ignore={,},
+    %input-decimal-markers={.},
+    %group-separator={,},
+        } 
+\usepackage{grffile}
+\usepackage{soul}
+\usepackage{color}
+\usepackage{caption}
+%\captionsetup[figure]{justification=raggedright,singlelinecheck=off}
+\sisetup{separate-uncertainty=true}
+\usepackage{mathptmx}
+\DeclareCaptionLabelFormat{blank}{}
+
+%------------------------------------------%
+%              Custom Commands
+%------------------------------------------%
+\newcommand\iid{i.i.d.} %Makes iid a command
+\newcommand\pN{\mathcal{N}} %Makes the natural numbers a command
+
+
+\setcounter{MaxMatrixCols}{20}
+
+\newtheorem{theorem}{Theorem}%[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{assumption}[theorem]{Assumption}
+\newenvironment{proof}{\paragraph{Proof:}}{\hfill$\square$ \\} %This fixes the problem with dynamic tables for some reason
+
+%For Page Numbers while rotated
+\newlength{\hfoot}
+\newlength{\vfoot}
+\AddEverypageHook{\ifdim\textwidth=\linewidth\relax
+\else\setlength{\hfoot}{-\topmargin}%
+\addtolength{\hfoot}{-\headheight}%
+\addtolength{\hfoot}{-\headsep}%
+\addtolength{\hfoot}{-.5\linewidth}%
+\ifodd\value{page}\setlength{\vfoot}{\oddsidemargin}%
+\else\setlength{\vfoot}{\evensidemargin}\fi%
+\addtolength{\vfoot}{\textheight}%
+\addtolength{\vfoot}{\footskip}%
+\raisebox{\hfoot}[0pt][0pt]{\rlap{\hspace{\vfoot}\rotatebox[origin=cB]{90}{\thepage}}}\fi}
+%http://tex.stackexchange.com/questions/209685/landscape-mode-and-page-numbering
+
+
+%------------------------------------------%
+%      Title Page Info
+%------------------------------------------%
+\title{Replies for MN-21-1316:\\
+ ``A search for intermediate mass black holes mergers in the second LIGO-Virgo observing run with the Bayes Coherence Ratio
+''}
+\author{AUTHOR}
+\date{\today}
+\AtBeginDocument{\maketitle\thispagestyle{empty}\noindent}
+
+\begin{document}
+
+
+
+
+\onehalfspacing
+
+
+\section*{Response to the referee}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Thank you for your helpful comments and guidance. We describe how we have addressed all of your concerns below. \\
+\begin{itemize}
+    \item Your comments are \fcolorbox{black}{black!10}{{\ttfamily boxed in gray a different font}}. 
+    \item Our responses are in plain text. 
+    \item Any included text from the new manuscript is \fbox{boxed in white} with the page number noted at the top of the quoted text. 
+    \item Any added comments or other differences from the quoted manuscript text and the text appearing in this report {\color{red} {\ttfamily[appears in brackets with a different font and a red color]}}. 
+\end{itemize}
+
+
+\subsection*{Title Comment} 
+\begin{tcolorbox}[left = 1em, top = 1ex, bottom = 1ex, colupper=black, colback=black!10, adjusted title =  Comment 1]
+    \setlength\parindent{2em}
+	\noindent
+	\ttfamily
+	Title: black holes mergers -> black hole mergers
+\end{tcolorbox}
+We have adjusted the title.
+
+
+\subsection*{Abstract Comments} 
+\begin{tcolorbox}[left = 1em, top = 1ex, bottom = 1ex, colupper=black, colback=black!10, adjusted title = Comment 1]
+    \setlength\parindent{2em}
+	\noindent
+	\ttfamily
+	2nd sentence "such mergers": what mergers? they haven't been mentioned yet "Bayesian-inspired": this is a bit sneaky, if you aren't doing a full bayesian analysis then don't insinuate that you are.
+\end{tcolorbox}
+
+%% what have we done 
+
+\begin{tcolorbox}[left = 1em, top = 1ex, bottom = 1ex, colupper=black, colback=black!10, adjusted title = Comment 2]
+    \setlength\parindent{2em}
+	\noindent
+	\ttfamily
+    "We find support for some stellar-mass binary black holes not reported in the first LIGO-Virgo gravitational wave transient catalog GWTC-1": This includes events previously reported by the IAS group. Be specific here: you find support for three previously unreported candidates.
+\end{tcolorbox}
+
+%% what have we done 
+
+%% what have we done 
+
+
+\subsection*{Introduction Comments} 
+\begin{tcolorbox}[left = 1em, top = 1ex, bottom = 1ex, colupper=black, colback=black!10, adjusted title =  Comment 1]
+    \setlength\parindent{2em}
+	\noindent
+	\ttfamily
+    Abrupt start: There is no motivation given for the searches for IMBHs, you jump right in to previous searches. Why should we expect to find IMBHs? Can you provide some more justification here. Maybe rearrange with the next paragraph.
+\end{tcolorbox}
+
+\begin{tcolorbox}[left = 1em, top = 1ex, bottom = 1ex, colupper=black, colback=black!10, adjusted title =  Comment 2]
+    \setlength\parindent{2em}
+	\noindent
+	\ttfamily
+    "smaller gravitational spheres of influence" -> too informal. Gravitation has an infinite range so all "spheres of influence" are commensurate. You mean "smaller masses", "smaller Einstein radii", "smaller lensing cross-section" or similar?
+\end{tcolorbox}
+
+\begin{tcolorbox}[left = 1em, top = 1ex, bottom = 1ex, colupper=black, colback=black!10, adjusted title =  Comment 3]
+    \setlength\parindent{2em}
+	\noindent
+	\ttfamily
+    "other sources can describe observations" the sources do not describe the observations. 
+\end{tcolorbox}
+
+Additionally, the numerous IMBH candidates discovered using these techniques are ambiguous as other sources can describe observations from the candidates (e.g., light sources orbiting clusters of stellar-mass black holes 
+
+Change to 
+
+Additionally, numerous IMBH candidates discovered using these techniques are ambiguous as 
+
+other sources can describe observations from the candidates (e.g., light sources orbiting clusters of stellar-mass black holes 
+
+
+\subsection*{Left Side Page 2} 
+\begin{tcolorbox}[left = 1em, top = 1ex, bottom = 1ex, colupper=black, colback=black!10, adjusted title =  Comment 1]
+    \setlength\parindent{2em}
+	\noindent
+	\ttfamily
+    line 9 "unambiguous": I wouldn't say this - there have been other models proposed to explain GW190521.
+\end{tcolorbox}
+
+
+\begin{tcolorbox}[left = 1em, top = 1ex, bottom = 1ex, colupper=black, colback=black!10, adjusted title =  Comment 2]
+    \setlength\parindent{2em}
+	\noindent
+	\ttfamily
+    line 16: $f \sim M^{-1}$: what does ~ mean here? Shouldn't this be $\propto$?
+\end{tcolorbox}
+
+
+
+\begin{tcolorbox}[left = 1em, top = 1ex, bottom = 1ex, colupper=black, colback=black!10, adjusted title =  Comment 3]
+    \setlength\parindent{2em}
+	\noindent
+	\ttfamily
+    lines 42: "We present the candidates' $p_S$, the probability that the candidate originates from a coherent gravitational-wave source". I have several problems with this statement. Firstly, you don't say what the probability is conditioned on, i.e. P(what $|$ what assumptions)? secondly, $P_S$ isn't actually a probability of the candidate, it's more like a P-value, as defined in eqns 2 and 3. The statement is misleading, a $P_S$=0.9 does not mean that a particular source has a probability of 0.9 of being a coherent source.
+\end{tcolorbox}
+
+
+% p1b = p1 = function of BCR <------- background probability
+% p1s = another function of the BCR <------  signal probability (you need astrophysical distribution of injections to do this one)
+% p_astro = p1s / (p1s + p1b)
+% our hack:
+% let's pretend
+% p_notb = p1s = 1 - 1pb (edited)
+
+
+not the prob of candidate signal event 
+
+its the prob of event not being from the background
+
+we dont have p1s 
+
+strictly this is not correct 
+
+in the paper we show how strickly speaking how to calculate pastro
+
+but we use a hack
+
+
+
+
+\subsection*{Right Side Page 2} 
+\begin{tcolorbox}[left = 1em, top = 1ex, bottom = 1ex, colupper=black, colback=black!10, adjusted title =  Comment 1]
+    \setlength\parindent{2em}
+	\noindent
+	\ttfamily
+    End of sec 2.1. You should justify why you go for a frequentist ranking statistic rather than a bayesian odds ratio.
+\end{tcolorbox}
+
+
+we dnt have prior odds, see greg's BCR2 paper
+
+
+
+\begin{tcolorbox}[left = 1em, top = 1ex, bottom = 1ex, colupper=black, colback=black!10, adjusted title =  Comment 2]
+    \setlength\parindent{2em}
+	\noindent
+	\ttfamily
+    2.2: Text is misleading: The pi terms in eqn 1 are not astrophysical (or intrumental) prior odds. They are adjusted to maximise search sensitivity to an injection dataset on a chunk-by-chunk basis. You also say that $\pi^G$ is equal for all signals but this contradicts table D1.
+\end{tcolorbox}
+
+this is not a actual prior -- but emperical one
+
+form of equatin 1 is similar to bayesian odds ratio. 
+
+we should not call it a prior 
+
+this functions like a prior 
+
+these are not chosen apriori 
+
+future iterations it may be possible to chose apriori 
+
+
+
+
+\subsection*{Left Side Page 3 Comments} 
+\begin{tcolorbox}[left = 1em, top = 1ex, bottom = 1ex, colupper=black, colback=black!10, adjusted title =  Comment 1]
+    \setlength\parindent{2em}
+	\noindent
+	\ttfamily
+    I think the discussion before and around eqn 2 is wrong. $p_1$, as defined in eqn 2, is not the probability of a particular event being mis-classified as a glitch, as the text states. It is the p- value using the BCR as a ranking statistic. This is related to the comment above about the description of $P_S$. The p-value would be something like the probability of getting a BCR value greater than or equal to the candidate's value given purely noise. However, I'm not even sure if this is true, because the text doesn't say how the background time-slides are chosen: are they from the time-slide triggers from the matched filter search or chosen at random over the entire O2 data?
+\end{tcolorbox}
+
+first part is answered before
+
+mention that we get the timeslid triggers
+
+
+
+\begin{tcolorbox}[left = 1em, top = 1ex, bottom = 1ex, colupper=black, colback=black!10, adjusted title =  Comment 2]
+    \setlength\parindent{2em}
+	\noindent
+	\ttfamily
+    The definition of $p_S$ in eqn 4 is also not what is described in the text, as you are manipulating p- values not probabilities. This paragraph needs to be rewritten and checked for accuracy.
+\end{tcolorbox}
+
+
+\begin{tcolorbox}[left = 1em, top = 1ex, bottom = 1ex, colupper=black, colback=black!10, adjusted title =  Comment 3]
+    \setlength\parindent{2em}
+	\noindent
+	\ttfamily
+    line 53: the numbers are badly formatted after the commas
+\end{tcolorbox}
+
+
+\subsection*{Right Side Page 3} 
+\begin{tcolorbox}[left = 1em, top = 1ex, bottom = 1ex, colupper=black, colback=black!10, adjusted title =  Comment 1]
+    \setlength\parindent{2em}
+	\noindent
+	\ttfamily
+    line 42: IMRPhenomPv2 may be relatively cheap but IMRPhenomX is even cheaper. However I don't suggest you re-run the entire analysis - but bear this in mind in future.
+\end{tcolorbox}
+
+\begin{tcolorbox}[left = 1em, top = 1ex, bottom = 1ex, colupper=black, colback=black!10, adjusted title =  Comment 2]
+    \setlength\parindent{2em}
+	\noindent
+	\ttfamily
+    line 54: post-processing improves the search efficiency: the search efficiency has not been defined yet. Reading on, it appears to be the sensitivity to the injection dataset, i.e. the number of detected signals above a given false alarm probability.
+\end{tcolorbox}
+
+
+sorry my bad, not serach efficency but resolving power. 
+
+
+\subsection*{Appendix Comments} 
+\begin{tcolorbox}[left = 1em, top = 1ex, bottom = 1ex, colupper=black, colback=black!10, adjusted title =  Apdx B: Comment 1]
+    \setlength\parindent{2em}
+	\noindent
+	\ttfamily
+     "as stretch" -> "a stretch"
+\end{tcolorbox}
+
+\begin{tcolorbox}[left = 1em, top = 1ex, bottom = 1ex, colupper=black, colback=black!10, adjusted title =  Apdx B: Comment 2]
+    \setlength\parindent{2em}
+	\noindent
+	\ttfamily
+     "a few days" is this the two weeks mentioned in section 3?
+\end{tcolorbox}
+
+\begin{tcolorbox}[left = 1em, top = 1ex, bottom = 1ex, colupper=black, colback=black!10, adjusted title =  Apdx C Comment]
+    \setlength\parindent{2em}
+	\noindent
+	\ttfamily
+     Normally I would expect to see search performance presented as an ROQ curve. Can you provide this? Does it depend on which matched filter pipeline provides the upstream triggers?
+\end{tcolorbox}
+
+We made a mistake -- not efficency but resolving power
+
+\begin{tcolorbox}[left = 1em, top = 1ex, bottom = 1ex, colupper=black, colback=black!10, adjusted title =  Apdx D Comment]
+    \setlength\parindent{2em}
+	\noindent
+	\ttfamily
+     The $P_S$ varies enormously, so it is not a surprise that it has a large effect on the results. It should be made much clearer in the main text that these prior odds are tuned from the data, so they are not the astrophysical prior odds as stated below eqn 1.
+\end{tcolorbox}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

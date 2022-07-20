@@ -42,7 +42,7 @@ I think the discussion before and around eqn 2 is wrong. p_1, as defined in eqn 
 The definition of p_S in eqn 4 is also not what is described in the text, as you are manipulating p- values not probabilities. This paragraph needs to be rewritten and checked for accuracy.
 line 53: the numbers are badly formatted after the commas
 
-right column:
+p3, right column:
 line 42: IMRPhenomPv2 may be relatively cheap but IMRPhenomX is even cheaper. However I don't suggest you re-run the entire analysis - but bear this in mind in future.
 
 line 54: post-processing improves the search efficiency: the search efficiency has not been defined yet. Reading on, it appears to be the sensitivity to the injection dataset, i.e. the number of detected signals above a given false alarm probability.
