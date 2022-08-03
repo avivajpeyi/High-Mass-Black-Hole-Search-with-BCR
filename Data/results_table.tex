@@ -1,0 +1,43 @@
+\begin{table*}
+\centering
+\caption{
+$\pastrobcr$ table for gravitational wave events and candidates in our search space with $\pastrobcr>0.2$, calculated using Hanford and Livingston observatory data. Displayed for comparison are significances of events taken from: GstLAL \pastroGwtcGstlal~\citep{GWTC1}, 
+PyCBC \pastroGwtcPycbc~\citep{GWTC1}, 
+IAS \pastroIas~\citep{IAS1, IAS2},  
+\pastroPrat~\citep{bayesian_odds}, 
+PyCBC OGC-2 \pastroOgcTwo~\citep{pycbc_ogc_2} and
+PyCBC OGC-3 \pastroOgcThree~\citep{pycbc_ogc_2}. 
+The $\tc$ column contains the `GPS' coalescence-times of the gravitational wave events. 
+The catalog column displays the first catalog reporting the event on each row (the catalogs labeled IAS-1 and IAS-2 correspond to the candidates published by \citealt{IAS1} and \citealt{IAS2}).
+}
+\label{tab:results}
+
+\def\arraystretch{1.5} 
+\setlength{\tabcolsep}{0.5em}
+\begin{NiceTabular}{@{}ll!{\quad}|c|cc!{\quad}c!{\quad}c!{\quad}cc!{\quad}|c@{}}
+\CodeBefore
+\rowcolors{2}{white}{gray!10}
+\Body
+
+
+     Event & Catalog &  \pastrobcr &  \pastroGwtcPycbc &  \pastroGwtcGstlal &  \pastroIas &  \pastroPrat &    \pastroOgcTwo &  \pastroOgcThree &          \tc \\
+\hline
+  GW170104 &  GWTC-1 &        0.97 &              1.00 &               1.00 &             &         1.00 &             1.00 &                  & 1167559936.60 \\
+  GW170121 &   IAS-1 &        0.83 &                   &                    &        1.00 &         0.53 &             1.00 &             1.00 & 1169069154.57 \\
+    170209 &       - &        0.32 &                   &                    &             &              &                  &                  & 1170659643.47 \\
+    170222 &       - &        0.58 &                   &                    &             &              &                  &                  & 1171814476.97 \\
+    170302 &   IAS-1 &        0.78 &                   &                    &        0.45 &              &                  &                  & 1172487817.48 \\
+  GW170304 &   IAS-1 &        0.94 &                   &                    &        0.99 &         0.03 &             0.70 &             0.70 & 1172680691.36 \\
+ GWC170402 &   IAS-2 &        0.60 &                   &                    &        0.68 &         0.00 &                  &                  & 1175205128.57 \\
+  GW170403 &   IAS-1 &        0.54 &                   &                    &        0.56 &         0.27 &             0.03 &             0.71 & 1175295989.22 \\
+    170421 &       - &        0.27 &                   &                    &             &              &                  &                  & 1176789158.14 \\
+  GW170425 &   IAS-1 &        0.22 &                   &                    &        0.77 &         0.74 &             0.21 &             0.41 & 1177134832.18 \\
+  GW170608 &  GWTC-1 &        0.99 &              1.00 &               0.92 &             &         1.00 &                  &                  & 1180922494.50 \\
+  GW170727 &   IAS-1 &        0.98 &                   &                    &        0.98 &         0.66 &             0.99 &             1.00 & 1185152688.02 \\
+  GW170729 &  GWTC-1 &        0.98 &              0.52 &               0.98 &             &         1.00 &             1.00 &             0.99 & 1185389807.30 \\
+  GW170809 &  GWTC-1 &        0.99 &              1.00 &               0.99 &             &         1.00 &             1.00 &             1.00 & 1186302519.75 \\
+  GW170814 &  GWTC-1 &        1.00 &              1.00 &               1.00 &             &         1.00 &             1.00 &             1.00 & 1186741861.53 \\
+ GW170817A &   IAS-2 &        0.92 &                   &                    &        0.86 &         0.02 &                  &                  & 1186974184.72 \\
+
+\end{NiceTabular}
+\end{table*}
