@@ -1,2 +1,0 @@
-scp avi.vajpeyi@ldas-pcdev3.ligo.caltech.edu:/hdfs/user/avi.vajpeyi/out_O2_BCRs/chunk7/pe_outdir/out_foreground/result/bcr_O2_chunk7_foreground_data1_1171814476-971924_analysis_H1L1_dynesty_result.json data/corner_data/170222_result.json
-scp avi.vajpeyi@ldas-pcdev3.ligo.caltech.edu:/home/avi.vajpeyi/projects/bcr_pipeline/bcr_pipeline/priors/454ns.prior data/corner_data/454ns.prior
