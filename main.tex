@@ -74,8 +74,8 @@
 The detection of an intermediate-mass black hole population ($10^2-10^6\ M_\odot$) will provide clues to their formation environments (e.g., disks of active galactic nuclei, globular clusters) and illuminate a potential pathway to produce supermassive black holes. 
 Ground-based gravitational-wave detectors are sensitive to mergers that can form intermediate-mass black holes weighing up to $\sim 450\ M_\odot$.
 However, ground-based detector data contain numerous incoherent short duration noise transients that can mimic the gravitational-wave signals from merging intermediate-mass black holes, limiting the sensitivity of searches. 
-Here we \green{follow-up on} binary black hole merger \green{candidates} using a ranking statistic that measures the coherence or incoherence of triggers in multiple-detector data. 
-We use this statistic to \green{rank} candidate events,  \green{initially identified by all-sky search pipelines,} with lab-frame total masses $\gtrsim55\ M_\odot$ using data from LIGO's second observing run. 
+Here we follow-up on binary black hole merger candidates using a ranking statistic that measures the coherence or incoherence of triggers in multiple-detector data. 
+We use this statistic to rank candidate events,  initially identified by all-sky search pipelines, with lab-frame total masses $\gtrsim55\ M_\odot$ using data from LIGO's second observing run. 
 Our analysis does not yield evidence for new intermediate-mass black holes. 
 However, we find support for eight stellar-mass binary black holes not reported in the first LIGO-Virgo gravitational wave transient catalog GWTC-1, seven of which have been previously reported by other catalogs.
 \end{abstract}
@@ -131,20 +131,20 @@ Instead, we use the \bcr as a ranking statistic to obtain a frequentist signific
 
 %  $\hat{\pi}^S$ is the prior odds of detector-data containing a coherent astrophysical signal versus an incoherent instrumental-artifact (such as a glitch or noise), while $\{\hat{\pi}^N_i, \hat{\pi}^G_i\}$ are prior odds of detector-data containing a glitch or noise given an incoherent instrumental-artifact is present in the data. 
 
-Since it is impossible to shield ground-based gravitational-wave detectors from gravitational-wave signals, the LVK empirically estimates the background by repeatedly time-shifting strain data by amounts larger than the light-travel time between the two LIGO detectors~\citep{GWTC1}. We use time-shifted data to generate $\bgrdbcr$, \green{the background ranking statistic}. Following this, we calculate the \green{fraction of $\bgrdbcr$ greater than or equal to a $\candbcr$, the candidate ranking statistic}:
+Since it is impossible to shield ground-based gravitational-wave detectors from gravitational-wave signals, the LVK empirically estimates the background by repeatedly time-shifting strain data by amounts larger than the light-travel time between the two LIGO detectors~\citep{GWTC1}. We use time-shifted data to generate $\bgrdbcr$, the background ranking statistic. Following this, we calculate the fraction of $\bgrdbcr$ greater than or equal to a $\candbcr$, the candidate ranking statistic:
 \begin{equation}
     p_1^b = \frac{\text{Count of } \bgrdbcr \leq \candbcr}{\text{Count of } \bgrdbcr} \ .
 \end{equation}
-Given a set of simulated signals \green{and their ranking statistic $\injbcr$, one may calculate the fraction of $\injbcr$ greater than or equal to a $\candbcr$}: 
+Given a set of simulated signals and their ranking statistic $\injbcr$, one may calculate the fraction of $\injbcr$ greater than or equal to a $\candbcr$: 
 \begin{equation}
     p_1^s = \frac{\text{Count of } \injbcr \leq \candbcr}{\text{Count of } \injbcr} \ .
 \end{equation}
-\green{With $p_1^b$ and $p_1^s$ it is possible to compute a candidate’s 
-\pastro, the probability that a candidate is of astrophysical origin:}
+With $p_1^b$ and $p_1^s$ it is possible to compute a candidate’s 
+\pastro, the probability that a candidate is of astrophysical origin:
 \begin{equation}
     \pastro = \frac{p_1^s}{p_1^s + p_1^b}\ .
 \end{equation}
-However, for this study we do not have an astrophysical distribution of simulated signals and so we cannot compute $p_1^s$ \green{or consequently $\pastro$}. 
+However, for this study we do not have an astrophysical distribution of simulated signals and so we cannot compute $p_1^s$ or consequently $\pastro$. 
 Instead we opt for a frequentist $p$-value probability that a candidate is inconsistent with the background. 
 As we have $k$ candidates, each with a \candbcr, we calculate a false-alarm probability \fap that accounts for trial factors given by
 \begin{equation}
@@ -158,8 +158,8 @@ When $\pastrobcr \ll 1$, the event is consistent with the background distributio
 Conversely, when $\pastrobcr \approx 1$ the event is inconsistent with the background distribution, and is therefore a promising gravitational-wave candidate.
 
 
-\green{It is important to note that 
-$\pastrobcr$ (the probability that an event is not part of the background distribution) is not the same as $\pastro$, which requires an astrophysical set of simulated signals.}
+It is important to note that 
+$\pastrobcr$ (the probability that an event is not part of the background distribution) is not the same as $\pastro$, which requires an astrophysical set of simulated signals.
 
 \section{Analysis}
 \label{sec:Analysis}
@@ -226,7 +226,9 @@ The waveform template we utilize is \imrphenomp, a phenomenological waveform tem
 
 
 
-To generate the PSD, we take 31 neighboring off-source non-overlapping  4-second  segments of time-series data before the analysis data segment $d_i$. A Tukey window with a 0.2-second roll-off is applied to each data segment to suppress spectral leakage. After this, we fast-Fourier transform and median-average the segments to create a PSD~\citep{ligo_psd}. Like other PSD estimation methods, this method adds statistical uncertainties to the PSD~\citep{psd_student_t, chatziioannou2019noise, Biscoveanu:2020:PhRvD}. To marginalize over the statistical uncertainty, we use the median-likelihood presented by~\citet{psd_student_t} as a post-processing step. \green{This post-processing step reduces the percentage of background $\bgrdbcr>0$ by $\sim49\%$.} The details of this calculation are in the Appendix~\ref{sec:psd-marginalization}.
+To generate the PSD, we take 31 neighboring off-source non-overlapping  4-second  segments of time-series data before the analysis data segment $d_i$. A Tukey window with a 0.2-second roll-off is applied to each data segment to suppress spectral leakage. After this, we fast-Fourier transform and median-average the segments to create a PSD~\citep{ligo_psd}. Like other PSD estimation methods, this method adds statistical uncertainties to the PSD~\citep{psd_student_t, chatziioannou2019noise, Biscoveanu:2020:PhRvD}. To marginalize over the statistical uncertainty, we use the median-likelihood presented by~\citet{psd_student_t} as a post-processing step. 
+This post-processing step reduces the percentage of background $\bgrdbcr>0$ by $\sim49\%$.
+The details of this calculation are in the Appendix~\ref{sec:psd-marginalization}.
 
 The data we use are the publicly accessible O2 strain data from the Hanford and Livingston detectors, recorded while the detectors are in ``Science Mode''. We obtain the data from the gravitational-wave Open Science Center~\citep{GWOSC} using \gwpy~\citep{gwpy}. 
 
@@ -270,7 +272,7 @@ The authors gratefully thank the \pycbc team for providing the gravitational-wav
 
 We gratefully acknowledge the computational resources provided by the LIGO Laboratory—Caltech Computing Cluster and supported by NSF grants PHY-0757058 and PHY-0823459, and thank Stuart Anderson for his assistance in resource scheduling.
 
-All analyses (inclusive of test and failed analyses) performed for this study used ${1.3\mathrm{M}}$ core-hours, amounting to a carbon footprint of ${\sim1.67\ \mathrm{t}}$ of ${\text{CO}_2}$ (using the U.S. average electricity source emissions of ${0.429\ \text{kg/kWh}}$~\citep{greenhouse} and ${0.3\ \text{kWh}}$ for each CPU).
+All analyses (inclusive of test and failed analyses) performed for this study used ${0.6\mathrm{M}}$ core-hours, amounting to a carbon footprint of ${\sim77\ \mathrm{t}}$ of ${\text{CO}_2}$ (using the U.S. average electricity source emissions of ${0.371\ \text{kg/kWh}}$~\citep{greenhouse} and ${0.3\ \text{kWh}}$ for each CPU).
 
 This material is based upon work supported by NSF’s LIGO Laboratory, a major facility fully funded by the National Science Foundation. This research has used data, software, and web tools obtained from the Gravitational Wave Open Science Center (\href{https://www.gw-openscience.org}{https://www.gw-openscience.org}), a service of LIGO Laboratory, the LIGO Scientific Collaboration and the Virgo Collaboration. LIGO Laboratory and Advanced LIGO are funded by the United States National Science Foundation (NSF) as well as the Science and Technology Facilities Council (STFC) of the United Kingdom, the Max-Planck-Society (MPS), and the State of Niedersachsen/Germany for support of the construction of Advanced LIGO and construction and operation of the GEO600 detector. Additional support for Advanced LIGO was provided by the Australian Research Council. Virgo is funded, through the European Gravitational Observatory (EGO), by the French Centre National de Recherche Scientifique (CNRS), the Italian Istituto Nazionale di Fisica Nucleare (INFN) and the Dutch Nikhef, with contributions by institutions from Belgium, Germany, Greece, Hungary, Ireland, Japan, Monaco, Poland, Portugal, Spain.
 
@@ -345,7 +347,7 @@ We limit our search for the maximum KL-divergence in the $\hat{\pi}^S$ and $\hat
 
 
 \section{Marginalizing over PSD statistical uncertainties}\label{sec:psd-marginalization}
-To generate the results presented in Table~\ref{tab:results}, we applied a post-processing step to marginalize the uncertainty in the PSD. In Fig.~\ref{fig:bcrCdf}, we demonstrate the impact of the post-processing step. Marginalizing over uncertainty in the PSD yields an improvement in the separation of the noise and signal distributions (left plot). Quantitatively, at a threshold $\bcr^T=0$ the post-processing step \green{reduces the percentage of} background $\bcr > \bcr^T$ from $60\%$ to $25\%$ \green{(a $58\%$ improvement)} in the August 13 - 21, 2017 time-frame of data. \green{For the entirety of O2, PSD marginalization reduces the percentage of $\bcr > \bcr^T$ from $64\%$ to $33\%$ (a $\sim49\%$ improvement). }
+To generate the results presented in Table~\ref{tab:results}, we applied a post-processing step to marginalize the uncertainty in the PSD. In Fig.~\ref{fig:bcrCdf}, we demonstrate the impact of the post-processing step. Marginalizing over uncertainty in the PSD yields an improvement in the separation of the noise and signal distributions (left plot). Quantitatively, at a threshold $\bcr^T=0$ the post-processing step reduces the percentage of background $\bcr > \bcr^T$ from $60\%$ to $25\%$ (a $58\%$ improvement) in the August 13 - 21, 2017 time-frame of data. For the entirety of O2, PSD marginalization reduces the percentage of $\bcr > \bcr^T$ from $64\%$ to $33\%$ (a $\sim49\%$ improvement). 
 
 \begin{figure*}
     \centering
