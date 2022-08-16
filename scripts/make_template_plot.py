@@ -339,7 +339,7 @@ def plot_template_bank():
 
 def add_legend(ax):
     patch1 = mpatches.Patch(facecolor='none', label='Prior', edgecolor=PRI_COL, hatch="\\\\")
-    patch2 = mpatches.Patch(facecolor='none', label='Trigger\nFilter', edgecolor=FILT_COL, hatch="//")
+    patch2 = mpatches.Patch(facecolor='none', label='Search\nSpace', edgecolor=FILT_COL, hatch="//")
 
     ax.legend(
         handles=[patch1, patch2],
