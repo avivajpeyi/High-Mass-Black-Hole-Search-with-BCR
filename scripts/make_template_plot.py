@@ -334,7 +334,7 @@ def plot_template_bank():
 
     plt.tight_layout()
     fname = "images/template_bank.png"
-    plt.savefig(fname)
+    plt.savefig(fname, dpi=300)
 
 
 def add_legend(ax):
